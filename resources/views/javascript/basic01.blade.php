@@ -14,7 +14,11 @@
             font-family: "Times New Roman", Times, serif;
         }
         #box ul li {
-            list-style-image: url('images/monster01-icon.png');
+            list-style: none;
+            background: url('images/monster01-icon.png') no-repeat left;
+            padding: 0 0 0 30px;
+            margin-bottom: 10px;
+            /* list-style-image: url('images/monster01-icon.png'); */
         }
         #box ul li a:link {
             color: #000000;
