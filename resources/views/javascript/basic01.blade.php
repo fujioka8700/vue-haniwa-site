@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Box</title>
     <style>
-        .box {
+        #box {
             border: 1px solid #cccccc;
             width: 250px;
             border-radius: 8px;
@@ -13,10 +13,13 @@
             font-size: 16px;
             font-family: "Times New Roman", Times, serif;
         }
+        #box ul li {
+            list-style-image: url('images/monster01-icon.png');
+        }
     </style>
 </head>
 <body>
-    <div class="box">
+    <div id="box">
         <ul>
             <li>アカクビワラビー</li>
             <li>パルマワラビー</li>
