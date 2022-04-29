@@ -16,15 +16,24 @@
         #box ul li {
             list-style-image: url('images/monster01-icon.png');
         }
+        #box ul li a:link {
+            color: #000000;
+            text-decoration: none;
+        }
+        #box ul li a:hover {
+            color: #0000ff;
+        }
+        #box ul li a:active {
+            color: #ff0000;
+        }
     </style>
 </head>
 <body>
     <div id="box">
         <ul>
-            <li>アカクビワラビー</li>
-            <li>パルマワラビー</li>
-            <li>シマワラビー</li>
-            <li>シマオイワラビー</li>
+            <li><a href="#">アカクビワラビー</a></li>
+            <li><a href="#">パルマワラビー</a></li>
+            <li><a href="#">シマワラビー</a></li>
         </ul>
     </div>
 </body>
