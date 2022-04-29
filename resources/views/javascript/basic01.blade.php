@@ -22,6 +22,7 @@
             border-radius: 8px;
             background-color: #00ff00;
             position: relative;
+            margin-top: 20px;
         }
         .blueBox {
             border: 1px solid #cccccc;
@@ -31,6 +32,7 @@
             border-radius: 8px;
             background-color: #0000ff;
             position: relative;
+            margin-top: 20px;
         }
     </style>
 </head>
