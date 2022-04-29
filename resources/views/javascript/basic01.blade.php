@@ -10,6 +10,8 @@
             width: 300px;
             height: 150px;
             text-align: center;
+            border-radius: 25px;
+            box-shadow: 10px 10px 5px #888888;
         }
     </style>
 </head>
