@@ -7,19 +7,28 @@
     <style>
         .box {
             border: 1px solid #cccccc;
-            width: 300px;
+            width: 250px;
             border-radius: 8px;
             padding: 15px 15px 15px 15px;
-            line-height: 40px;
+        }
+        #imgBox {
+            width: 100%;
+        }
+        #textBox {
+            text-align: center;
+            width: 100%;
+            line-height: 30px
         }
     </style>
 </head>
 <body>
     <div class="box">
-        大阪城<br>
-        姫路城<br>
-        尼崎城<br>
-        有岡城
+        <div id="imgBox">
+            <img src="{{ asset('images/animal_wallaby_kangaroo_s.png') }}" alt="ワラビー">
+        </div>
+        <div id="textBox">
+            あの有名なワラビーです。
+        </div>
     </div>
 </body>
 </html>
