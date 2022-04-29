@@ -7,11 +7,12 @@
     <style>
         .box {
             border: 1px solid #cccccc;
-            width: 300px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             text-align: center;
-            border-radius: 25px;
-            box-shadow: 10px 10px 5px #888888;
+            border-radius: 8px;
+            background-color: #ff0000;
+            color: #ffffff;
         }
     </style>
 </head>
