@@ -5,40 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Box</title>
     <style>
-        .menubtn {
-            background-color: #000000;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
+        #login {
+            border: 1px solid #cccccc;
+            width: 250px;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: "Times New Roman", Times, serif;
         }
-        .menudown-content {
-            display: none;
-            background-color: #f9f9f9;
-            width: 300px;
+        #login div {
+            line-height: 30px;
         }
-        .menudown-content a {
-            color: black;
-            display: block;
-            text-decoration: none;
-            padding: 12px 16px;
+        .textbox {
+            width: 160px;
         }
-        .menudown-content a:hover {
-            background-color: #f1f1f1;
+        #buttonDiv {
+            text-align: center;
         }
-        .menudown:hover .menudown-content {
-            display: block;
+        #buttonDiv input {
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
         }
     </style>
 </head>
 <body>
-    <div class="menudown">
-        <button class="menubtn">Books</button>
-        <div class="menudown-content">
-            <a href="#">HTML, CSSの本</a>
-            <a href="#">JavaScriptの本</a>
-            <a href="#">Javaの本</a>
+    <div id="login">
+        <div>Username:<input class="textbox" type="text" name="username" id="username"></div>
+        <div>Password:<input class="textbox" type="password" name="password" id="password"></div>
+        <div id="buttonDiv">
+            <input type="button" value="Login">
+            <input type="button" value="Close">
         </div>
     </div>
 </body>
