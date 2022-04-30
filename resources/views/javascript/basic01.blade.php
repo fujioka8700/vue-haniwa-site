@@ -5,36 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Box</title>
     <style>
-        #box {
-            border: 1px solid #cccccc;
-            width: 250px;
-            border-radius: 8px;
-            padding: 15px 15px 15px 15px;
-            font-size: 16px;
-            font-family: "Times New Roman", Times, serif;
+        ul {
+            list-style-type: none;
+            width: 300px;
+            margin: 0;
+            padding: 0;
+            background-color: #eeeeee;
         }
-        #box ul li {
-            list-style: none;
-            background: url('images/monster01-icon.png') no-repeat left;
-            padding: 0 0 0 30px;
-            margin-bottom: 10px;
-            /* list-style-image: url('images/monster01-icon.png'); */
-        }
-        #box ul li a:link {
+        li a {
+            display: block;
             color: #000000;
+            padding: 8px 16px;
             text-decoration: none;
         }
-        #box ul li a:hover {
-            color: #0000ff;
+        li a.active {
+            background-color: #075272;
+            color: white;
         }
-        #box ul li a:active {
-            color: #ff0000;
+        li a:hover:not(.active) {
+            background-color: #59c9f9;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div id="box">
         <ul>
+            <li><a class="active" href="#">ワラビーの種類</a></li>
             <li><a href="#">アカクビワラビー</a></li>
             <li><a href="#">パルマワラビー</a></li>
             <li><a href="#">シマワラビー</a></li>
