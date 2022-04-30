@@ -5,40 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Box</title>
     <style>
-        ul {
-            list-style-type: none;
-            width: 100%;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            background-color: #333;
+        .menubtn {
+            background-color: #000000;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
         }
-        li {
-            float: left;
+        .menudown-content {
+            display: none;
+            background-color: #f9f9f9;
+            width: 300px;
         }
-        li a {
+        .menudown-content a {
+            color: black;
             display: block;
-            color: #ffffff;
-            text-align: center;
-            padding: 15px;
             text-decoration: none;
+            padding: 12px 16px;
         }
-        li a.active {
-            background-color: #fde352;
+        .menudown-content a:hover {
+            background-color: #f1f1f1;
         }
-        li a:hover:not(.active) {
-            background-color: #fde352;
+        .menudown:hover .menudown-content {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div id="box">
-        <ul>
-            <li><a class="active" href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-            <li><a href="#">Python</a></li>
-        </ul>
+    <div class="menudown">
+        <button class="menubtn">Books</button>
+        <div class="menudown-content">
+            <a href="#">HTML, CSSの本</a>
+            <a href="#">JavaScriptの本</a>
+            <a href="#">Javaの本</a>
+        </div>
     </div>
 </body>
 </html>
