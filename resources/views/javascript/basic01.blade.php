@@ -7,34 +7,37 @@
     <style>
         ul {
             list-style-type: none;
-            width: 300px;
+            width: 100%;
+            overflow: hidden;
             margin: 0;
             padding: 0;
-            background-color: #eeeeee;
+            background-color: #333;
+        }
+        li {
+            float: left;
         }
         li a {
             display: block;
-            color: #000000;
-            padding: 8px 16px;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
             text-decoration: none;
         }
         li a.active {
-            background-color: #075272;
-            color: white;
+            background-color: #fde352;
         }
         li a:hover:not(.active) {
-            background-color: #59c9f9;
-            color: white;
+            background-color: #fde352;
         }
     </style>
 </head>
 <body>
     <div id="box">
         <ul>
-            <li><a class="active" href="#">ワラビーの種類</a></li>
-            <li><a href="#">アカクビワラビー</a></li>
-            <li><a href="#">パルマワラビー</a></li>
-            <li><a href="#">シマワラビー</a></li>
+            <li><a class="active" href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">Python</a></li>
         </ul>
     </div>
 </body>
