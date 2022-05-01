@@ -1,6 +1,4 @@
-// While ループステートメント
-let i = 0;
-while (i < 10) {
+// For ループステートメント
+for (let i = 0; i < 10; i++) {
     document.write(i + ", ");
-    i++;
 }
