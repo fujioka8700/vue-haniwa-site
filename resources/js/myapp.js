@@ -1,43 +1,18 @@
-function getValue() {
-    const aObj = document.getElementById("a");
-    const bObj = document.getElementById("b");
-    const a = parseInt(aObj.value);
-    const b = parseInt(bObj.value);
-    return {
-        a: a,
-        b: b,
-    }
-}
+// 代入演算子
+let d = 4;
+document.write(d++);
+document.write(d);
 
-function doAdd() {
-    let a = getValue().a;
-    let b = getValue().b;
-    let resultObj = document.getElementById("result");
-    resultObj.innerHTML = a + b;
-}
+d = 4;
+document.write(++d);
 
-function doSub() {
-    let a = getValue().a;
-    let b = getValue().b;
-    let resultObj = document.getElementById("result");
-    resultObj.innerHTML = a - b;
-}
+d = 4;
+document.write(d--);
+document.write(d);
 
-function doMultiply() {
-    let a = getValue().a;
-    let b = getValue().b;
-    let resultObj = document.getElementById("result");
-    resultObj.innerHTML = a * b;
-}
+d = 4;
+document.write(--d);
 
-function doDivide() {
-    let a = getValue().a;
-    let b = getValue().b;
-    let resultObj = document.getElementById("result");
-    resultObj.innerHTML = a / b;
-}
-
-window.doAdd = doAdd;
-window.doSub = doSub;
-window.doMultiply = doMultiply;
-window.doDivide = doDivide;
+let result = 10;
+result += 1;
+document.write(result);

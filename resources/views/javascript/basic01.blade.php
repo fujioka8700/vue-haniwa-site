@@ -7,14 +7,6 @@
     <script src="{{ mix('js/myapp.js') }}"></script>
 </head>
 <body>
-    a:<input type="text" id="a">
-    b:<input type="text" id="b">
-    =
-    <span id="result"></span>
-    <br>
-    <input type="button" value="+" onclick="doAdd()">
-    <input type="button" value="-" onclick="doSub()">
-    <input type="button" value="*" onclick="doMultiply()">
-    <input type="button" value="/" onclick="doDivide()">
+    
 </body>
 </html>
