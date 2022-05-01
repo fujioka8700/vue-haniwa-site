@@ -1,34 +1,38 @@
-// 関数, パラメータ, 戻り値
-function add(a, b) {
-    return a + b;
+// クラス
+function Caculator() {
+    this.add = function(a, b) {
+        return a + b;
+    }
+
+    this.sub = function(a, b) {
+        return a - b;
+    }
+
+    this.multiply = function(a, b) {
+        return a * b;
+    }
+
+    this.division = function(a, b) {
+        return a / b;
+    }
 }
 
-function sub(a, b) {
-    return a - b;
-}
+let cal = new Caculator();
 
-function multiply(a, b) {
-    return a * b;
-}
-
-function division(a, b) {
-    return a / b;
-}
-
-let result = add(4, 2);
+let result = cal.add(4, 2);
 document.write(result);
 
 document.write("<br>");
 
-result = sub(4, 2);
+result = cal.sub(4, 2);
 document.write(result);
 
 document.write("<br>");
 
-result = multiply(4, 2);
+result = cal.multiply(4, 2);
 document.write(result);
 
 document.write("<br>");
 
-result = division(4, 2);
+result = cal.division(4, 2);
 document.write(result);
