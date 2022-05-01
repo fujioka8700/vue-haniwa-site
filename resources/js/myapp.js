@@ -1,21 +1,12 @@
-// 算術演算子 +, -, *, /, %
+// 関数, パラメータ, 戻り値
+function add(a, b) {
+    return a + b;
+}
 
-const a = 1;
-const b = 2;
-const c = 3;
-const d = 4;
+let result = add(4, 2);
+document.write(result);
 
-document.write(a + b); // 3
 document.write("<br>");
 
-document.write(a - b); // -1
-document.write("<br>");
-
-document.write(a * b); // 2
-document.write("<br>");
-
-document.write(a / b); // 0.5
-document.write("<br>");
-
-document.write(a % b); // 1
-document.write("<br>");
+result = add(5, 3);
+document.write(result);
