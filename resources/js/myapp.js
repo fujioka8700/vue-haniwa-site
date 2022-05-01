@@ -1,11 +1,5 @@
-// タイプ変換
-let a = "1";
-let b = "2";
+// DOM
 
-let result = a + b;
-document.write(result); // 12
-
-document.write("<br>");
-
-result = parseInt(a) + parseInt(b);
-document.write(result); // 3
+let divObj = document.getElementById("name");
+let value = divObj.value;
+alert(value);
