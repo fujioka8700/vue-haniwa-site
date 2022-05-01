@@ -1,38 +1,11 @@
-// クラス
-function Caculator() {
-    this.add = function(a, b) {
-        return a + b;
-    }
+// タイプ変換
+let a = "1";
+let b = "2";
 
-    this.sub = function(a, b) {
-        return a - b;
-    }
-
-    this.multiply = function(a, b) {
-        return a * b;
-    }
-
-    this.division = function(a, b) {
-        return a / b;
-    }
-}
-
-let cal = new Caculator();
-
-let result = cal.add(4, 2);
-document.write(result);
+let result = a + b;
+document.write(result); // 12
 
 document.write("<br>");
 
-result = cal.sub(4, 2);
-document.write(result);
-
-document.write("<br>");
-
-result = cal.multiply(4, 2);
-document.write(result);
-
-document.write("<br>");
-
-result = cal.division(4, 2);
-document.write(result);
+result = parseInt(a) + parseInt(b);
+document.write(result); // 3
