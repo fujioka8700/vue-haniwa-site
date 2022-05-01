@@ -1,35 +1,10 @@
-// 犬を探すゲーム
-const maps = [
-    [0,0,0,0],
-    [0,0,0,0],
-    [0,0,0,0],
-    [0,0,0,0],
-];
-let mapHTML = "";
+// セカンダリリンケージドロップダウン
+window.onload = function() {
+    let countryObj = document.getElementById("country");
 
-for (let i = 0; i < maps.length; i++) {
-    for (let j = 0; j < maps[i].length; j++) {
-        maps[i][j] = Math.floor(Math.random() * 2) + 1;
-    }
+    let option = document.createElement("option");
+    option.text = "United States";
+    option.value = "United States";
+    
+    countryObj.options[countryObj.options.length] = option;
 }
-
-for (let i = 0; i < maps.length; i++) {
-    for (let j = 0; j < maps[i].length; j++) {
-        mapHTML += "<input type='button' value='' onclick='doButtonClick(this, " + maps[i][j] + ")'>"
-    }
-    mapHTML += "<br>";
-}
-
-document.getElementById("result").innerHTML = mapHTML;
-
-function doButtonClick(obj, value) {
-    if (value == 1) {
-        obj.value = "*"; 
-    }
-
-    if (value == 2) {
-        obj.value = "Dog"; 
-    }
-}
-
-window.doButtonClick = doButtonClick;
