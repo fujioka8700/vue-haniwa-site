@@ -1,13 +1,21 @@
-let x;         // undefined
-let a = 9;     // number
-let b = 1.5;   // number
-let c = true;  // boolean
-let d = "abc"; // string
-let e = 'abc'; // string
+// 算術演算子 +, -, *, /, %
 
-document.write(typeof(x) + "<br>");
-document.write(typeof(a) + "<br>");
-document.write(typeof(b) + "<br>");
-document.write(typeof(c) + "<br>");
-document.write(typeof(d) + "<br>");
-document.write(typeof(e) + "<br>");
+const a = 1;
+const b = 2;
+const c = 3;
+const d = 4;
+
+document.write(a + b); // 3
+document.write("<br>");
+
+document.write(a - b); // -1
+document.write("<br>");
+
+document.write(a * b); // 2
+document.write("<br>");
+
+document.write(a / b); // 0.5
+document.write("<br>");
+
+document.write(a % b); // 1
+document.write("<br>");
