@@ -6,8 +6,6 @@
     <title>JavaScriptの基本概念</title>
 </head>
 <body>
-    <script type="text/javascript">
-        document.write("Hello World");
-    </script>
+    <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
 </html>
