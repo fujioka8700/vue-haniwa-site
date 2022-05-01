@@ -6,6 +6,9 @@
     <title>JavaScriptの基本概念</title>
 </head>
 <body>
+    <select name="country" id="country">
+        <option value="">--Please Select Country--</option>
+    </select>
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
 </html>

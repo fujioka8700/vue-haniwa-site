@@ -1,38 +1,10 @@
-// クラス
-function Caculator() {
-    this.add = function(a, b) {
-        return a + b;
-    }
+// セカンダリリンケージドロップダウン
+window.onload = function() {
+    let countryObj = document.getElementById("country");
 
-    this.sub = function(a, b) {
-        return a - b;
-    }
-
-    this.multiply = function(a, b) {
-        return a * b;
-    }
-
-    this.division = function(a, b) {
-        return a / b;
-    }
+    let option = document.createElement("option");
+    option.text = "United States";
+    option.value = "United States";
+    
+    countryObj.options[countryObj.options.length] = option;
 }
-
-let cal = new Caculator();
-
-let result = cal.add(4, 2);
-document.write(result);
-
-document.write("<br>");
-
-result = cal.sub(4, 2);
-document.write(result);
-
-document.write("<br>");
-
-result = cal.multiply(4, 2);
-document.write(result);
-
-document.write("<br>");
-
-result = cal.division(4, 2);
-document.write(result);
