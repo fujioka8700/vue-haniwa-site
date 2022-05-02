@@ -1,10 +1,15 @@
 // セカンダリリンケージドロップダウン
+
+const countryArray = [ "China", "United States" ];
+
 window.onload = function() {
     let countryObj = document.getElementById("country");
 
-    let option = document.createElement("option");
-    option.text = "United States";
-    option.value = "United States";
-    
-    countryObj.options[countryObj.options.length] = option;
+    for (let i = 0; i < countryArray.length; i++) {
+        let option = document.createElement("option");
+        option.text = countryArray[i];
+        option.value = countryArray[i];
+        
+        countryObj.options[countryObj.options.length] = option;   
+    }
 }
