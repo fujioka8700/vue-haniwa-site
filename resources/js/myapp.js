@@ -1,12 +1,12 @@
-// 適応するクラスセレクターを変更
-function changeFont() {
-   let divObj = document.getElementById("div");
-
-   if (divObj.className == "smallFont") {
-      divObj.className = "bigFont";
+// オーバーフローの展開と終了
+function change() {
+   let div2Obj = document.getElementById("div2");
+   
+   if (div2Obj.className == "open") {
+      div2Obj.className = "close";
    } else {
-      divObj.className = "smallFont"
+      div2Obj.className = "open";
    }
 }
 
-window.changeFont = changeFont;
+window.change = change;

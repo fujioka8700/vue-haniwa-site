@@ -7,23 +7,35 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>DOM</title>
     <style>
-        .smallFont {
-            font-size: 12px;
-            color: #ff0000;
+        .open {
+            display: block;
         }
-        .bigFont {
-            font-size: 48px;
-            font-weight: bold;
-            color: #00ff00;
+        .close {
+            display: none;
+        }
+        #div1 {
+            border: 1px solid #ff0000;
+            width: 300px;
+            height: 30px;
+            text-align: right;
+        }
+        #div2 {
+            width: 300px;
+            border: 1px solid #00ff00;
         }
     </style>
 </head>
 <body>
-    
-    <div id="div">
-        CSSのクラスを変更します
+    <div id="div1" onclick="change()">
+        クリックしてね
     </div>
-    <input type="button" value="フォントのクラスを変更" onclick="changeFont()">
+    <div id="div2">
+        <ul>
+            <li>スタイルフォント</li>
+            <li>クラスセレクターの変更</li>
+            <li>オーバーフローの展開と終了</li>
+        </ul>
+    </div>
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
