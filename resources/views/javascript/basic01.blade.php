@@ -7,35 +7,41 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>DOM</title>
     <style>
-        .open {
-            display: block;
+        .over {
+            background-color: #ff0000;
         }
-        .close {
-            display: none;
+        .down {
+            background-color: #0000ff;
         }
-        #div1 {
-            border: 1px solid #ff0000;
-            width: 300px;
-            height: 30px;
-            text-align: right;
+        table {
+            border: 1px solid #eeeeee;
+            width: 400px;
+            border-collapse: collapse;
         }
-        #div2 {
-            width: 300px;
-            border: 1px solid #00ff00;
+        table th {
+            border: 1px solid #eeeeee;
+            background: #cccccc;
+        }
+        table td {
+            border: 1px solid #eeeeee;
         }
     </style>
 </head>
 <body>
-    <div id="div1" onclick="change()">
-        クリックしてね
-    </div>
-    <div id="div2">
-        <ul>
-            <li>スタイルフォント</li>
-            <li>クラスセレクターの変更</li>
-            <li>オーバーフローの展開と終了</li>
-        </ul>
-    </div>
+    <table>
+        <tr>
+            <th>Username</th><th>Password</th>
+        </tr>
+        <tr onmouseover="doOver(this)" onmouseout="doOut(this)" onmousedown="doDown(this)">
+            <td>admin</td><td>1111</td>
+        </tr>
+        <tr onmouseover="doOver(this)" onmouseout="doOut(this)" onmousedown="doDown(this)">
+            <td>sato</td><td>2222</td>
+        </tr>
+        <tr onmouseover="doOver(this)" onmouseout="doOut(this)" onmousedown="doDown(this)">
+            <td>suzuki</td><td>3333</td>
+        </tr>
+    </table>
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>

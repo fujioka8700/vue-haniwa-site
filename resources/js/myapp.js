@@ -1,12 +1,16 @@
-// オーバーフローの展開と終了
-function change() {
-   let div2Obj = document.getElementById("div2");
-   
-   if (div2Obj.className == "open") {
-      div2Obj.className = "close";
-   } else {
-      div2Obj.className = "open";
-   }
+// フローティングハイライト
+function doOver(obj) {
+   obj.className = "over";
 }
 
-window.change = change;
+function doOut(obj) {
+   obj.className = "";
+}
+
+function doDown(obj) {
+   obj.className = "down";
+}
+
+window.doOver = doOver;
+window.doOut  = doOut;
+window.doDown = doDown;
