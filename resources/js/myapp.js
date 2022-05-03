@@ -1,25 +1,12 @@
-// ログインWebページ
-window.addEventListener('keydown', (e) => {
-    if (e.key == 'Enter') {
-        checkLogin();
-    }
-});
+// マウスオーバーサムネイル拡大
+const pic01 = document.getElementById("pic01");
+const pic02 = document.getElementById("pic02");
+const pic03 = document.getElementById("pic03");
 
-function checkLogin() {
-    let usernameObj = document.getElementById("username");
-    let passwordObj = document.getElementById("password");
+const picAry =[pic01, pic02, pic03];
 
-    if (usernameObj.value == "") {
-        alert("Usernameを入力してください。");
-        return;
-    }
-
-    if (passwordObj.value == "") {
-        alert("Passwordを入力してください。");
-        return;
-    }
-
-    alert("ログインできました");
-}
-
-window.checkLogin = checkLogin;
+picAry.forEach(element => {
+    element.addEventListener("mouseover", () => {
+        document.getElementById("image").src = element.src;
+    });
+})
