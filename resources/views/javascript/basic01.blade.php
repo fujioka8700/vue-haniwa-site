@@ -6,18 +6,16 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>JavaScriptの基本概念</title>
-    <style>
-        div img {
-            width: 100px;
-        }
-    </style>
 </head>
 <body>
-    <div class="smallPicture">
-        <img src="images/pose_dance_ukareru_woman.png" alt="" id="pic01">
-        <img src="images/pose_pien_uruuru_woman.png" alt="" id="pic02">
-        <img src="images/sweets_purin_yurasu.png" alt="" id="pic03">
+    <div id="div">
+        <b>United State</b>
+        <span>Book</span>
+        <a href="#">JavaScript</a>
     </div>
+    <hr>
+    <input type="button" value="Get Parent Node" onclick="doGetParentNode()">
+
     <img id="image" src="" alt="">
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
