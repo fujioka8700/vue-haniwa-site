@@ -7,16 +7,16 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>DOM</title>
     <style>
-        div {
-            width: 200px;
-            height: 100px;
-            border: 1px solid #ff0000;
+        div img{
+            border: 1px solid #0000ff;
         }
     </style>
 </head>
 <body>
-    <div id="div"></div>
-    <input type="button" value="Create Text Node" id="btn">
+    <div id="div">
+        <img src="images/animal_wallaby_kangaroo_s.png" alt="" id="image">
+    </div>
+    <input type="button" value="Remove Child" id="btn">
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
