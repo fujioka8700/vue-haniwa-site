@@ -8,12 +8,9 @@
     <title>JavaScriptの基本概念</title>
 </head>
 <body>
-    <select name="prefectures" id="prefectures" onchange="doPrefecturesChange(this)">
-        <option value="">--都道府県を選択--</option>
-    </select>
-    <select name="cities" id="cities">
-        <option value="">--地名を選択--</option>
-    </select>
+    Username:<input type="text" name="username" id="username"><br>
+    Password:<input type="text" name="password" id="password"><br>
+    <input type="button" value="Login" onclick="checkLogin()">
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>

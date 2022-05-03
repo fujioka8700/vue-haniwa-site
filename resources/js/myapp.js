@@ -1,36 +1,19 @@
-// セカンダリリンケージドロップダウン
+// ログインWebページ
+function checkLogin() {
+    let usernameObj = document.getElementById("username");
+    let passwordObj = document.getElementById("password");
 
-const prefecturesArray = [ "東京", "大阪" ];
-const citiesArray = [
-    [],
-    ["原宿", "渋谷"],
-    ["梅田", "心斎橋"]
-]
-
-window.onload = function() {
-    const prefecturesObj = document.getElementById("prefectures");
-
-    for (let i = 0; i < prefecturesArray.length; i++) {
-        let option = document.createElement("option");
-        option.text = prefecturesArray[i];
-        option.value = prefecturesArray[i];
-        
-        prefecturesObj.options[prefecturesObj.options.length] = option;   
+    if (usernameObj.value == "") {
+        alert("Usernameを入力してください。");
+        return;
     }
 
-    function doPrefecturesChange(obj) {
-        let index = obj.selectedIndex;
-        let citiesObj = document.getElementById("cities");
-        citiesObj.options.length = 0;
-
-        for (let i = 0; i < prefecturesArray.length; i++) {
-            let option = document.createElement("option");
-            option.text = citiesArray[index][i];
-            option.value = citiesArray[index][i];
-            
-            citiesObj.options[citiesObj.options.length] = option;
-        }
+    if (passwordObj.value == "") {
+        alert("Passwordを入力してください。");
+        return;
     }
 
-    window.doPrefecturesChange = doPrefecturesChange;
+    alert("ログインできました");
 }
+
+window.checkLogin = checkLogin;
