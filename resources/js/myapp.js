@@ -1,7 +1,9 @@
 // 父のノードを取得する
-function doGetParentNode() {
+let divObj = document.getElementById("doGetParentNode");
+
+divObj.addEventListener("mousedown", () => {
     const divObj = document.getElementById("div");
     console.log(divObj.parentNode.nodeName);
-}
+});
 
 window.doGetParentNode = doGetParentNode;

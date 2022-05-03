@@ -14,7 +14,7 @@
         <a href="#">JavaScript</a>
     </div>
     <hr>
-    <input type="button" value="Get Parent Node" onclick="doGetParentNode()">
+    <input type="button" value="Get Parent Node" id="doGetParentNode">
 
     <img id="image" src="" alt="">
     <script src="{{ mix('js/myapp.js') }}"></script>
