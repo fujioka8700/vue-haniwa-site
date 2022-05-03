@@ -7,19 +7,23 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>DOM</title>
     <style>
-        
+        .smallFont {
+            font-size: 12px;
+            color: #ff0000;
+        }
+        .bigFont {
+            font-size: 48px;
+            font-weight: bold;
+            color: #00ff00;
+        }
     </style>
 </head>
 <body>
-
-    <a href="javascript:void(0)" onclick="addContact()">Add Contact</a>
+    
     <div id="div">
-        <div id="contact">
-            Name:<input type="text" name="user">
-            Telephone:<input type="text" name="telephone">
-            <a href="javascript:void(0)" onclick="deleteNode(this)">Delete</a>
-        </div>
+        CSSのクラスを変更します
     </div>
+    <input type="button" value="フォントのクラスを変更" onclick="changeFont()">
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
