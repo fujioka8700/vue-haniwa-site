@@ -1,4 +1,10 @@
 // ログインWebページ
+window.addEventListener('keydown', (e) => {
+    if (e.key == 'Enter') {
+        checkLogin();
+    }
+});
+
 function checkLogin() {
     let usernameObj = document.getElementById("username");
     let passwordObj = document.getElementById("password");
