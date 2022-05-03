@@ -14,9 +14,9 @@
 </head>
 <body>
     <div id="div">
-        <img src="images/animal_wallaby_kangaroo_s.png" alt="" id="image">
+        JavaScriptでDOM操作!!
     </div>
-    <input type="button" value="Remove Child" id="btn">
+    <input type="button" value="Replace Child Node" onclick="doReplaceChild()">
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
