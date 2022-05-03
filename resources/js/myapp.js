@@ -1,10 +1,14 @@
-// セカンダリリンケージドロップダウン
-window.onload = function() {
-    let countryObj = document.getElementById("country");
+// 全ての子のノードを取得する
+let divObj = document.getElementById("doGetChildNodes");
 
-    let option = document.createElement("option");
-    option.text = "United States";
-    option.value = "United States";
-    
-    countryObj.options[countryObj.options.length] = option;
-}
+divObj.addEventListener("mousedown", () => {
+    const divObj = document.getElementById("div");
+    const childNodes = divObj.childNodes;
+    for (let i = 0; i < childNodes.length; i++) {
+        if (childNodes[i].nodeType == 1) {
+            document.write(childNodes[i].nodeName + ",");
+            document.write(childNodes[i].nodeType + ",");
+            document.write(childNodes[i].innerHTML + "<br>"); 
+        }
+    }
+});
