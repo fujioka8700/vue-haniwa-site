@@ -1,8 +1,8 @@
-// bookノードの前のノードと、次のノードを取得する
+// テキストノードの作成
 const btnObj = document.getElementById("btn");
 
 btnObj.addEventListener("mousedown", () => {
-   const bookObj = document.getElementById("book");
-   document.write(bookObj.previousElementSibling.innerHTML + "<br>");
-   document.write(bookObj.nextElementSibling.innerHTML);
+   let divObj = document.getElementById("div");
+   let newNode = document.createTextNode("Good Dreams");
+   divObj.appendChild(newNode);
 });

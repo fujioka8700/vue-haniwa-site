@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <title>JavaScriptの基本概念</title>
+    <title>DOM</title>
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #ff0000;
+        }
+    </style>
 </head>
 <body>
-    <div id="div">
-        <b>United State</b>
-        <span id="book">Book</span>
-        <a href="#">JavaScript</a>
-    </div>
-    <hr>
-    <input type="button" value="Get Sibling Nodes" id="btn">
+    <div id="div"></div>
+    <input type="button" value="Create Text Node" id="btn">
 
-    <img id="image" src="" alt="">
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
 </html>
