@@ -10,11 +10,11 @@
 <body>
     <div id="div">
         <b>United State</b>
-        <span>Book</span>
+        <span id="book">Book</span>
         <a href="#">JavaScript</a>
     </div>
     <hr>
-    <input type="button" value="Get Child Nodes" id="doGetChildNodes">
+    <input type="button" value="Get Sibling Nodes" id="btn">
 
     <img id="image" src="" alt="">
     <script src="{{ mix('js/myapp.js') }}"></script>
