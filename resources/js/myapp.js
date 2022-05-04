@@ -25,5 +25,24 @@ function doCreateRow() {
    }
 }
 
+function doDeleteRow() {
+   let rowNum = parseInt(document.getElementById("row").value);
+
+   // 特定の行 (<tr>) をこの <table> から削除します。
+   table.deleteRow(rowNum);
+}
+
+function doDeleteCol() {
+   let colNum = parseInt(document.getElementById("col").value);
+   let rows = table.rows;
+   
+   for (let i = 0; i < rows.length; i++) {
+      // tr要素の行のセル(td要素、th要素)を削除します。
+      rows[i].deleteCell(colNum);
+   }
+}
+
 window.doCreateTable = doCreateTable;
 window.doCreateRow = doCreateRow;
+window.doDeleteRow = doDeleteRow;
+window.doDeleteCol = doDeleteCol;
