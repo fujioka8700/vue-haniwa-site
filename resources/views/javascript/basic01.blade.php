@@ -7,27 +7,11 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>DOM</title>
     <style>
-        .tableClass {
-            border: 1px solid #ff0000;
-            border-collapse: collapse;
-            width: 600px;
-        }
-        .tableClass td {
-            border: 1px solid #ff0000;
-        }
+        
     </style>
 </head>
 <body>
-    <input type="button" value="Create Table" onclick="doCreateTable()">
-    <input type="button" value="Create Row" onclick="doCreateRow()">
-    <br>
-    <input type="button" value="Delete Row" onclick="doDeleteRow()">
-    <input type="button" value="Delete Col" onclick="doDeleteCol()">
-    <br>
-    Rows:<input type="text" name="" id="row">
-    Columns:<input type="text" name="" id="col">
-    <br>
-    <div id="div"></div>
+    <div id="dateDiv"></div>
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>

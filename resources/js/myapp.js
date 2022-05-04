@@ -1,48 +1,14 @@
-// テーブルの作成、行と列
-let table;
+// タイマー
+let doSetInterval = function() {
+   let dataDiv = document.getElementById("dateDiv");
 
-function doCreateTable() {
-   table = document.createElement("table");
-   table.className = "tableClass";
-
-   document.getElementById("div").appendChild(table);
-}
-
-function doCreateRow() {
-   let rowNum = parseInt(document.getElementById("row").value);
-   let colNum = parseInt(document.getElementById("col").value);
-
-   for (let i = 1; i <= rowNum; i++) {
-      // 指定された<table>に新しい行(<tr>)を挿入し、新しい行への参照を返す
-      let row = table.insertRow(-1);
-      for (let j = 1; j <= colNum; j++) {
-
-         // 指定された<tr>に新しいcol(<td>)を挿入し、
-         // 新しいcolへの参照を返す
-         let cell = row.insertCell(-1);
-         cell.innerHTML = `row: ${i}, col: ${j}`;
-      }
-   }
-}
-
-function doDeleteRow() {
-   let rowNum = parseInt(document.getElementById("row").value);
-
-   // 特定の行 (<tr>) をこの <table> から削除します。
-   table.deleteRow(rowNum);
-}
-
-function doDeleteCol() {
-   let colNum = parseInt(document.getElementById("col").value);
-   let rows = table.rows;
+   // Date オブジェクトは、
+   // 単一の瞬間の時刻をプラットフォームに依存しない形式で表します。 
+   let d = new Date();
+   let dateString = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
    
-   for (let i = 0; i < rows.length; i++) {
-      // tr要素の行のセル(td要素、th要素)を削除します。
-      rows[i].deleteCell(colNum);
-   }
+   dataDiv.innerHTML = dateString;
 }
 
-window.doCreateTable = doCreateTable;
-window.doCreateRow = doCreateRow;
-window.doDeleteRow = doDeleteRow;
-window.doDeleteCol = doDeleteCol;
+// 一定の遅延間隔を置いて関数やコードスニペットを繰り返し呼び出します。
+setInterval(doSetInterval, 1000);
