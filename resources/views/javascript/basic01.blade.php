@@ -9,8 +9,6 @@
     <style>
         #myCanvas {
             border: 1px solid #c3c3c3;
-            width: 400px;
-            height: 200px;
         }
     </style>
 </head>
