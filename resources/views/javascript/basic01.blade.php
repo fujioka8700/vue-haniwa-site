@@ -7,41 +7,23 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>DOM</title>
     <style>
-        .over {
-            background-color: #ff0000;
-        }
-        .down {
-            background-color: #0000ff;
-        }
-        table {
-            border: 1px solid #eeeeee;
-            width: 400px;
+        .tableClass {
+            border: 1px solid #ff0000;
             border-collapse: collapse;
+            width: 600px;
         }
-        table th {
-            border: 1px solid #eeeeee;
-            background: #cccccc;
-        }
-        table td {
-            border: 1px solid #eeeeee;
+        .tableClass td {
+            border: 1px solid #ff0000;
         }
     </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Username</th><th>Password</th>
-        </tr>
-        <tr onmouseover="doOver(this)" onmouseout="doOut(this)" onmousedown="doDown(this)">
-            <td>admin</td><td>1111</td>
-        </tr>
-        <tr onmouseover="doOver(this)" onmouseout="doOut(this)" onmousedown="doDown(this)">
-            <td>sato</td><td>2222</td>
-        </tr>
-        <tr onmouseover="doOver(this)" onmouseout="doOut(this)" onmousedown="doDown(this)">
-            <td>suzuki</td><td>3333</td>
-        </tr>
-    </table>
+    <input type="button" value="Create Table" onclick="doCreateTable()">
+    <input type="button" value="Create Row" onclick="doCreateRow()">
+    Rows:<input type="text" name="" id="row">
+    Columns:<input type="text" name="" id="col">
+    <br>
+    <div id="div"></div>
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
