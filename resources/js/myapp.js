@@ -18,25 +18,21 @@ class Ball {
         context.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
         context.fill();    
     }
+
+    move(distance) {
+        this.y += distance;
+    }
 }
 
-function drawBall(x, y, r, color) {
-    context.fillStyle = color;
-    context.beginPath();
-    context.arc(x, y, r, 0, 2 * Math.PI);
-    context.fill();
-}
-
-drawBall(50, 50 ,30,  "#ff0000");
-drawBall(120, 50 ,30, "#00ff00");
-drawBall(190, 50 ,30, "#0000ff");
-
-// new で Ball コンストラクタメソッドが自動的に呼び出される
-let redBall = new Ball(50, 120, 30, "#ff0000");
-redBall.draw();
-
-let greenBall = new Ball(120, 120 ,30, "#00ff00");
-greenBall.draw();
-
-let blueBall = new Ball(190, 120 ,30, "#0000ff");
+let blueBall = new Ball(100, 50 ,30, "#0000ff");
 blueBall.draw();
+
+function continueRun() {
+    // 全てのキャンバスをクリア
+    context.clearRect(0, 0, 200, 250);
+    blueBall.move(1);
+    blueBall.draw();
+}
+
+// 200ミリ秒ごとに実行
+setInterval(continueRun, 200);
