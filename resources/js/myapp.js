@@ -1,15 +1,16 @@
-// ボールを描く
+// キャンバスに3つの円を描く関数 drawBall(x, y, r, color) を作成する
 let canvas = document.getElementById("myCanvas");
 let context = canvas.getContext("2d");
 
-context.fillStyle = "#0000ff";
 context.beginPath();
 
-// サブパスに円弧を加えます。
-// void ctx.arc(x, y, radius, startAngle, endAngle [, counterclockwise]);
-// angle 意味：角度
-context.arc(100, 100, 50, 0, 2 * Math.PI);
+function drawBall(x, y, r, color) {
+    context.fillStyle = color;
+    context.beginPath();
+    context.arc(x, y, r, 0, 2 * Math.PI);
+    context.fill();
+}
 
-// fill()メソッドは、現在の塗りつぶしスタイルでサブパスを塗りつぶす際に使用します。
-// 塗りつぶしスタイルは、fillStyleなどの属性で指定します。
-context.fill();
+drawBall(50, 50 ,30,  "#ff0000");
+drawBall(120, 50 ,30, "#00ff00");
+drawBall(190, 50 ,30, "#0000ff");

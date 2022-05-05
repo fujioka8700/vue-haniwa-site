@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="200" height="200"></canvas>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
