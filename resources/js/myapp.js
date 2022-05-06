@@ -1,20 +1,17 @@
 "use strict";
 
-const objectA = { a: "a" };
-const objectB = { b: "b" };
-const merged = {
-    ...objectA,
-    ...objectB
+const shallowClone = (obj) => {
+    return Object.assign({}, obj);
 };
-console.log(merged); // => { a: "a", b: "b" }
-
-// `version`のプロパティ名が被っている
-const objectAA = { version: "a" };
-const objectBB = { version: "b" };
-const merged1 = {
-    ...objectAA,
-    ...objectBB,
-    other: "other"
+const obj = {
+    level: 1,
+    nest: {
+        level: 2
+    },
 };
-// 後ろにある`objectB`のプロパティで上書きされる
-console.log(merged1); // => { version: "b", other: "other" }
+const cloneObj = shallowClone(obj);
+// `nest`プロパティのオブジェクトは同じオブジェクトのままになる 
+console.log(cloneObj.nest === obj.nest); // => true
+console.log(cloneObj === obj); // => true
+console.log(cloneObj);
+console.log(obj);
