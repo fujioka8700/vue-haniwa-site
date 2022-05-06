@@ -1,25 +1,31 @@
 "use strict";
 
-const fn = () => console.log("fnが呼び出されました。");
-
-
-const myFunc = fn;
-myFunc();
-
 const array = [1, 2, 3];
-const output = value => { console.log(value); }
+array.some(function(value){
+    console.log(value);
+    return true;
+});
 
-array.forEach(output);
+array.forEach(function(value){
+    console.log(value);
+    return true;
+});
+
+const isEven = num => num % 2 === 0;
+
+const array2 = [1, 5, 10, 15, 20];
+console.log(array2.filter(isEven)); // => [10, 20]
 
 const obj = {
-    method1 : function() {
-        console.log("method1が呼び出されました。");
-    },
-    method2() {
-        console.log("method2が呼び出されました。");
-    }
+    "a": 1,
+    "b": 2,
+    "c": 3
 };
-
-obj.method1();
-obj.method2();
-
+// 注記: ループのたびに毎回新しいブロックに変数keyが定義されるため、再定義エラーが発生しない
+for (const key in obj) {
+    const value = obj[key];
+    console.log(`key:${key}, value:${value}`);
+}
+// "key:a, value:1"
+// "key:b, value:2"
+// "key:c, value:3"
