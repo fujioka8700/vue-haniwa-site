@@ -1,30 +1,25 @@
 "use strict";
 
-function hoge(x, y=200) {
-    return x + y;
-}
+const fn = () => console.log("fnが呼び出されました。");
 
-let n = hoge(10);
-console.log(n);
 
-const max = Math.max(1, 8, 6, 9);
-console.log(max);
+const myFunc = fn;
+myFunc();
 
-function fn(...args) {
-    console.log(arguments[0]);
-    console.log(arguments[1]);
-    console.log(arguments[2]);
-    console.log(args);
-}
+const array = [1, 2, 3];
+const output = value => { console.log(value); }
 
-fn("a", "b", "c");
+array.forEach(output);
 
-function printUserId({id}) {
-    console.log(id);
-}
-
-const user = {
-    id : 42
+const obj = {
+    method1 : function() {
+        console.log("method1が呼び出されました。");
+    },
+    method2() {
+        console.log("method2が呼び出されました。");
+    }
 };
 
-printUserId(user);
+obj.method1();
+obj.method2();
+
