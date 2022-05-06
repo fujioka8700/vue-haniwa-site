@@ -1,32 +1,34 @@
 "use strict";
 
-// 引数の`obj`を浅く複製したオブジェクトを返す
-const shallowClone = (obj) => {
-    // console.log(obj);
-    // return;
-    return Object.assign({}, obj);
-};
-// 引数の`obj`を深く複製したオブジェクトを返す
-function deepClone(obj) {
-    const newObj = shallowClone(obj);
-    // console.log(newObj);
-    // プロパティがオブジェクト型であるなら、再帰的に複製する
-    Object.keys(newObj)
-        .filter(k => typeof newObj[k] === "object")
-        .forEach(function(k) {
-            // console.log(newObj[k]);
-            // return;
-            newObj[k] = deepClone(newObj[k]);
-        });
-    console.log(newObj);
-    return newObj;
-}
 const obj = {
-    level: 1,
-    nest: {
-        level: 2
+    "key": "value"
+};
+// `obj`インスタンスは`Object.prototype`に定義されたものを継承する
+// `obj.toString`は継承した`Object.prototype.toString`を参照している
+console.log(obj.toString === Object.prototype.toString); // => true
+// インスタンスからプロトタイプメソッドを呼び出せる
+console.log(obj.toString()); // => "[object Object]"
+
+// オブジェクトのインスタンスにtoStringメソッドを定義
+const customObject = {
+    toString() {
+        return "custom value";
     }
 };
-const cloneObj = deepClone(obj);
-// `nest`オブジェクトも再帰的に複製されている
-console.log(cloneObj.nest === obj.nest); // => false
+console.log(customObject.toString()); // => "custom value"
+
+const objA = {};
+// `obj`というオブジェクト自体に`toString`メソッドが定義されているわけではない
+console.log(Object.hasOwn(objA, "toString")); // => false
+// `in`演算子は指定されたプロパティ名が見つかるまで親をたどるため、`Object.prototype`まで見にいく
+console.log("toString" in objA); // => true
+
+// オブジェクトのインスタンスにtoStringメソッドを定義
+const objB = {
+    toString() {
+        return "custom value";
+    }
+};
+// オブジェクトのインスタンスが`toString`メソッドを持っている
+console.log(Object.hasOwn(objB, "toString")); // => true
+console.log("toString" in objB); // => true
