@@ -1,33 +1,26 @@
 "use strict";
 
-const foo = null;
-console.log(foo);
-
+// 分割代入 
 const obj = {
-    "key" : "value"
+    key  : "value",
+    key2 : "value2"
 };
 
-console.log(obj.key);
-console.log(obj["key"]);
+const { key } = obj;
+console.log(key);
 
-const ary = [1, 2, 3];
-console.log(ary[0]);
+console.log(null ?? "右辺の値");
+console.log(undefined ?? "右辺の値");
+console.log(true ?? "左辺の値");
+console.log(false ?? "右辺の値");
+console.log(0 ?? "右辺の値");
+console.log("文字列" ?? "右辺の値");
 
-// \d 数字([0-9])にマッチ
-// + 直前の正規表現の1回以上の反復。
-const numberRegExp = /\d+/;
-console.log(numberRegExp.test("123"));
+const valueA = false ? "A" : "B";
+console.log(valueA);
 
-const str = new String("文字列");
-console.log(str);
+console.log(1+2*3);
+console.log((1+2)*3);
 
-const str2 = "文字列";
-console.log(typeof str2);
-console.log(str2.length);
-
-console.log(2**3);
-
-const ary2 = [1, 2];
-const [a, b] = ary2;
-console.log(a);
-console.log(b);
+const a = 1, b = 2, c = a + b;
+console.log(c);
