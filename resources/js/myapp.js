@@ -1,22 +1,37 @@
 "use strict";
 
-console.log(1 === "1");
-console.log(1 == "1");
+let x;
 
-console.log(1 + true);
-console.log(true + true);
+if (!x) {
+    console.log('falsyな値なら表示:' + x);
+}
 
-console.log(0 == false);
-console.log(10 == ["10"]);
+let x2;
 
-console.log(1 === "1");
-console.log(0 === false);
-console.log(10 == ["10"]);
+if (x2 == undefined) {
+    console.log('xがundefinedなら表示:' + x);
+}
 
-console.log(typeof(1 + "2"));
+let x3 = String([1, 2, 3]);
+console.log(x3);
 
-console.log(1 - "2");
-console.log(1 - 2);
+let x4 = String({key:"value"});
+console.log(x4);
 
-let isOK = Boolean(null);
-console.log(isOK);
+const sym = Symbol();
+console.log(sym); //[object Symbol] { ... }
+console.log(typeof sym); //symbol
+
+const sym1 = Symbol();
+const sym2 = Symbol();
+console.log(sym1);
+console.log(sym2);
+
+console.log(sym1 === sym2); //false
+
+const sym3 = [];
+for (let i = 0; i < 100; i++) {
+    sym3.push(Symbol());
+}
+
+sym3.forEach(element => console.log(element));
