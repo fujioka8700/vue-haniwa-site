@@ -1,11 +1,28 @@
 "use strict";
 
-const obj = {};
-// Symbolは例外的に文字列化されず扱える
-const symbolKey1 = Symbol("シンボル1");
-const symbolKey2 = Symbol("シンボル2");
-obj[symbolKey1] = "1";
-obj[symbolKey2] = "2";
-console.log(obj[symbolKey1]); // => "1"
-console.log(obj[symbolKey2]); // => "2"
+const obj = {
+    "one": 1,
+    "two": 2,
+    "three": 3
+};
+// `Object.keys`はキーを列挙した配列を返す
+console.log(Object.keys(obj)); // => ["one", "two", "three"]
+// `Object.values`は値を列挙した配列を返す
+console.log(Object.values(obj)); // => [1, 2, 3]
+// `Object.entries`は[キー, 値]の配列を返す
+console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
 
+
+const obj2 = {
+    "one": 1,
+    "two": 2,
+    "three": 3
+};
+const keys = Object.keys(obj2);
+keys.forEach(key => {
+    console.log(key);
+});
+// 次の値が順番に出力される
+// "one"
+// "two"
+// "three"
