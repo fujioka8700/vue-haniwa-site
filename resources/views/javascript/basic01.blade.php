@@ -7,13 +7,10 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <title>キャンバス</title>
     <style>
-        #myCanvas {
-            border: 1px solid #c3c3c3;
-        }
+        
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="200" height="250"></canvas>
 
     <script src="{{ mix('js/myapp.js') }}"></script>
 </body>
