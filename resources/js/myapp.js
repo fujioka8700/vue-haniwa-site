@@ -1,28 +1,21 @@
 "use strict";
 
-const obj = {
-    "one": 1,
-    "two": 2,
-    "three": 3
-};
-// `Object.keys`はキーを列挙した配列を返す
-console.log(Object.keys(obj)); // => ["one", "two", "three"]
-// `Object.values`は値を列挙した配列を返す
-console.log(Object.values(obj)); // => [1, 2, 3]
-// `Object.entries`は[キー, 値]の配列を返す
-console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = Object.assign({}, objectA, objectB);
+console.log(merged); // => { a: "a", b: "b" }
 
+const objecta = { a: "a" };
+const objectb = { b: "b" };
+const merged2 = Object.assign(objectA, objectB);
+console.log(merged2); // => { a: "a", b: "b" }
+// `objectA`が変更されている
+console.log(objecta); // => { a: "a", b: "b" }
+console.log(merged2 === objectb); // => true
 
-const obj2 = {
-    "one": 1,
-    "two": 2,
-    "three": 3
-};
-const keys = Object.keys(obj2);
-keys.forEach(key => {
-    console.log(key);
-});
-// 次の値が順番に出力される
-// "one"
-// "two"
-// "three"
+// `version`のプロパティ名が被っている
+const objectA2 = { version: "a" };
+const objectB2 = { version: "b" };
+const merged3 = Object.assign({}, objectA2, objectB2);
+// 後ろにある`objectB`のプロパティで上書きされる
+console.log(merged3); // => { version: "b" }
