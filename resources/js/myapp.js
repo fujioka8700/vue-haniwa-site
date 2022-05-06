@@ -1,14 +1,11 @@
 "use strict";
 
-const obj = { key: "value" };
-console.log(obj.toString()); // => "[object Object]"
-// `String`コンストラクタ関数は`toString`メソッドを呼んでいる
-console.log(String(obj)); // => "[object Object]"
+const obj = {};
+// Symbolは例外的に文字列化されず扱える
+const symbolKey1 = Symbol("シンボル1");
+const symbolKey2 = Symbol("シンボル2");
+obj[symbolKey1] = "1";
+obj[symbolKey2] = "2";
+console.log(obj[symbolKey1]); // => "1"
+console.log(obj[symbolKey2]); // => "2"
 
-// 独自のtoStringメソッドを定義
-const customObject = {
-    toString() {
-        return "custom value";
-    }
-};
-console.log(String(customObject)); // => "custom value"
