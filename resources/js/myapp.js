@@ -1,13 +1,30 @@
 "use strict";
 
-// 空文字列かどうかを判定
-function isEmptyString(str) {
-    // `str`がfalsyな値なら、`isEmptyString`関数は`true`を返す
-    return !Boolean(str);
+function hoge(x, y=200) {
+    return x + y;
 }
-// 空文字列列の場合は、trueを返す
-console.log(isEmptyString("")); // => true
-// falsyな値の場合は、trueを返す
-console.log(isEmptyString(0)); // => true
-// undefinedの場合は、trueを返す
-console.log(isEmptyString()); // => true
+
+let n = hoge(10);
+console.log(n);
+
+const max = Math.max(1, 8, 6, 9);
+console.log(max);
+
+function fn(...args) {
+    console.log(arguments[0]);
+    console.log(arguments[1]);
+    console.log(arguments[2]);
+    console.log(args);
+}
+
+fn("a", "b", "c");
+
+function printUserId({id}) {
+    console.log(id);
+}
+
+const user = {
+    id : 42
+};
+
+printUserId(user);
