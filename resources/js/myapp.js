@@ -1,13 +1,13 @@
 "use strict";
 
-const array = ["A", "B", "C"];
-// Spread構文を使った場合
-const newArray = ["X", "Y", "Z", ...array];
-// concatメソッドの場合
-const newArrayConcat = ["X", "Y", "Z"].concat(array);
-console.log(newArray); // => ["X", "Y", "Z", "A", "B", "C"]
-console.log(newArrayConcat); // => ["X", "Y", "Z", "A", "B", "C"]
+const array = [[["A"], "B"], "C"];
+// 引数なしは 1 を指定した場合と同じ
+console.log(array.flat()); // => [["A"], "B", "C"]
+console.log(array.flat(1)); // => [["A"], "B", "C"]
+console.log(array.flat(2)); // => ["A", "B", "C"]
+// すべてをフラット化するには Infinity を渡す
+console.log(array.flat(Infinity)); // => ["A", "B", "C"]
+
 
 const array2 = ["A", "B", "C"];
-const newArray2 = ["X", ...array2, "Z"];
-console.log(newArray2); // => ["X", "A", "B", "C", "Z"]
+console.log(array2); // => ["A", "B", "C"]
