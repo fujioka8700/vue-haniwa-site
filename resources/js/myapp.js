@@ -1,35 +1,28 @@
 "use strict";
 
-const strings = "赤・青・緑".split("・");
-console.log(strings); // => ["赤", "青", "緑"]
+const str = "ABCDE";
+console.log(str.slice(1)); // => "BCDE"
+console.log(str.slice(1, 5)); // => "BCDE"
+// マイナスを指定すると後ろからの位置となる
+console.log(str.slice(-1)); // => "E"
+// インデックスが1から4の範囲を取り出す
+console.log(str.slice(1, 4)); // => "BCD"
+// 第一引数 > 第二引数の場合、常に空文字列を返す
+console.log(str.slice(4, 1)); // => ""
 
-const str = "赤・青・緑".split("・").join("、");
-console.log(str); // => "赤、青、緑"
+const str2 = "ABCDE";
+console.log(str2.substring(1)); // => "BCDE"
+console.log(str2.substring(1, 5)); // => "BCDE"
+// マイナスを指定すると0として扱われる
+console.log(str2.substring(-1)); // => "ABCDE"
+// 位置:1から4の範囲を取り出す
+console.log(str2.substring(1, 4)); // => "BCD"
+// 第一引数 > 第二引数の場合、引数が入れ替わる
+// str.substring(1, 4)と同じ結果になる
+console.log(str2.substring(4, 1)); // => "BCD"
 
-const str2 = "あ・い・う".split("・").join("");
-console.log(str2);
-
-const n = 100;
-console.log(n);
-
-// 文字間に1つ以上のスペースがある
-const str3 = "a     b    c      d";
-// 1つ以上のスペースにマッチして分解する
-const strings3 = str3.split(/\s+/);
-console.log(strings3); // => ["a", "b", "c", "d"]
-
-console.log("文字列".length); // => 3
-
-console.log("文字列" === "文字列"); // => true
-// 一致しなければfalseとなる
-console.log("JS" === "ES"); // => false
-// 文字列の長さが異なるのでfalseとなる
-console.log("文字列" === "文字"); // => false
-
-// "A"と"B"のCode Unitは65と66
-console.log("A".charCodeAt(0)); // => 65
-console.log("B".charCodeAt(0)); // => 66
-// "A"（65）は"B"（66）よりCode Unitの値が小さい
-console.log("A" > "B"); // => false
-// 先頭から順番に比較し C > D が falseであるため
-console.log("ABC" > "ABD"); // => false
+const url = "https://example.com?param=1";
+const indexOfQuery = url.indexOf("?");
+console.log(indexOfQuery);
+const queryString = url.slice(indexOfQuery);
+console.log(queryString); // => "?param=1"
