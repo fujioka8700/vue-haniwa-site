@@ -1,13 +1,11 @@
 "use strict";
 
-const array = [[["A"], "B"], "C"];
-// 引数なしは 1 を指定した場合と同じ
-console.log(array.flat()); // => [["A"], "B", "C"]
-console.log(array.flat(1)); // => [["A"], "B", "C"]
-console.log(array.flat(2)); // => ["A", "B", "C"]
-// すべてをフラット化するには Infinity を渡す
-console.log(array.flat(Infinity)); // => ["A", "B", "C"]
-
-
-const array2 = ["A", "B", "C"];
-console.log(array2); // => ["A", "B", "C"]
+const array = ["a", "b", "c"];
+// 1番目から1つの要素("b")を削除
+array.splice(1, 1);
+console.log(array); // => ["a", "c"]
+console.log(array.length); // => 2
+console.log(array[1]); // => "c"
+// すべて削除
+array.splice(0, array.length);
+console.log(array.length); // => 0
