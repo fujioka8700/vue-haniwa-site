@@ -1,34 +1,20 @@
 "use strict";
 
-// 検索対象となる文字列
-const str = "にわにはにわにわとりがいる";
-// indexOfは先頭から検索しインデックスを返す - "**にわ**にはにわにわとりがいる"
-// "にわ"の先頭のインデックスを返すため 0 となる
-console.log(str.indexOf("にわ")); // => 0
-// lastIndexOfは末尾から検索しインデックスを返す- "にわにはにわ**にわ**とりがいる"
-console.log(str.lastIndexOf("にわ")); // => 6
-// 指定した文字列が見つからない場合は -1 を返す
-console.log(str.indexOf("未知のキーワード")); // => -1
+const str = "ABC123EFG";
+const pattern = new RegExp("C+");
+console.log(str.search(pattern));
 
-
-const str2 = "JavaScript";
-const searchWord = "Script";
-const index = str2.indexOf(searchWord);
-if (index !== -1) {
-    console.log(`${searchWord}が見つかりました`);
-} else {
-    console.log(`${searchWord}は見つかりませんでした`);
+// 正規表現リテラルはロード時にパターンが評価され、例外が発生する
+function main() {
+    // `[`は対となる`]`を組み合わせる特殊文字であるため、単独で書けない
+    const invalidPattern = /[/;
 }
 
+// `RegExp`コンストラクタは実行時にパターンが評価され、例外が発生する
+function main2() {
+    // `[`は対となる`]`を組み合わせる特殊文字であるため、単独で書けない
+    const invalidPattern = new RegExp("[]");
+}
 
-// 検索対象となる文字列
-const str3 = "にわにはにわにわとりがいる";
-// startsWith - 検索文字列が先頭ならtrue
-console.log(str3.startsWith("にわ")); // => true
-console.log(str3.startsWith("いる")); // => false
-// endsWith - 検索文字列が末尾ならtrue
-console.log(str3.endsWith("にわ")); // => false
-console.log(str3.endsWith("いる")); // => true
-// includes - 検索文字列が含まれるならtrue
-console.log(str3.includes("にわ")); // => true
-console.log(str3.includes("いる")); // => true
+// `main`関数を呼び出すことで初めて例外が発生する
+main2();
