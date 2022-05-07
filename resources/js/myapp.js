@@ -1,20 +1,27 @@
 "use strict";
 
-const str = "ABC123EFG";
-const pattern = new RegExp("C+");
-console.log(str.search(pattern));
+const str = "AB C D あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/;
+// gフラグなしでは、最初の結果のみを含んだ特殊な配列を返す
+const results = str.match(alphabetsPattern);
+console.log(results);
+console.log(results.length); // => 1
+// マッチした文字列はインデックスでアクセスできる
+console.log(results[0]); // => "ABC"
+// マッチした文字列の先頭のインデックス
+console.log(results.index); // => 0
+// 検索対象となった文字列全体
+console.log(results.input); // => "ABC あいう DE えお"
 
-// 正規表現リテラルはロード時にパターンが評価され、例外が発生する
-function main() {
-    // `[`は対となる`]`を組み合わせる特殊文字であるため、単独で書けない
-    const invalidPattern = /[/;
-}
 
-// `RegExp`コンストラクタは実行時にパターンが評価され、例外が発生する
-function main2() {
-    // `[`は対となる`]`を組み合わせる特殊文字であるため、単独で書けない
-    const invalidPattern = new RegExp("[]");
-}
-
-// `main`関数を呼び出すことで初めて例外が発生する
-main2();
+const str2 = "ABC あいう DE えお";
+const alphabetsPattern2 = /[a-zA-Z]+/g;
+// gフラグありでは、すべての検索結果を含む配列を返す
+const resultsWithG = str2.match(alphabetsPattern2);
+console.log(resultsWithG);
+console.log(resultsWithG.length); // => 2
+console.log(resultsWithG[0]); // => "ABC"
+console.log(resultsWithG[1]); // => "DE"
+// indexとinputはgフラグありの場合は追加されない
+console.log(resultsWithG.index); // => undefined
+console.log(resultsWithG.input); // => undefined
