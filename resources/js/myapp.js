@@ -1,41 +1,35 @@
 "use strict";
 
-// 改行を\nのエスケープシーケンスとして入力している
-const multiline = "1行目\n2行目\n3行目";
-console.log(multiline); 
-/* 改行した結果が出力される
-1行目
-2行目
-3行目
-*/
+const strings = "赤・青・緑".split("・");
+console.log(strings); // => ["赤", "青", "緑"]
 
-console.log("¯\_(ツ)_/¯");
+const str = "赤・青・緑".split("・").join("、");
+console.log(str); // => "赤、青、緑"
 
-const name2 = "JavaScript";
-console.log(`Hello ${name2}!`);// => "Hello JavaScript!"
+const str2 = "あ・い・う".split("・").join("");
+console.log(str2);
 
-const str = "文字列";
-// 配列と同じようにインデックスでアクセスできる
-console.log(str[0]); // => "文"
-console.log(str[1]); // => "字"
-console.log(str[2]); // => "列"
+const n = 100;
+console.log(n);
 
-const str2 = "文字列";
-console.log(str2.at(0)); // => "文"
-console.log(str2.at(1)); // => "字"
-console.log(str2.at(2)); // => "列"
-console.log(str2.at(-1)); // => "列"
+// 文字間に1つ以上のスペースがある
+const str3 = "a     b    c      d";
+// 1つ以上のスペースにマッチして分解する
+const strings3 = str3.split(/\s+/);
+console.log(strings3); // => ["a", "b", "c", "d"]
 
-const str3 = "アオイ";
-// それぞれの文字をCode Unitのhex値（16進数）に変換する
-// toStringの引数に16を渡すと16進数に変換される
-console.log(str3.charCodeAt(0).toString(16)); // => "30a2"
-console.log(str3.charCodeAt(1).toString(16)); // => "30aa"
-console.log(str3.charCodeAt(2).toString(16));  // => "30a4"
+console.log("文字列".length); // => 3
 
-const str4 = String.fromCharCode(
-    0x30a2, // アのCode Unit
-    0x30aa, // オのCode Unit
-    0x30a4  // イのCode Unit
-);
-console.log(str4); // => "アオイ"
+console.log("文字列" === "文字列"); // => true
+// 一致しなければfalseとなる
+console.log("JS" === "ES"); // => false
+// 文字列の長さが異なるのでfalseとなる
+console.log("文字列" === "文字"); // => false
+
+// "A"と"B"のCode Unitは65と66
+console.log("A".charCodeAt(0)); // => 65
+console.log("B".charCodeAt(0)); // => 66
+// "A"（65）は"B"（66）よりCode Unitの値が小さい
+console.log("A" > "B"); // => false
+// 先頭から順番に比較し C > D が falseであるため
+console.log("ABC" > "ABD"); // => false
