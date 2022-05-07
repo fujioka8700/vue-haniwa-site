@@ -1,13 +1,18 @@
 "use strict";
 
-let array = [1, 2, 3];
-console.log(array.length); // => 3
-// 新しい配列で変数を上書き
-array = [];
-console.log(array.length); // => 0
+const myArray = ["A", "B", "C"];
+const result = myArray.push("D");
+// `push`の返り値は配列ではなく、追加後の配列のlength
+console.log(result); // => 4
+// `myArray`が参照する配列そのものが変更されている
+console.log(myArray); // => ["A", "B", "C", "D"]
 
 
-const array2 = [1, 2, 3];
-console.log(array2.length); // => 3
-// `const`で宣言された変数には再代入できない
-array2 = [];
+const myArrayB = ["A", "B", "C"];
+// `concat`の返り値は結合済みの新しい配列
+const newArray = myArrayB.concat("D");
+console.log(newArray); // => ["A", "B", "C", "D"]
+// `myArrayB`は変更されていない
+console.log(myArrayB); // => ["A", "B", "C"]
+// `newArray`と`myArrayB`は異なる配列オブジェクト
+console.log(myArrayB === newArray); // => false
