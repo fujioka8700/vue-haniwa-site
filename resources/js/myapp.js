@@ -1,30 +1,17 @@
 "use strict";
 
-function myFunc() {
-    console.log(typeof arguments);
-    console.log(arguments[0]); // => "a"
-    console.log(arguments[1]); // => "b"
-    console.log(arguments[2]); // => "c"
+const double = "文字列";
+console.log(double); // => "文字列"
+const single = '文字列';
+console.log(single); // => '文字列'
+// どちらも同じ文字列
+console.log(double === single);// => true
 
-    // 配列ではないため、配列のメソッドは持っていない
-    console.log(typeof arguments.forEach); // => "undefined"
-}
-myFunc("a", "b", "c");
+const multiline = `1行目
+2行目
+3行目`;
+// \n は改行を意味する
+console.log(multiline); // => "1行目\n2行目\n3行目"
 
-function myFunc2() {
-    console.log(Array.isArray([1, 2, 3])); // => true
-    console.log(Array.isArray(arguments)); // => false
-}
-myFunc2("a", "b", "c");
-
-
-function myFunc3() {
-    // Array-likeオブジェクトを配列へ変換
-    const argumentsArray = Array.from(arguments);
-    console.log(Array.isArray(argumentsArray)); // => true
-    // 配列のメソッドを利用できる
-    argumentsArray.forEach(arg => {
-        console.log(arg);
-    });
-}
-myFunc3("a", "b", "c");
+const str = "This book is \"js-primer\"";
+console.log(str); // => 'This book is "js-primer"'
