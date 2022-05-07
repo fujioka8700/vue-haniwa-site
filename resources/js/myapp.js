@@ -1,32 +1,18 @@
 "use strict";
 
-const array = ["Java", "JavaScript", "Ruby"];
-const indexOfJS = array.indexOf("JavaScript");
-
-console.log(indexOfJS); // => 1
-console.log(array[indexOfJS]); // => "JavaScript"
-
-// "JS" という要素はないため `-1` が返される
-console.log(array.indexOf("JS")); // => -1
-
-const obj = { key: "value" };
-const array2 = ["A", "B", obj];
-console.log(array2.indexOf({ key: "value" })); // => -1
-// リテラルは新しいオブジェクトを作るため、異なるオブジェクトだと判定される
-console.log(obj === { key: "value" }); // => false
-// 等価のオブジェクトを検索してインデックスを返す
-console.log(array2.indexOf(obj)); // => 2
-
-
 // colorプロパティを持つオブジェクトの配列
 const colors = [
     { "color": "red" },
     { "color": "green" },
     { "color": "blue" }
 ];
-// `color`プロパティが"blue"のオブジェクトのインデックスを取得
-const indexOfBlue = colors.findIndex((obj) => {
-    return obj.color === "green";
+// `color`プロパティが"blue"のオブジェクトを取得
+const blueColor = colors.find((obj) => {
+    return obj.color === "blue";
 });
-console.log(indexOfBlue); // => 2
-console.log(colors[indexOfBlue]); // => { "color": "blue" }
+console.log(blueColor); // => { "color": "blue" }
+// 該当する要素がない場合は`undefined`を返す
+const whiteColor = colors.find((obj) => {
+    return obj.color === "white";
+});
+console.log(whiteColor); // => undefined
