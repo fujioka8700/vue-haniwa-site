@@ -1,38 +1,39 @@
-// 文字列をCode Unit(16進数)の配列にして返す
-function convertCodeUnits(str) {
-    const codeUnits = [];
-    for (let i = 0; i < str.length; i++) {
-        codeUnits.push(str.charCodeAt(i).toString(16));
-    }
-    return codeUnits;
-}
-// 文字列をCode Point(16進数)の配列にして返す
-function convertCodePoints(str) {
-    return Array.from(str).map(char => {
-        return char.codePointAt(0).toString(16);
-    });
-}
+"use strict"
 
-const str = "アオイ";
-const codeUnits = convertCodeUnits(str);
-console.log(codeUnits); // => ["30a2", "30aa", "30a4"]
-const codePoints = convertCodePoints(str);
-console.log(codePoints); // => ["30a2", "30aa", "30a4"]
+// const [all, fish] = "𩸽のひらき".match(/(.)のひらき/);
+// console.log(all); // => "\ude3dのひらき"
+// console.log(fish); // => "\ude3d"
 
-// 上位サロゲート + 下位サロゲートの組み合わせ
-console.log("\uD867\uDE3D"); // => "𩸽"
-// Code Pointでの表現
-console.log("\u{29e3d}"); // => "𩸽"
-
-// Code Unit（上位サロゲート + 下位サロゲート）
-console.log("\uD83C\uDF4E"); // => "🍎"
-// Code Point
-console.log("\u{1F34E}"); // => "🍎"
-
-// 内部的にはCode Unitが並んでいるものとして扱われている
-console.log("\uD867\uDE3D"); // => "𩸽"
-// インデックスアクセスもCode Unitごととなる
-console.log("𩸽"[0]); // => "\uD867"
-console.log("𩸽"[1]); // => "\uDE3D"
-
+// Code Unitの個数を返す
 console.log("🍎".length); // => 2
+console.log("\uD83C\uDF4E"); // => "🍎"
+console.log("\uD83C\uDF4E".length); // => 2
+
+
+// Code Pointごとの配列にする
+// Array.fromメソッドはIteratorを配列にする
+const codePoints = Array.from("リンゴ🍎");
+console.log(codePoints); // => ["リ", "ン", "ゴ", "🍎"]
+// Code Pointの個数を数える
+console.log(codePoints.length); // => 4
+
+// 指定した`codePoint`の個数を数える
+function countOfCodePoints(str, codePoint) {
+    return Array.from(str).filter(item => {
+        return item === codePoint;
+    }).length;
+}
+console.log(countOfCodePoints("🍎🍇🍎🥕🍒🍎🍎", "🍎")); // => 4
+
+
+// 指定した`codePoint`の個数を数える
+function countOfCodePoints2(str, codePoint) {
+    let count = 0;
+    for (const item of str) {
+        if (item === codePoint) {
+            count++;
+        }
+    }
+    return count;
+}
+console.log(countOfCodePoints2("🍎🍇🍎🥕🍎🍎🍎🍎🍒🍎", "🍎")); // => 7
