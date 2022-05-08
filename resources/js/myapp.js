@@ -1,25 +1,15 @@
 "use strict";
 
+// 非推奨の例: コンストラクタで値を返すべきではない
 class Point {
-    // 2. コンストラクタ関数の仮引数として`x`には`3`、`y`には`4`が渡る
     constructor(x, y) {
-        // 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する
-        this.x = x;
-        this.y = y;
-        // コンストラクタではreturn文は書かない
+        // `this`の代わりにただのオブジェクトを返せる
+        return { x, y };
     }
 }
 
-// 1. コンストラクタを`new`演算子で引数とともに呼び出す
+// `new`演算子の結果はコンストラクタ関数が返したただのオブジェクト
 const point = new Point(3, 4);
-
-// 4. `Point`のインスタンスである`point`の`x`と`y`プロパティには初期化された値が入る
-console.log(point.x); // => 3
-console.log(point.y); // => 4
-
-class MyClass2 {
-  constructor () {
-  }
-}
-
-MyClass2();
+console.log(point); // => { x: 3, y: 4 }
+// Pointクラスのインスタンスではない
+console.log(point instanceof Point); // => false
