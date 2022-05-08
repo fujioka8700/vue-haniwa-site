@@ -1,39 +1,31 @@
 "use strict"
 
-// const [all, fish] = "𩸽のひらき".match(/(.)のひらき/);
-// console.log(all); // => "\ude3dのひらき"
-// console.log(fish); // => "\ude3d"
+// Stringの`toUpperCase`メソッドを呼び出せる
+console.log("string".toUpperCase()); // => "STRING"
 
-// Code Unitの個数を返す
-console.log("🍎".length); // => 2
-console.log("\uD83C\uDF4E"); // => "🍎"
-console.log("\uD83C\uDF4E".length); // => 2
+// "input value"の値をラップしたStringのインスタンスを生成
+const str = new String("input value");
+// StringのインスタンスメソッドであるtoUpperCaseを呼び出す
+console.log(str.toUpperCase()); // => "INPUT VALUE"
 
+// プリミティブの文字列は"string"型
+const str2 = "文字列";
+console.log(typeof str2); // => "string"
+// ラッパーオブジェクトは"object"型
+const stringWrapper = new String("文字列");
+console.log(typeof stringWrapper); // => "object"
 
-// Code Pointごとの配列にする
-// Array.fromメソッドはIteratorを配列にする
-const codePoints = Array.from("リンゴ🍎");
-console.log(codePoints); // => ["リ", "ン", "ゴ", "🍎"]
-// Code Pointの個数を数える
-console.log(codePoints.length); // => 4
+const str3 = "文字列3";
+console.log(str3.toUpperCase());
+console.log((new String(str3)).toUpperCase());
 
-// 指定した`codePoint`の個数を数える
-function countOfCodePoints(str, codePoint) {
-    return Array.from(str).filter(item => {
-        return item === codePoint;
-    }).length;
-}
-console.log(countOfCodePoints("🍎🍇🍎🥕🍒🍎🍎", "🍎")); // => 4
+const stringWrapper2 = new String(str3);
+console.log(stringWrapper2.valueOf());
 
+// OK: リテラルを使う
+const str4 = "文字列";
+// NG: ラッパーオブジェクトを使う
+const stringWrapper4 = new String("文字列");
 
-// 指定した`codePoint`の個数を数える
-function countOfCodePoints2(str, codePoint) {
-    let count = 0;
-    for (const item of str) {
-        if (item === codePoint) {
-            count++;
-        }
-    }
-    return count;
-}
-console.log(countOfCodePoints2("🍎🍇🍎🥕🍎🍎🍎🍎🍒🍎", "🍎")); // => 7
+console.log(typeof str4);
+console.log(typeof stringWrapper4);
