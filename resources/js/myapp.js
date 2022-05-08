@@ -1,11 +1,16 @@
 "use strict";
 
-const fn = () => {
-    return this;
+const obj = {
+    method() {
+        const arrowFunction = () => {
+            return this;
+        };
+        return arrowFunction();
+    }
 };
 
-// Scriptコンテキストの場合、スクリプト直下のArrow Functionの`this`はグローバルオブジェクト
-console.log(fn()); // グローバルオブジェクト
+// 通常の`this`は`obj.method`の`this`と同じ
+console.log(obj.method()); // => obj
 
-// callで`this`を`{}`にしようとしても、`this`は変わらない
-console.log(fn.call({}) === this); // グローバルオブジェクト
+// `obj.method`の`this`を変更すれば、Arrow Functionの`this`も変更される
+console.log(obj.method.call("THAT")); // => "THAT"
