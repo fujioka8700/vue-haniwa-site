@@ -1,17 +1,30 @@
 "use strict";
 
-const double = "文字列";
-console.log(double); // => "文字列"
-const single = '文字列';
-console.log(single); // => '文字列'
-// どちらも同じ文字列
-console.log(double === single);// => true
+// コンストラクタ関数
+const Point = function PointConstructor(x, y) {
+    // インスタンスの初期化処理
+    this.x = x;
+    this.y = y;
+    // return {
+    //     x : x,
+    //     y : y
+    // }
+};
 
-const multiline = `1行目
-2行目
-3行目`;
-// \n は改行を意味する
-console.log(multiline); // => "1行目\n2行目\n3行目"
+// `new`演算子でコンストラクタ関数から新しいインスタンスを作成
+const point = new Point(3, 4);
+console.log(point);
+console.log(point instanceof Point);
 
-const str = "This book is \"js-primer\"";
-console.log(str); // => 'This book is "js-primer"'
+
+// 関数でのクラス表現
+function MyClassLike() {
+}
+// 関数なので関数として呼び出せる
+MyClassLike();
+
+// `class`構文でのクラス
+class MyClass {
+}
+// クラスは関数として呼び出すと例外が発生する
+MyClass(); 
