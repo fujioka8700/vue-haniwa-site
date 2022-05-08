@@ -12,24 +12,14 @@ class Point {
 
 // 1. コンストラクタを`new`演算子で引数とともに呼び出す
 const point = new Point(3, 4);
+
 // 4. `Point`のインスタンスである`point`の`x`と`y`プロパティには初期化された値が入る
 console.log(point.x); // => 3
 console.log(point.y); // => 4
 
-const obj = {
-    method () {
-        let count = 0;
-        const arrowFunction = () => {
-            console.log(++count);
-            return this;
-        };
-        return arrowFunction;
-    }
-};
+class MyClass2 {
+  constructor () {
+  }
+}
 
-const objf = obj.method();
-console.log(objf());
-console.log(objf());
-console.log(objf());
-console.log(obj.method());
-console.log(obj.method.call("moko"));
+MyClass2();
