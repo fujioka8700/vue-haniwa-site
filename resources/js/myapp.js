@@ -1,36 +1,38 @@
-"use str3ict";
-
-// function tag(str) {
-//     // 引数`str`にはただの文字列が渡ってくる
-//     console.log(str); // => "template 0 literal 1"
-// }
-// // ()をつけて関数を呼び出す
-// tag(`template ${0} literal ${1}`);
-
-// function tag2(strings, ...values) {
-//     // stringsは文字列のパーツが${}で区切られた配列となる
-//     console.log(strings); // => ["template "," literal ",""]
-//     // valuesには${}の評価値が順番に入る
-//     console.log(values); // => [0, 1]
-// }
-// // ()をつけずにテンプレートを呼び出す
-// tag2`template ${0} literal ${1}`;
-
-
-// テンプレートを順番どおりに結合した文字列を返すタグ関数
-function stringRaw(strings, ...values) {
-    // resultの初期値はstrings[0]の値となる
-    return strings.reduce((result, str, i) => {
-        console.log("result:" + result);
-        console.log("str:" + str);
-        console.log([result, values[i - 1], str]);
-        // それぞれループで次のような出力となる
-        // 1度目: ["template ", 0, " literal "]
-        // 2度目: ["template 0 literal ", 1, ""]
-        return result + values[i - 1] + str;
+// 文字列をCode Unit(16進数)の配列にして返す
+function convertCodeUnits(str) {
+    const codeUnits = [];
+    for (let i = 0; i < str.length; i++) {
+        codeUnits.push(str.charCodeAt(i).toString(16));
+    }
+    return codeUnits;
+}
+// 文字列をCode Point(16進数)の配列にして返す
+function convertCodePoints(str) {
+    return Array.from(str).map(char => {
+        return char.codePointAt(0).toString(16);
     });
 }
-// 関数`テンプレートリテラル` という形で呼び出す
-console.log(stringRaw`template ${0} literal ${10}`); // => "template 0 literal 1"
 
-console.log(String.raw`template ${0} literal ${1}`); // => "template 0 literal 1"
+const str = "アオイ";
+const codeUnits = convertCodeUnits(str);
+console.log(codeUnits); // => ["30a2", "30aa", "30a4"]
+const codePoints = convertCodePoints(str);
+console.log(codePoints); // => ["30a2", "30aa", "30a4"]
+
+// 上位サロゲート + 下位サロゲートの組み合わせ
+console.log("\uD867\uDE3D"); // => "𩸽"
+// Code Pointでの表現
+console.log("\u{29e3d}"); // => "𩸽"
+
+// Code Unit（上位サロゲート + 下位サロゲート）
+console.log("\uD83C\uDF4E"); // => "🍎"
+// Code Point
+console.log("\u{1F34E}"); // => "🍎"
+
+// 内部的にはCode Unitが並んでいるものとして扱われている
+console.log("\uD867\uDE3D"); // => "𩸽"
+// インデックスアクセスもCode Unitごととなる
+console.log("𩸽"[0]); // => "\uD867"
+console.log("𩸽"[1]); // => "\uDE3D"
+
+console.log("🍎".length); // => 2
