@@ -1,16 +1,20 @@
 "use strict";
 
-const obj = {
-    method() {
-        const arrowFunction = () => {
-            return this;
-        };
-        return arrowFunction();
-    }
-};
+class MyClass {
+}
 
-// 通常の`this`は`obj.method`の`this`と同じ
-console.log(obj.method()); // => obj
+// `MyClass`をインスタンス化する
+const myClass = new MyClass();
 
-// `obj.method`の`this`を変更すれば、Arrow Functionの`this`も変更される
-console.log(obj.method.call("THAT")); // => "THAT"
+// 毎回新しいインスタンス(オブジェクト)を作成する
+const myClassAnother = new MyClass();
+
+// それぞれのインスタンスは異なるオブジェクト
+console.log(myClass === myClassAnother); // => false
+
+// クラスのインスタンスかどうかは`instanceof`演算子で判定できる
+console.log(myClass instanceof MyClass); // => true
+console.log(myClassAnother instanceof MyClass); // => true
+
+const str = "Hello";
+console.log(str.split(''));
