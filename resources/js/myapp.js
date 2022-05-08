@@ -1,24 +1,13 @@
 "use strict"
 
-const createCounter = () => {
-    // 外のスコープから`privateCount`を直接参照できない
-    let privateCount = 0;
-    return () => {
-        privateCount++;
-        return `${privateCount}回目`;
-    };
-};
-const counter = createCounter();
-console.log(counter()); // => "1回目"
-console.log(counter()); // => "2回目"
-
-function greaterThan(n) {
-    return function(m) {
-        return m > n;
-    };
+function countUp() {
+    // countプロパティを参照して変更する
+    countUp.count = countUp.count + 1;
+    return countUp.count;
 }
-// 5より大きな値かを判定する関数を作成する
-const greaterThan5 = greaterThan(5);
-console.log(greaterThan5(4)); // => false
-console.log(greaterThan5(5)); // => false
-console.log(greaterThan5(6)); // => true
+countUp.count = 0;
+// 呼び出すごとにcountが更新される
+console.log(countUp()); // => 1
+// 直接値を変更できてしまう
+countUp.count = 10;
+console.log(countUp()); // => 11
