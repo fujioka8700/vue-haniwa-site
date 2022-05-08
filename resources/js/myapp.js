@@ -1,40 +1,24 @@
 "use strict"
 
-function printX() {
-    const x = "X";
-    console.log(x); // => "X"
-}
-
-printX();
-// この時点で`"X"`を参照するものはなくなる -> 解放される
-
-function createArray() {
-    const tempArray = [1, 2, 3];
-    return tempArray;
-}
-const array = createArray();
-console.log(array); // => [1, 2, 3]
-
-
 const createCounter = () => {
-    let count = 0;
-    return function increment() {
-        // `increment`関数は`createCounter`関数のスコープに定義された`変数`count`を参照している
-        count = count + 1;
-        return count;
+    // 外のスコープから`privateCount`を直接参照できない
+    let privateCount = 0;
+    return () => {
+        privateCount++;
+        return `${privateCount}回目`;
     };
 };
-// createCounter()の実行結果は、内側で定義されていた`increment`関数
-const myCounter = createCounter();
-// myCounter関数の実行結果は`count`の評価結果
-console.log(myCounter()); // => 1
-console.log(myCounter()); // => 2
+const counter = createCounter();
+console.log(counter()); // => "1回目"
+console.log(counter()); // => "2回目"
 
-// countUpとnewCountUpはそれぞれ別のincrement関数(内側にあるのも別のcount変数)
-const countUp = createCounter();
-const newCountUp = createCounter();
-// 参照してる関数(オブジェクト)は別であるため===は一致しない
-console.log(countUp === newCountUp);// false
-// それぞれの状態も別となる
-console.log(countUp()); // => 1
-console.log(newCountUp()); // => 1
+function greaterThan(n) {
+    return function(m) {
+        return m > n;
+    };
+}
+// 5より大きな値かを判定する関数を作成する
+const greaterThan5 = greaterThan(5);
+console.log(greaterThan5(4)); // => false
+console.log(greaterThan5(5)); // => false
+console.log(greaterThan5(6)); // => true
