@@ -1,14 +1,18 @@
 "use strict";
 
-function say(message) {
-    return `${message} ${this.fullName}！`;
-}
-const person = {
-    fullName: "Brendan Eich"
+const Prefixer = {
+    prefix: "pre",
+    prefixArray(strings) {
+        // `that`は`prefixArray`メソッド呼び出しにおける`this`となる
+        // つまり`that`は`Prefixer`オブジェクトを参照する
+        const that = this;
+        return strings.map(function(str) {
+            console.log(that.prefix);
+            // `this`ではなく`that`を参照する
+            return that.prefix + "-" + str;
+        });
+    }
 };
-// `this`を`person`に束縛した`say`関数をラップした関数を作る
-//  say.bind(person, "こんにちは"); は次のようなラップ関数を作る
-const sayPerson = () => {
-    return say.call(person, "こんにちは");
-};
-console.log(sayPerson()); // => "こんにちは Brendan Eich！"
+// `prefixArray`メソッドにおける`this`は`Prefixer`
+const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
+console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
