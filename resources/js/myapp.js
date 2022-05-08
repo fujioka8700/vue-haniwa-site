@@ -1,39 +1,36 @@
 "use str3ict";
 
-const str = "ここに文字列";
-const newStr = str.replace("文字列", "String");
-console.log(newStr); // => ここにString
+// function tag(str) {
+//     // 引数`str`にはただの文字列が渡ってくる
+//     console.log(str); // => "template 0 literal 1"
+// }
+// // ()をつけて関数を呼び出す
+// tag(`template ${0} literal ${1}`);
 
-// 検索対象となる文字列
-const str2 = "にわにはにわにわとりがいる";
-// 文字列を指定した場合は、最初に一致したものだけが置換される
-console.log(str2.replace("にわ", "niwa")); // => "niwaにはにわにわとりがいる"
-// `g`フラグなし正規表現の場合は、最初に一致したものだけが置換される
-console.log(str2.replace(/にわ/, "niwa")); // => "niwaにはにわにわとりがいる"
-// `g`フラグあり正規表現の場合は、繰り返し置換を行う
-console.log(str2.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとりがいる"
-
-// 検索対象となる文字列
-const str3 = "???";
-// replaceメソッドに文字列を指定した場合は、最初に一致したものだけが置換される
-console.log(str3.replace("?", "!")); // => "!??"
-// replaceAllメソッドに文字列を指定した場合は、一致したものがすべて置換される
-console.log(str3.replaceAll("?", "!")); // => "!!!"
-// replaceメソッドの場合は、正規表現の特殊文字はエスケープが必要となる
-console.log(str3.replace(/\?/g, "!")); // => "!!!"
-// replaceAllメソッドにも正規表現を渡せるが、この場合はエスケープが必要となるためreplaceと同じ
-console.log(str3.replaceAll(/\?/g, "!")); // => "!!!"
+// function tag2(strings, ...values) {
+//     // stringsは文字列のパーツが${}で区切られた配列となる
+//     console.log(strings); // => ["template "," literal ",""]
+//     // valuesには${}の評価値が順番に入る
+//     console.log(values); // => [0, 1]
+// }
+// // ()をつけずにテンプレートを呼び出す
+// tag2`template ${0} literal ${1}`;
 
 
-function toDateJa(dateString) {
-    // パターンにマッチしたときのみ、コールバック関数で置換処理が行われる
-    return dateString.replace(/(\d{4})-(\d{2})-(\d{2})/g, (all, year, month, day) => {
-        // `all`には、マッチした文字列全体が入っているが今回は利用しない
-        // `all`が次の返す値で置換されるイメージ
-        return `${year}年${month}月${day}日`;
+// テンプレートを順番どおりに結合した文字列を返すタグ関数
+function stringRaw(strings, ...values) {
+    // resultの初期値はstrings[0]の値となる
+    return strings.reduce((result, str, i) => {
+        console.log("result:" + result);
+        console.log("str:" + str);
+        console.log([result, values[i - 1], str]);
+        // それぞれループで次のような出力となる
+        // 1度目: ["template ", 0, " literal "]
+        // 2度目: ["template 0 literal ", 1, ""]
+        return result + values[i - 1] + str;
     });
 }
-// マッチしない文字列の場合は、そのままの文字列が返る
-console.log(toDateJa("本日ハ晴天ナリ")); // => "本日ハ晴天ナリ"
-// マッチした場合は置換した結果を返す
-console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月01日です"
+// 関数`テンプレートリテラル` という形で呼び出す
+console.log(stringRaw`template ${0} literal ${10}`); // => "template 0 literal 1"
+
+console.log(String.raw`template ${0} literal ${1}`); // => "template 0 literal 1"
