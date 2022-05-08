@@ -1,20 +1,35 @@
 "use strict";
 
-class MyClass {
+class Point {
+    // 2. コンストラクタ関数の仮引数として`x`には`3`、`y`には`4`が渡る
+    constructor(x, y) {
+        // 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する
+        this.x = x;
+        this.y = y;
+        // コンストラクタではreturn文は書かない
+    }
 }
 
-// `MyClass`をインスタンス化する
-const myClass = new MyClass();
+// 1. コンストラクタを`new`演算子で引数とともに呼び出す
+const point = new Point(3, 4);
+// 4. `Point`のインスタンスである`point`の`x`と`y`プロパティには初期化された値が入る
+console.log(point.x); // => 3
+console.log(point.y); // => 4
 
-// 毎回新しいインスタンス(オブジェクト)を作成する
-const myClassAnother = new MyClass();
+const obj = {
+    method () {
+        let count = 0;
+        const arrowFunction = () => {
+            console.log(++count);
+            return this;
+        };
+        return arrowFunction;
+    }
+};
 
-// それぞれのインスタンスは異なるオブジェクト
-console.log(myClass === myClassAnother); // => false
-
-// クラスのインスタンスかどうかは`instanceof`演算子で判定できる
-console.log(myClass instanceof MyClass); // => true
-console.log(myClassAnother instanceof MyClass); // => true
-
-const str = "Hello";
-console.log(str.split(''));
+const objf = obj.method();
+console.log(objf());
+console.log(objf());
+console.log(objf());
+console.log(obj.method());
+console.log(obj.method.call("moko"));
