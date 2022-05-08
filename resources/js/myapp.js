@@ -1,66 +1,25 @@
 "use strict";
 
-function fn1() {
-    return this;
-}
-const fn2 = function() {
-    return this;
-};
-// 関数の中の`this`が参照する値は呼び出し方によって決まる
-// `fn1`と`fn2`どちらもただの関数として呼び出している
-// メソッドとして呼び出していないためベースオブジェクトはない
-// ベースオブジェクトがない場合、`this`は`undefined`となる
-console.log(fn1()); // => undefined
-console.log(fn2()); // => undefined
-
-
-function outer() {
-    console.log(this); // => undefined
-    function inner() {
-        console.log(this); // => undefined
-    }
-    // `inner`関数呼び出しのベースオブジェクトはない
-    inner();
-}
-
-// `outer`関数呼び出しのベースオブジェクトはない
-outer();
-
-
-const obj = {
-    // 関数式をプロパティの値にしたメソッド
-    method1: function() {
-        return this;
-    },
-    // 短縮記法で定義したメソッド
-    method2() {
-        return this;
-    }
-};
-// メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`obj`)を参照する
-// メソッド呼び出しの`.`の左にあるオブジェクトがベースオブジェクト
-console.log(obj.method1()); // => obj
-console.log(obj.method2()); // => obj
-
 const person = {
     fullName: "Brendan Eich",
     sayName: function() {
-        // `person.fullName`と書いているのと同じ
+        // `this`は呼び出し元によって異なる
         return this.fullName;
     }
 };
-// `person.fullName`を出力する
+// `sayName`メソッドは`person`オブジェクトに所属する
+// `this`は`person`オブジェクトとなる
 console.log(person.sayName()); // => "Brendan Eich"
-
-
-const obj1 = {
-    obj2: {
-        obj3: {
-            method() {
-                return this;
-            }
-        }
-    }
+// `person.sayName`を`say`変数に代入する
+const say = person.sayName;
+// 代入したメソッドを関数として呼ぶ
+// この`say`関数はどのオブジェクトにも所属していない
+// `this`はundefinedとなるため例外を投げる
+// say(); // => TypeError: Cannot read property 'fullName' of undefined
+console.log(say);
+// const say = person.sayName; は次のようなイメージ
+const say2 = function() {
+    return this.fullName;
 };
-// `obj1.obj2.obj3.method`メソッドの`this`は`obj3`を参照
-console.log(obj1.obj2.obj3.method() === obj1.obj2.obj3); // => true
+// `this`は`undefined`となるため例外を投げる
+// say2(); // => TypeError: Cannot read property 'fullName' of undefined
