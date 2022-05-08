@@ -1,31 +1,27 @@
 "use strict"
 
-// Stringの`toUpperCase`メソッドを呼び出せる
-console.log("string".toUpperCase()); // => "STRING"
+function fn() {
+    const x = 1;
+    // fn関数のスコープ内から`x`は参照できる
+    console.log(x); // => 1
+}
+fn();
+// fn関数のスコープ外から`x`は参照できないためエラー
+// console.log(x); // => ReferenceError: x is not defined
 
-// "input value"の値をラップしたStringのインスタンスを生成
-const str = new String("input value");
-// StringのインスタンスメソッドであるtoUpperCaseを呼び出す
-console.log(str.toUpperCase()); // => "INPUT VALUE"
+function fn2(arg) {
+    // fn関数のスコープ内から仮引数`arg`は参照できる
+    console.log(arg); // => 1
+}
+fn2(1);
+// fn関数のスコープ外から`arg`は参照できないためエラー
+// console.log(arg); // => ReferenceError: arg is not defined
 
-// プリミティブの文字列は"string"型
-const str2 = "文字列";
-console.log(typeof str2); // => "string"
-// ラッパーオブジェクトは"object"型
-const stringWrapper = new String("文字列");
-console.log(typeof stringWrapper); // => "object"
 
-const str3 = "文字列3";
-console.log(str3.toUpperCase());
-console.log((new String(str3)).toUpperCase());
-
-const stringWrapper2 = new String(str3);
-console.log(stringWrapper2.valueOf());
-
-// OK: リテラルを使う
-const str4 = "文字列";
-// NG: ラッパーオブジェクトを使う
-const stringWrapper4 = new String("文字列");
-
-console.log(typeof str4);
-console.log(typeof stringWrapper4);
+// ブロック内で定義した変数はスコープ内でのみ参照できる
+{
+    const x = 1;
+    console.log(x); // => 1
+}
+// スコープの外から`x`を参照できないためエラー
+console.log(x); // => ReferenceError: x is not defined
