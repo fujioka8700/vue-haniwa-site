@@ -1,13 +1,12 @@
 "use strict";
 
-// 検索対象となる文字列
-const str = "にわにはにわにわとりがいる";
-// ^ - 検索文字列が先頭ならtrue
-console.log(/^にわ/.test(str)); // => true
-console.log(/^いる/.test(str)); // => false
-// $ - 検索文字列が末尾ならtrue
-console.log(/にわ$/.test(str)); // => false
-console.log(/いる$/.test(str)); // => true
-// 検索文字列が含まれるならtrue
-console.log(/にわ/.test(str)); // => true
-console.log(/いる/.test(str)); // => true
+const str = "/正規表現のような文字列/";
+// 正規表現で`/`からはじまり`/`で終わる文字列のパターン
+const regExpLikePattern = /^\/.*\/$/;
+// RegExpの`test`メソッドでパターンにマッチするかを判定
+console.log(regExpLikePattern.test(str)); // => true
+// Stringメソッドで、`/`からはじまり`/`で終わる文字列かを判定する関数
+const isRegExpLikeString = (str) => {
+    return str.startsWith("/") && str.endsWith("/");
+};
+console.log(isRegExpLikeString(str)); // => true
