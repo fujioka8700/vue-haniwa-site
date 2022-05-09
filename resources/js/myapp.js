@@ -1,30 +1,28 @@
 "use strict";
 
-// コンストラクタ関数
-const Point = function PointConstructor(x, y) {
-    // インスタンスの初期化処理
-    this.x = x;
-    this.y = y;
-    // return {
-    //     x : x,
-    //     y : y
-    // }
-};
-
-// `new`演算子でコンストラクタ関数から新しいインスタンスを作成
-const point = new Point(3, 4);
-console.log(point);
-console.log(point instanceof Point);
-
-
-// 関数でのクラス表現
-function MyClassLike() {
+class Counter {
+    constructor() {
+        this.count = 0;
+        this.increment = () => {
+            // `this`は`constructor`メソッドにおける`this`（インスタンスオブジェクト）を参照する
+            this.count++;
+        };
+    }
+    decrement() {
+        this.count--;
+    }
 }
-// 関数なので関数として呼び出せる
-MyClassLike();
 
-// `class`構文でのクラス
-class MyClass {
-}
-// クラスは関数として呼び出すと例外が発生する
-MyClass(); 
+const counterA = new Counter();
+const counterB = new Counter();
+
+// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス
+counterA.increment();
+counterA.increment();
+counterA.decrement();
+
+// 各インスタンスの持つプロパティ(状態)は異なる
+console.log(counterA.count); // => 1
+console.log(counterB.count); // => 0
+
+console.log(counterA.increment === counterB.increment);
