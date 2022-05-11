@@ -1,20 +1,15 @@
 'use strict';
 
-class ConflictClass {
-    constructor() {
-        this.method = () => {
-            console.log("インスタンスオブジェクトのメソッド");
-        };
-    }
-
-    method() {
-        console.log("プロトタイプメソッド");
-    }
+function fn() {
 }
 
-const conflict = new ConflictClass();
-conflict.method(); // "インスタンスオブジェクトのメソッド"
+console.log(fn.prototype);
+// `prototype`プロパティにプロトタイプオブジェクトが存在する
+console.log(typeof fn.prototype === "object"); // => true
 
-// インスタンスの`method`プロパティを削除
-delete conflict.method;
-conflict.method(); // "プロトタイプメソッド"
+class MyClass {
+}
+
+console.log(MyClass.prototype);
+// `prototype`プロパティにプロトタイプオブジェクトが存在する
+console.log(typeof MyClass.prototype === "object"); // => true
