@@ -1,9 +1,11 @@
 'use strict';
 
-// 文字列を例外として投げるアンチパターンの例
 try {
-    throw "例外が投げられました";
+    // 存在しない変数を参照する
+    console.log(x);
+    
 } catch (error) {
-    // catch節の例外識別子は、投げられた値を参照する
-    console.log(error); // => "例外が投げられました"
+    console.log(error instanceof ReferenceError); // => true
+    console.log(error.name); // => "ReferenceError"
+    console.log(error.message); // エラーメッセージが表示される
 }
