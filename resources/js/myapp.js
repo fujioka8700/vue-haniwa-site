@@ -1,11 +1,11 @@
 'use strict';
 
 try {
-    // eval関数は渡した文字列をJavaScriptとして実行する関数
-    // 正しくない構文をパースさせ、SyntaxErrorを実行時に発生させる
-    eval("foo! bar!");
+    // 関数ではないオブジェクトを関数として呼び出す
+    const fn = {};
+    fn();
 } catch (error) {
-    console.log(error instanceof SyntaxError); // => true
-    console.log(error.name); // => "SyntaxError"
+    console.log(error instanceof TypeError); // => true
+    console.log(error.name); // => "TypeError"
     console.log(error.message); // エラーメッセージが表示される
 }
