@@ -1,15 +1,20 @@
 'use strict';
 
-class Parent {}
-class Child extends Parent {}
+class MyArray extends Array {
+    get first() {
+        console.log(this);
+        return this.at(0);
+    }
 
-const parent = new Parent();
-const child = new Child();
+    get last() {
+        return this.at(-1);
+    }
+}
 
-// `Parent`のインスタンスは`Parent`のみを継承したインスタンス
-console.log(parent instanceof Parent); // => true
-console.log(parent instanceof Child); // => false
-
-// `Child`のインスタンスは`Child`と`Parent`を継承したインスタンス
-console.log(child instanceof Parent); // => true
-console.log(child instanceof Child); // => true
+// Arrayを継承しているのでArray.fromも継承している
+// Array.fromはIterableなオブジェクトから配列インスタンスを作成する
+const array = MyArray.from([1, 2, 3, 4, 5]);
+console.log(array instanceof Array); // => true
+console.log(array.length); // => 5
+console.log(array.first); // => 1
+console.log(array.last); // => 5
