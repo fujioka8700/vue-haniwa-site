@@ -8,7 +8,7 @@ class Counter {
             this.count++;
         };
     }
-    decrement() {
+    decrement () {
         this.count--;
     }
 }
@@ -26,3 +26,4 @@ console.log(counterA.count); // => 1
 console.log(counterB.count); // => 0
 
 console.log(counterA.increment === counterB.increment);
+console.log(counterA.decrement === counterB.decrement);
