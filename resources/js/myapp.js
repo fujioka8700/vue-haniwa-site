@@ -8,7 +8,11 @@ class MyClass {
 
 const instance = new MyClass();
 
-// `instance`の`[[Prototype]]`内部プロパティは`MyClass.prototype`と一致する
-const MyClassPrototype = Object.getPrototypeOf(instance);
-console.log(MyClassPrototype);
-console.log(MyClassPrototype === MyClass.prototype); // => true
+// インスタンスには`method`プロパティがないため、プロトタイプオブジェクトの`method`が参照される
+instance.method(); // "プロトタイプのメソッド"
+
+// `instance.method`の参照はプロトタイプオブジェクトの`method`と一致する
+const Prototype = Object.getPrototypeOf(instance);
+console.log(Prototype.method);
+console.log(instance.method);
+console.log(instance.method === Prototype.method); // => true
