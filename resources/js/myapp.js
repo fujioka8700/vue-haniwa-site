@@ -1,25 +1,11 @@
 "use strict";
 
-class NumberWrapper {
-    constructor(value) {
-        this._value = value;
-    }
-    // `_value`プロパティの値を返すgetter
-    get value() {
-        console.log("getter");
-        return this._value;
-    }
-    // `_value`プロパティに値を代入するsetter
-    set value(newValue) {
-        console.log("setter");
-        this._value = newValue;
-    }
-}
+const array = [1, 2, 3, 4, 5];
 
-const numberWrapper = new NumberWrapper(1);
-// "getter"とコンソールに表示される
-console.log(numberWrapper.value); // => 1
-// "setter"とコンソールに表示される
-numberWrapper.value = 42;
-// "getter"とコンソールに表示される
-console.log(numberWrapper.value); // => 42
+// 要素数を減らすと、インデックス以降の要素が削除される
+array.length = 2;
+console.log(array.join(", ")); // => "1, 2"
+
+// 要素数だけを増やしても、配列の中身は空要素が増えるだけ
+array.length = 5;
+console.log(array.join(", ")); // => "1, 2, , , "
