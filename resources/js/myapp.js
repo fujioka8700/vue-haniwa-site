@@ -1,29 +1,23 @@
 "use strict";
 
-class Counter {
+class ArrowClass {
     constructor() {
-        this.count = 0;
-        this.increment = () => {
-            // `this`は`constructor`メソッドにおける`this`（インスタンスオブジェクト）を参照する
-            this.count++;
+        
+        // コンストラクタでの`this`は常にインスタンス
+        this.method = () => {
+
+            // Arrow Functionにおける`this`は静的に決まる
+            // そのため`this`は常にインスタンスを参照する
+            return this;
         };
-    }
-    decrement () {
-        this.count--;
     }
 }
 
-const counterA = new Counter();
-const counterB = new Counter();
+const instanceA = new ArrowClass();
+const methodA = instanceA.method;
 
-// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス
-counterA.increment();
-counterA.increment();
-counterA.decrement();
+// 呼び出し方法（ベースオブジェクト）に依存しないため、`this`がインスタンスを参照する
+console.log(methodA()); // => instance
 
-// 各インスタンスの持つプロパティ(状態)は異なる
-console.log(counterA.count); // => 1
-console.log(counterB.count); // => 0
-
-console.log(counterA.increment === counterB.increment);
-console.log(counterA.decrement === counterB.decrement);
+const instanceB = new ArrowClass();
+console.log(methodA() === instanceB.method());
