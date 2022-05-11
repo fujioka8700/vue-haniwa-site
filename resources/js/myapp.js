@@ -1,18 +1,11 @@
 'use strict';
 
-// catch節のみ
 try {
-    undefinedFunction();
+
+    // 例外を投げる
+    throw new Error("例外が投げられました");
 } catch (error) {
-    console.error(error);
-}
 
-// finally節のみ
-try {
-    undefinedFunction();
-} finally {
-    console.log("この行は実行されます");
+    // catch節のスコープでerrorにアクセスできる
+    console.log(error.message); // => "例外が投げられました"
 }
-
-// finally節のみでは例外がキャッチされないため、この行は実行されません
-console.log("Hello World");
