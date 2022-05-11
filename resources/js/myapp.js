@@ -1,39 +1,22 @@
 'use strict';
 
-// 親クラス
 class Parent {
-    constructor(...args) {
-        console.log("Parentコンストラクタの処理", ...args);
+    constructor() {
+        this.name = "Parent";
     }
 }
 
-// Parentを継承したChildクラスの定義
 class Child extends Parent {
-    constructor(...args) {
-        // Parentのコンストラクタ処理を呼び出す
-        super(...args);
-        console.log("Childコンストラクタの処理", ...args);
+    constructor() {
+        // 子クラスでは`super()`を`this`に触る前に呼び出さなければならない
+        super();
+        // 子クラスのコンストラクタ処理
+        // 親クラスで書き込まれた`name`は上書きされる
+        this.name = "Child";
     }
 }
 
-const child = new Child("引数1", "引数2");
-// "Parentコンストラクタの処理", "引数1", "引数2"
-// "Childコンストラクタの処理", "引数1", "引数2"
-
-class ParentA {}
-class ChildA extends ParentA {}
-
-new ChildA();
-
-class ParentB {
-    constructor(...args) {
-        console.log(...args);
-    }
-}
-class ChildB extends ParentB {
-    constructor(...args) {
-        super(...args); // 親クラスに引数をそのまま渡す
-    }
-}
-
-new ChildB("HELLO", "WORLD");
+const parent = new Parent();
+console.log(parent.name); // => "Parent"
+const child = new Child();
+console.log(child.name); // => "Child"
