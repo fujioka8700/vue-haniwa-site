@@ -1,11 +1,16 @@
 'use strict';
 
+// 渡された数値が0以上ではない場合に例外を投げる関数
+function assertPositiveNumber(num) {
+    if (num < 0) {
+        throw new Error(`${num} is not positive.`);
+    }
+}
+
 try {
-
-    // 例外を投げる
-    throw new Error("例外が投げられました");
+    // 0未満の値を渡しているので、関数が例外を投げる
+    assertPositiveNumber(-1);
 } catch (error) {
-
-    // catch節のスコープでerrorにアクセスできる
-    console.log(error.message); // => "例外が投げられました"
+    console.log(error instanceof Error); // => true
+    console.log(error.message); // => "-1 is not positive."
 }
