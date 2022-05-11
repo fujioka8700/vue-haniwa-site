@@ -1,17 +1,11 @@
 'use strict';
 
 class MyClass {
-    constructor() {
-        this.method=()=>{
-
-        }
+    method() {
+        console.log("プロトタイプのメソッド");
     }
-    method() { }
 }
 
-console.log(MyClass.prototype.method);
-console.log(typeof MyClass.prototype.method === "function"); // => true
-const hoge = new MyClass();
-console.log(hoge.method);
-// クラスのconstructorはクラス自身を参照する
-console.log(MyClass.prototype.constructor === MyClass); // => true
+const instance = new MyClass();
+console.log(instance.Prototype); // 通常のプロパティのようにはアクセスできません。
+instance.method(); // "プロトタイプのメソッド"
