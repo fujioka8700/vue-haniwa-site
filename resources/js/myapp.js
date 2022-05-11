@@ -1,32 +1,39 @@
 'use strict';
 
-// プロトタイプチェーンの動作の疑似的なコード
-class MyClass {
-    constructor() {
-        this.method =()=> {
-            console.log("インスタンスのメソッド"); 
-        };
-    }
-    method() {
-        console.log("プロトタイプのメソッド");
+// 親クラス
+class Parent {
+    constructor(...args) {
+        console.log("Parentコンストラクタの処理", ...args);
     }
 }
 
-const instance = new MyClass();
-
-// `instance.method()`を実行する場合
-// 次のような呼び出し処理が行われている
-// インスタンスが`method`プロパティを持っている場合
-if (Object.hasOwn(instance, "method")) {
-    instance.method();
-} else {
-    // インスタンスの`[[Prototype]]`の参照先（`MyClass`のプロトタイプオブジェクト）を取り出す
-    const prototypeObject = Object.getPrototypeOf(instance);
-
-    // プロトタイプオブジェクトが`method`プロパティを持っている場合
-    if (Object.hasOwn(prototypeObject, "method")) {
-        
-        // `this`はインスタンス自身を指定して呼び出す
-        prototypeObject.method.call(instance);
+// Parentを継承したChildクラスの定義
+class Child extends Parent {
+    constructor(...args) {
+        // Parentのコンストラクタ処理を呼び出す
+        super(...args);
+        console.log("Childコンストラクタの処理", ...args);
     }
 }
+
+const child = new Child("引数1", "引数2");
+// "Parentコンストラクタの処理", "引数1", "引数2"
+// "Childコンストラクタの処理", "引数1", "引数2"
+
+class ParentA {}
+class ChildA extends ParentA {}
+
+new ChildA();
+
+class ParentB {
+    constructor(...args) {
+        console.log(...args);
+    }
+}
+class ChildB extends ParentB {
+    constructor(...args) {
+        super(...args); // 親クラスに引数をそのまま渡す
+    }
+}
+
+new ChildB("HELLO", "WORLD");
