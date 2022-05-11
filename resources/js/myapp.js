@@ -1,15 +1,15 @@
 'use strict';
 
-function fn() {
-}
-
-console.log(fn.prototype);
-// `prototype`プロパティにプロトタイプオブジェクトが存在する
-console.log(typeof fn.prototype === "object"); // => true
-
 class MyClass {
+    constructor() {
+        console.log(this);
+    }
+    method() { }
 }
 
-console.log(MyClass.prototype);
-// `prototype`プロパティにプロトタイプオブジェクトが存在する
-console.log(typeof MyClass.prototype === "object"); // => true
+console.log(MyClass.prototype.method);
+console.log(typeof MyClass.prototype.method === "function"); // => true
+new MyClass();
+console.log(MyClass.prototype.constructor);
+// クラスのconstructorはクラス自身を参照する
+console.log(MyClass.prototype.constructor === MyClass); // => true
