@@ -1,11 +1,25 @@
-"use strict";
+class ArrayWrapper {
+    constructor(array = []) {
+        this.array = array;
+    }
 
-const array = [1, 2, 3, 4, 5];
+	// 静的メソッド
+    // rest parametersとして要素を受けつける
+    static of(...items) {
+        return new ArrayWrapper(items);
+    }
 
-// 要素数を減らすと、インデックス以降の要素が削除される
-array.length = 2;
-console.log(array.join(", ")); // => "1, 2"
+    get length() {
+        return this.array.length;
+    }
+}
 
-// 要素数だけを増やしても、配列の中身は空要素が増えるだけ
-array.length = 5;
-console.log(array.join(", ")); // => "1, 2, , , "
+// 配列を引数として渡している
+const arrayWrapperA = new ArrayWrapper([1, 2, 3]);
+
+// 静的メソッドの呼び出し
+// 要素を引数として渡している
+const arrayWrapperB = ArrayWrapper.of(1, 2, 3);
+
+console.log(arrayWrapperA.length); // => 3
+console.log(arrayWrapperB.length); // => 3
