@@ -1,24 +1,27 @@
 'use strict';
 
-// `timeoutMs`ミリ秒後にresolveする
-function delay(timeoutMs) {
+function dummyFetch(path) {
     return new Promise((resolve, reject) => {
-        if (isNaN(timeoutMs)) {
-            throw new Error(`「${timeoutMs}」は数値ではない`);
-        }
         setTimeout(() => {
-            console.log(timeoutMs);
-            resolve(timeoutMs);
-        }, timeoutMs);
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
     });
 }
 
-const promise1 = delay(1000);
-const promise2 = delay("hello");
-const promise3 = delay(3000);
+const fetchedPromise = Promise.all([
+    dummyFetch("/resource/A"),
+    dummyFetch("/resource/B")
+]);
 
-Promise.all([promise1, promise2, promise3]).then(function(values) {
-    console.log(values); // => [1000, 2000, 3000]
-}).catch(error => {
-    console.error(error.message);
+const results = [];
+
+// fetchedPromiseの結果をDestructuringでresponseA, responseBに代入している
+fetchedPromise.then(([responseA, responseB]) => {
+    results.push(responseA.body, responseB.body);
+}).finally(() => {
+    console.log(results);
 });
