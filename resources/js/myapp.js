@@ -1,23 +1,32 @@
 'use strict';
 
-// `timeoutMs`ミリ秒後にresolveする
-function delay(timeoutMs) {
-    return new Promise((resolve) => {
+// `timeoutMs`ミリ秒後にrejectする
+function timeout(timeoutMs) {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(timeoutMs);
+            reject(new Error(`Timeout: ${timeoutMs}ミリ秒経過`));
         }, timeoutMs);
     });
 }
 
-// 1つでもresolveまたはrejectした時点で次の処理を呼び出す
-const racePromise = Promise.race([
-    delay(1),
-    delay(32),
-    delay(64),
-    delay(128)
-]);
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
 
-racePromise.then(value => {
-    // もっとも早く完了するのは1ミリ秒後
-    console.log(value); // => 1
+// 500ミリ秒以内に取得できなければ失敗時の処理が呼ばれる
+Promise.race([
+    dummyFetch("/resource/data"),
+    timeout(500),
+]).then(response => {
+    console.log(response.body); // => "Response body of /resource/data"
+}).catch(error => {
+    console.log(error.message); // => "Timeout: 500ミリ秒経過"
 });
