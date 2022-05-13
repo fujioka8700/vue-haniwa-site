@@ -1,12 +1,10 @@
 'use strict';
 
-// `resolve(42)`された`Promise`インスタンスを作成する
-// const fulfilledPromise = new Promise((resolve) => {
-//     resolve(42);
-// });
-//↓
-const fulfilledPromise = Promise.resolve(42);
+const promise = Promise.resolve();
 
-fulfilledPromise.then(value => {
-    console.log(value); // => 42
+// Fulfilledの状態となったPromiseインスタンスに対しても
+// thenメソッドでコールバック関数を登録できます。
+promise.then(() => {
+    console.log("2. コールバック関数が実行されました");
 });
+console.log("1. 同期的な処理が実行されました");
