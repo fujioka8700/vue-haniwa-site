@@ -12,13 +12,15 @@ function dummyFetch(path) {
     });
 }
 
-// リソースを取得中かどうかのフラグ
-let isLoading = true;
+const results = [];
+
+// Resource Aを取得する
 dummyFetch("/resource/A").then(response => {
-    console.log(response);
-}).catch(error => {
-    console.error(error);
-}).finally(() => {
-    isLoading = false;
-    console.log("Promiseのfinallyメソッド");
+    results.push(response.body);
+    // Resource Bを取得する
+    return dummyFetch("/resource/B");
+}).then(response => {
+    results.push(response.body);
+}).then(() => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
 });
