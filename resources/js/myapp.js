@@ -1,10 +1,14 @@
 'use strict';
 
-Promise.resolve().then(() => {
-    // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
-    throw new Error("例外");
-}).then(() => {
-    // このthenのコールバック関数は呼び出されません
-}).catch(error => {
-    console.log(error.message); // => "例外"
+Promise.resolve(1).then((value) => {
+    console.log(value); // => 1
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 2
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 4
+    // 値を返さない場合は undefined を返すのと同じ
+}).then(value => {
+    console.log(value); // => undefined
 });
