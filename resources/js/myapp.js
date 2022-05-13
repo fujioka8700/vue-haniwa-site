@@ -1,13 +1,13 @@
 'use strict';
 
-async function doAsync() {
-    // return "値";
-    throw Error("エラー");
-}
+// 関数宣言のAsync Function版
+async function fn1() {}
 
-// doAsync関数はPromiseを返す
-doAsync().then(value => {
-    console.log(value); // => "値"
-}).catch((error) => {
-    console.log(error.message);
-});
+// 関数式のAsync Function版
+const fn2 = async function() {};
+
+// Arrow FunctionのAsync Function版
+const fn3 = async() => {};
+
+// メソッドの短縮記法のAsync Function版
+const obj = { async method() {} };
