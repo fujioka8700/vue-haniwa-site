@@ -1,12 +1,10 @@
 'use strict';
 
-// RejectedなPromiseは次の失敗時の処理までスキップする
-const rejectedPromise = Promise.reject(new Error("失敗"));
-
-rejectedPromise.then(() => {
-    // このthenのコールバック関数は呼び出されません
+Promise.resolve().then(() => {
+    // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
+    throw new Error("例外");
 }).then(() => {
     // このthenのコールバック関数は呼び出されません
 }).catch(error => {
-    console.log(error.message); // => "失敗"
+    console.log(error.message); // => "例外"
 });
