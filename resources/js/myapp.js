@@ -1,12 +1,10 @@
 'use strict';
 
-const promise = new Promise((resolve) => {
-    console.log("1. resolveします");
-    resolve();
+// const fulfilledPromise = Promise.resolve(55);
+const fulfilledPromise = new Promise((resolve)=>{
+    resolve(42);
 });
 
-promise.then(() => {
-    console.log("3. コールバック関数が実行されました");
+fulfilledPromise.then((value)=>{
+    console.log(value);
 });
-
-console.log("2. 同期的な処理が実行されました");
