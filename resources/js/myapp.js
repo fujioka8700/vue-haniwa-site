@@ -1,11 +1,11 @@
 'use strict';
 
-Promise.reject(new Error("失敗")).catch(error => {
-    // 一度catchすれば、次に呼ばれるのは成功時のコールバック
-    return 1;
-}).then(value => {
-    console.log(value); // => 1
-    return value * 2;
-}).then(value => {
-    console.log(value); // => 2
+Promise.resolve().then(function onFulfilledA() {
+    return Promise.reject(new Error("失敗"));
+}).then(function onFulfilledB() {
+    console.log("onFulfilledBは呼び出されません");
+}).catch(function onRejected(error) {
+    console.log(error.message); // => "失敗"
+}).then(function onFulfilledC() {
+    console.log("onFulfilledCは呼び出されます");
 });
