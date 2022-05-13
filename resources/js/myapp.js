@@ -1,25 +1,23 @@
 'use strict';
 
-function dummyFetch(path) {
-    return new Promise((resolve, reject) => {
+// `timeoutMs`ミリ秒後にresolveする
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
         setTimeout(() => {
-            if (path.startsWith("/resource")) {
-                resolve({ body: `Response body of ${path}` });
-            } else {
-                reject(new Error("NOT FOUND"));
-            }
-        }, 1000 * Math.random());
+            resolve(timeoutMs);
+        }, timeoutMs);
     });
 }
 
 // 1つでもresolveまたはrejectした時点で次の処理を呼び出す
-const fetchedPromise = Promise.race([
-    dummyFetch("/resource/A"),
-    dummyFetch("/resource/B")
+const racePromise = Promise.race([
+    delay(1),
+    delay(32),
+    delay(64),
+    delay(128)
 ]);
 
-fetchedPromise.then((response) => {
-    console.log(response);
-}).catch(error => {
-    console.error(error); // Error: NOT FOUND
+racePromise.then(value => {
+    // もっとも早く完了するのは1ミリ秒後
+    console.log(value); // => 1
 });
