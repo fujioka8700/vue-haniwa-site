@@ -12,13 +12,14 @@ function dummyFetch(path) {
     });
 }
 
-const fetchedPromise = Promise.all([
+// 1つでもresolveまたはrejectした時点で次の処理を呼び出す
+const fetchedPromise = Promise.race([
     dummyFetch("/resource/A"),
-    dummyFetch("/not_found/B") // Bは存在しないため失敗する
+    dummyFetch("/resource/B")
 ]);
 
-fetchedPromise.then(([responseA, responseB]) => {
-    // この行は実行されません
+fetchedPromise.then((response) => {
+    console.log(response);
 }).catch(error => {
     console.error(error); // Error: NOT FOUND
 });
