@@ -1,14 +1,12 @@
 'use strict';
 
-const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve();
-        resolve(); // 二度目以降のresolveやrejectは無視される
-    }, 16);
-});
+// `resolve(42)`された`Promise`インスタンスを作成する
+// const fulfilledPromise = new Promise((resolve) => {
+//     resolve(42);
+// });
+//↓
+const fulfilledPromise = Promise.resolve(42);
 
-promise.then(() => {
-    console.log("最初のresolve時に一度だけ呼ばれる");
-}, (error) => {
-    // この行は呼び出されない
+fulfilledPromise.then(value => {
+    console.log(value); // => 42
 });
