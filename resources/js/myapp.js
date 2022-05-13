@@ -1,15 +1,21 @@
 'use strict';
 
-// Promiseチェーンを変数に入れた場合
-const firstPromise = Promise.resolve();
-const secondPromise = firstPromise.then(() => {
-    console.log(1);
-});
+// ランダムでFulfilledまたはRejectedの`Promise`インスタンスを返す関数
+function asyncTask() {
+    return Math.random() > 0.5
+        ? Promise.resolve("成功")
+        : Promise.reject(new Error("失敗"));
+}
 
-const thirdPromise = secondPromise.then(() => {
-    console.log(2);
-});
+// asyncTask関数は新しい`Promise`インスタンスを返す
+asyncTask()
+    // thenメソッドは新しい`Promise`インスタンスを返す
+    .then(function onFulfilled(value) {
+        console.log(value); // => "成功"
+    })
+    // catchメソッドは新しい`Promise`インスタンスを返す
+    .catch(function onRejected(error) {
+        console.log(error.message); // => "失敗"
+    });
 
-// それぞれ新しいPromiseインスタンスが作成される
-console.log(firstPromise === secondPromise); // => false
-console.log(secondPromise === thirdPromise); // => false
+console.log("同期的な処理");
