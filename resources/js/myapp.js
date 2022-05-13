@@ -1,30 +1,21 @@
 'use strict';
 
-/**
- * コールバック関数は、関数によって処理を変えたい時に使う
- */
- function dummyFetch(path, callback) {
-    setTimeout(() => {
-        if (path.startsWith("/success")) {
-            callback(null, { body: `Response body of ${path}` });
-        } else {
-            callback(new Error("NOT FOUND"));
-        }
-    }, 1000 * Math.random());
-}
-
-dummyFetch("/success/data", (error, response) => {
-    if (error) {
-        // この行は実行されません
-    } else {
-        console.log(response); // => { body: "Response body of /success/data" }
-    }
+// `Promise`インスタンスを作成
+const promise = new Promise((resolve, reject) => {
+    // 非同期の処理が成功したときはresolve()を呼ぶ
+    // 非同期の処理が失敗したときにはreject()を呼ぶ
 });
 
-dummyFetch("/failure/data", (error, response )=>{
-    if (error) {
-        console.log(error.message); // => NOT FOUND
-    } else {
-        // この行は実行されません
-    }
-});
+const onFulfilled = () => {
+    console.log("resolveされたときに呼ばれる");
+};
+
+const onRejected = () => {
+    console.log("rejectされたときに呼ばれる");
+};
+
+console.log(promise.then);
+
+// `then`メソッドで成功時と失敗時に呼ばれるコールバック関数を登録
+promise.then(onFulfilled, onRejected);
+
