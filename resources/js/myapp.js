@@ -1,13 +1,24 @@
 'use strict';
 
-// `promise`にはResolvedまたはRejectedなPromiseインスタンスがランダムで入る
-const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
 
-promise.then(() => {
-    console.log("Promiseのthenメソッド");
-}).catch((error) => {
-    console.log("Promiseのcatchメソッド");
+// リソースを取得中かどうかのフラグ
+let isLoading = true;
+dummyFetch("/resource/A").then(response => {
+    console.log(response);
+}).catch(error => {
+    console.error(error);
 }).finally(() => {
-    // 成功、失敗どちらの場合でも呼び出される
+    isLoading = false;
     console.log("Promiseのfinallyメソッド");
 });
