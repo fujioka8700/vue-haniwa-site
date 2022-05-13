@@ -1,10 +1,11 @@
 'use strict';
 
-// const fulfilledPromise = Promise.resolve(55);
-const fulfilledPromise = new Promise((resolve)=>{
-    resolve(42);
-});
-
-fulfilledPromise.then((value)=>{
-    console.log(value);
-});
+// Promiseインスタンスでメソッドチェーン
+Promise.resolve()
+    // thenメソッドは新しい`Promise`インスタンスを返す
+    .then(() => {
+        console.log(1);
+    })
+    .then(() => {
+        console.log(2);
+    });
