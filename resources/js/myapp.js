@@ -1,17 +1,13 @@
 'use strict';
 
-function main() {
-    return Promise.reject(new Error("エラー"));
-}
+// `promise`にはResolvedまたはRejectedなPromiseインスタンスがランダムで入る
+const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
 
-// mainはRejectedなPromiseを返す
-main().catch(error => {
-    // mainで発生したエラーのログを出力する
-    console.log(error);
-    // Promiseチェーンはそのままエラーを継続させる
-    return Promise.reject(error);
-}).then(() => {
-    // 前のcatchでRejectedなPromiseが返されたため、この行は実行されません
-}).catch(error => {
-    console.log("メインの処理が失敗した");
+promise.then(() => {
+    console.log("Promiseのthenメソッド");
+}).catch((error) => {
+    console.log("Promiseのcatchメソッド");
+}).finally(() => {
+    // 成功、失敗どちらの場合でも呼び出される
+    console.log("Promiseのfinallyメソッド");
 });
