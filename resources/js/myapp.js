@@ -14,14 +14,11 @@ function dummyFetch(path) {
 
 const fetchedPromise = Promise.all([
     dummyFetch("/resource/A"),
-    dummyFetch("/resource/B")
+    dummyFetch("/not_found/B") // Bは存在しないため失敗する
 ]);
 
-const results = [];
-
-// fetchedPromiseの結果をDestructuringでresponseA, responseBに代入している
 fetchedPromise.then(([responseA, responseB]) => {
-    results.push(responseA.body, responseB.body);
-}).finally(() => {
-    console.log(results);
+    // この行は実行されません
+}).catch(error => {
+    console.error(error); // Error: NOT FOUND
 });
