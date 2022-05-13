@@ -1,26 +1,24 @@
 'use strict';
 
-function dummyFetch(path) {
+// `timeoutMs`ミリ秒後にresolveする
+function delay(timeoutMs) {
     return new Promise((resolve, reject) => {
+        if (isNaN(timeoutMs)) {
+            throw new Error(`「${timeoutMs}」は数値ではない`);
+        }
         setTimeout(() => {
-            if (path.startsWith("/resource")) {
-                resolve({ body: `Response body of ${path}` });
-            } else {
-                reject(new Error("NOT FOUND"));
-            }
-        }, 1000 * Math.random());
+            console.log(timeoutMs);
+            resolve(timeoutMs);
+        }, timeoutMs);
     });
 }
 
-const results = [];
+const promise1 = delay(1000);
+const promise2 = delay("hello");
+const promise3 = delay(3000);
 
-// Resource Aを取得する
-dummyFetch("/resource/A").then(response => {
-    results.push(response.body);
-    // Resource Bを取得する
-    return dummyFetch("/resource/B");
-}).then(response => {
-    results.push(response.body);
-}).then(() => {
-    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+    console.log(values); // => [1000, 2000, 3000]
+}).catch(error => {
+    console.error(error.message);
 });
