@@ -1,13 +1,16 @@
 'use strict';
 
-function throwPromise() {
-    return new Promise((resolve, reject) => {
-        // Promiseコンストラクタの中で例外は自動的にキャッチされrejectを呼ぶ
-        throw new Error("例外が発生");
-        // 例外が発生すると、これ以降のコンストラクタの処理は実行されません
-    });
-}
+const promise = new Promise((resolve, reject) => {
+    // 非同期でresolveする
+    setTimeout(() => {
+        resolve();
+        // すでにresolveされているため無視される
+        reject(new Error("エラー"));
+    }, 16);
+});
 
-throwPromise().catch(error => {
-    console.log(error.message); // => "例外が発生"
+promise.then(() => {
+    console.log("Fulfilledとなった");
+}, (error) => {
+    // この行は呼び出されない
 });
