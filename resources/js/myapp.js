@@ -1,13 +1,11 @@
 'use strict';
 
-const cache = new WeakMap();
+const map = new Map();
+map.set(NaN, "value");
 
-function getHeight(element) {
-    if (cache.has(element)) {
-        return cache.get(element);
-    }
-    const height = element.getBoundingClientRect().height;
-    // elementオブジェクトに対して高さをひもづけて保存している
-    cache.set(element, height);
-    return height;
-}
+// NaNは===で比較した場合は常にfalse
+console.log(NaN === NaN); // => false
+
+// MapはNaN同士を比較できる
+console.log(map.has(NaN)); // => true
+console.log(map.get(NaN)); // => "value"
