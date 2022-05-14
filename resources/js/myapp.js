@@ -1,24 +1,14 @@
 'use strict';
 
-// `timeoutMs`ミリ秒後にresolveする
-function delay(timeoutMs) {
-    return new Promise((resolve, reject) => {
-        if (isNaN(timeoutMs)) {
-            throw new Error(`「${timeoutMs}」は数値ではない`);
-        }
-        setTimeout(() => {
-            console.log(timeoutMs);
-            resolve(timeoutMs);
-        }, timeoutMs);
-    });
+function doAsyncTask() {
+    return new Promise(resolve => setTimeout(resolve, 1000));
 }
 
-const promise1 = delay(1000);
-const promise2 = delay("hello");
-const promise3 = delay(3000);
+(async function() {
+    console.log("実行開始");
+    const startTime = Date.now();
 
-Promise.all([promise1, promise2, promise3]).then(function(values) {
-    console.log(values); // => [1000, 2000, 3000]
-}).catch(error => {
-    console.error(error.message);
-});
+    // awaitを使う処理
+    const result = await doAsyncTask();
+    console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
+})();
