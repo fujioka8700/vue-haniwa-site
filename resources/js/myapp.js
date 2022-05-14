@@ -1,22 +1,32 @@
 'use strict';
 
-const map = new WeakMap();
+// イベントリスナーを管理するマップ
+const listenersMap = new WeakMap();
 
-// キーとなるオブジェクト
-let obj = {};
-
-// {} への参照をキーに値をセットする
-map.set(obj, "value");
-
-console.log(map.get(obj));
-
-// WeakMapはiterableオブジェクトではない
-for (const value of map) {
-    // 出力できない
-    console.log(value)
+class EventEmitter {
+    addListener(listener) {
+        // this にひもづいたリスナーの配列を取得する
+        const listeners = listenersMap.get(this) ?? [];
+        const newListeners = listeners.concat(listener);
+        // this をキーに新しい配列をセットする
+        listenersMap.set(this, newListeners);
+    }
 }
 
-// {} への参照を破棄する
-obj = null;
+// 上記クラスの実行例
 
-// GCが発生するタイミングでWeakMapから値が破棄される
+let eventEmitter = new EventEmitter();
+
+// イベントリスナーを追加する
+eventEmitter.addListener(() => {
+    console.log("イベントが発火しました");
+});
+
+eventEmitter.addListener(() => {
+    console.log("イベントが発火しました");
+});
+
+// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される
+eventEmitter = null;
+
+console.log(listenersMap);
