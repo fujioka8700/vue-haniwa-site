@@ -12,19 +12,26 @@ function dummyFetch(path) {
     });
 }
 
-// リソースAとリソースBを順番に取得する
-async function fetchAB() {
+// 複数のリソースを順番に取得する
+async function fetchResources(resources) {
     const results = [];
-    const responseA = await dummyFetch("/resource/A");
-    results.push(responseA.body);
-    const responseB = await dummyFetch("/resource/B");
-    results.push(responseB.body);
+    for (let i = 0; i < resources.length; i++) {
+        const resource = resources[i];
+        // ループ内で非同期処理の完了を待っている
+        const response = await dummyFetch(resource);
+        results.push(response.body);
+    }
+    // 反復処理がすべて終わったら結果を返す(返り値となるPromiseを`results`でresolveする)
     return results;
 }
 
+// 取得したいリソースのパス配列
+const resources = [
+    "/resource/A",
+    "/resource/B"
+];
+
 // リソースを取得して出力する
-fetchAB().then((results) => {
+fetchResources(resources).then((results) => {
     console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
-}).catch(error => {
-    console.error(error.message);
 });
