@@ -1,9 +1,12 @@
 'use strict';
 
-const map = new Map([["key1", "value1"], ["key2", "value2"]]);
-const results = [];
+const map = {};
 
-for (const [key, value] of map) {
-    results.push(`${key}:${value}`);
+// マップがキーを持つことを確認する
+function has(key) {
+    return typeof map[key] !== "undefined";
 }
-console.log(results); // => ["key1:value1","key2:value2"]
+console.log(has("foo")); // => false
+
+// Objectのプロパティが存在する
+console.log(has("constructor")); // => true
