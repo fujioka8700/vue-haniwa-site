@@ -1,17 +1,35 @@
 'use strict';
 
-async function asyncMain() {
-    // 中でawaitしても、Async Functionの外側の処理まで止まるわけではない
-    await new Promise((resolve) => {
-        setTimeout(resolve, 3000);
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
     });
 }
-console.log("1. asyncMain関数を呼び出します");
 
-// Async Functionは外から見れば単なるPromiseを返す関数
-asyncMain().then(() => {
-    console.log("3. asyncMain関数が完了しました");
+// 複数のリソースを順番に取得する
+async function fetchResources(resources) {
+    const results = [];
+    resources.forEach(resorce => {
+        // Async Functionではないスコープで`await`式を利用しているためSyntax Errorとなる
+        const response = await dummyFetch(resource);
+        results.push(response.body);
+    });
+    return results;
+}
+
+// 取得したいリソースのパス配列
+const resources = [
+    "/resource/A",
+    "/resource/B"
+];
+
+// リソースを取得して出力する
+fetchResources(resources).then((results) => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
 });
-
-// Async Functionの外側の処理はそのまま進む
-console.log("2. asyncMain関数外では、次の行が同期的に呼び出される");
