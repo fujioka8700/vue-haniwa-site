@@ -1,10 +1,9 @@
 'use strict';
 
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
-const entries = [];
+const results = [];
 
-for (const [key, value] of map.entries()) {
-    console.log(key);
-    entries.push(`${key}:${value}`);
+for (const [key, value] of map) {
+    results.push(`${key}:${value}`);
 }
-console.log(entries); // => ["key1:value1","key2:value2"]
+console.log(results); // => ["key1:value1","key2:value2"]
