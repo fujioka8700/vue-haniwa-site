@@ -12,24 +12,21 @@ function dummyFetch(path) {
     });
 }
 
-// 複数のリソースを順番に取得する
+// リソースを順番に取得する
 async function fetchResources(resources) {
     const results = [];
-    resources.forEach(resorce => {
-        // Async Functionではないスコープで`await`式を利用しているためSyntax Errorとなる
+    // コールバック関数をAsync Functionに変更
+    resources.forEach(async function(resource) {
+        // await式を利用できるようになった
         const response = await dummyFetch(resource);
         results.push(response.body);
     });
     return results;
 }
-
-// 取得したいリソースのパス配列
-const resources = [
-    "/resource/A",
-    "/resource/B"
-];
+const resources = ["/resource/A", "/resource/B"];
 
 // リソースを取得して出力する
 fetchResources(resources).then((results) => {
-    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+    // しかし、resultsは空になってしまう
+    console.log(results); // => []
 });
