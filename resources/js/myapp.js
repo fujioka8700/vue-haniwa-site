@@ -1,19 +1,12 @@
 'use strict';
 
-function asyncMain() {
-    return Promise.resolve(42).then(value => {
-        console.log(value); // => 42
-    });
-}
-asyncMain(); // Promiseインスタンスを返す
-
-async function dummyHello() {
-    return "hello";
+async function asyncMain() {
+    // `await`式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる
+    const value = await Promise.reject(new Error("エラーメッセージ"));
+    // await式で例外が発生したため、この行は実行されません
 }
 
-async function asyncMain2() {
-    const value = await dummyHello();
-    console.log(value);
-}
-const asyncPromise = asyncMain2();
-console.log(asyncPromise);
+// Async Functionは自動的に例外をキャッチできる
+asyncMain().catch(error => {
+    console.log(error.message); // => "エラーメッセージ"
+});
