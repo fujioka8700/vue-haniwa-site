@@ -1,5 +1,6 @@
 'use strict';
 
-const rad90 = Math.PI * 90 / 180;
-const sin90 = Math.sin(rad90);
-console.log(sin90); // => 1
+for (let i = 0; i < 5; i++) {
+    // 毎回ランダムな浮動小数点数を返す
+    console.log(Math.random());
+}
