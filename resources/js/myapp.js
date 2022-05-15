@@ -1,10 +1,10 @@
 'use strict';
 
-// getTimezoneOffsetはインスタンスメソッドなので、インスタンスが必要
-const now = new Date();
+// moment.jsで現在時刻のmomentオブジェクトを作る
+const now = moment();
 
-// 時間単位にしたタイムゾーンオフセット
-const timezoneOffsetInHours = now.getTimezoneOffset() / 60;
+// addメソッドで10分進める
+const future = now.add(10, "minutes");
 
-// UTCの現在の時間を計算できる
-console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
+// formatメソッドで任意の書式の文字列に変換する
+console.log(future.format("YYYY/MM/DD"));
