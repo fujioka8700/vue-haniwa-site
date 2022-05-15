@@ -1,7 +1,15 @@
 'use strict';
 
-// "value2"が重複するため、片方は無視される
-const set = new Set(["value1", "value2", "value2"]);
+const set = new Set();
 
-// セットのサイズは2になる
-console.log(set.size); // => 2
+// 値の追加
+set.add("a");
+console.log(set.size); // => 1
+
+// 重複する値は追加されない
+set.add("a");
+console.log(set.size); // => 1
+
+// 値の存在確認
+console.log(set.has("a")); // => true
+console.log(set.has("b")); // => false
