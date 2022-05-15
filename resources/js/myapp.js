@@ -1,9 +1,8 @@
 'use strict';
 
-// minからmaxまでの乱数を返す関数
-function getRandom(min, max) {
-    return Math.random() * (max - min) + min;
-}
+console.log(Math.max(1, 10)); // => 10
+console.log(Math.min(1, 10)); // => 1
 
-// 1以上5未満の浮動小数点数を返す
-console.log(getRandom(1, 5));
+const numbers = [1, 2, 3, 4, 5];
+console.log(Math.max(...numbers)); // => 5
+console.log(Math.min(...numbers)); // => 1
