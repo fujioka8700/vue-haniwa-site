@@ -1,6 +1,5 @@
 'use strict';
 
-// 名前つきエクスポートされたfooとbarをインポートする
-import { foo, bar } from "./my-module.js";
-console.log(foo); // => "foo"
-console.log(bar); // => "bar"
+// fooとして名前つきエクスポートされた変数をmyFooとしてインポートする
+import { foo as myFoo } from "./my-module.js";
+console.log(myFoo); // => "foo"
