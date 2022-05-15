@@ -1,11 +1,12 @@
 'use strict';
 
-const obj = { foo: "foo" };
-obj.self = obj;
+const obj = {
+    foo: "foo",
+    hoge: ["hoge", "fuga"],
+    toJSON() {
+        return "bar";
+    }
+};
 
-try {
-    const json = JSON.stringify(obj);
-    console.log(json);
-} catch (error) {
-    console.error(error.message); // => "TypeError: Converting circular structure to JSON"
-}
+console.log(JSON.stringify(obj)); // => '"bar"'
+console.log(JSON.stringify({ x: obj }, null, 2)); // => '{"x":"bar"}'
