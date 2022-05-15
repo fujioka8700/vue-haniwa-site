@@ -1,12 +1,13 @@
 'use strict';
 
-const obj = {
-    foo: "foo",
-    hoge: ["hoge", "fuga"],
-    toJSON() {
-        return "bar";
-    }
-};
+// 現在の時刻を表すインスタンスを作成する
+const now = new Date();
 
-console.log(JSON.stringify(obj)); // => '"bar"'
-console.log(JSON.stringify({ x: obj }, null, 2)); // => '{"x":"bar"}'
+// 時刻値だけが欲しい場合にはDate.nowメソッドを使う
+console.log(Date.now());
+
+// 時刻値を取得する
+console.log(now.getTime());
+
+// 時刻をISO 8601形式の文字列で表示する
+console.log(now.toISOString());
