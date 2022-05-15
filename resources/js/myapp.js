@@ -1,13 +1,8 @@
 'use strict';
 
-// 現在の時刻を表すインスタンスを作成する
-const now = new Date();
+// 時刻のミリ秒値を直接指定する形式
+// 1136214245999はUTCにおける"2006年1月2日15時04分05秒999"を表す
+const date = new Date(1136214245999);
 
-// 時刻値だけが欲しい場合にはDate.nowメソッドを使う
-console.log(Date.now());
-
-// 時刻値を取得する
-console.log(now.getTime());
-
-// 時刻をISO 8601形式の文字列で表示する
-console.log(now.toISOString());
+// 末尾の'Z'はUTCであることを表す
+console.log(date.toISOString()); // => "2006-01-02T15:04:05.999Z"
