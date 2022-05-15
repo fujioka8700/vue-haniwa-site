@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
-    <title>非同期処理、コールバック</title>
+    <title>JavaScript Primer 2周目</title>
     <style>
         
     </style>
