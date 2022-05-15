@@ -1,10 +1,5 @@
 'use strict';
 
-// moment.jsで現在時刻のmomentオブジェクトを作る
-const now = moment();
-
-// addメソッドで10分進める
-const future = now.add(10, "minutes");
-
-// formatメソッドで任意の書式の文字列に変換する
-console.log(future.format("YYYY/MM/DD"));
+const rad90 = Math.PI * 90 / 180;
+const sin90 = Math.sin(rad90);
+console.log(sin90); // => 1
