@@ -1,22 +1,15 @@
 'use strict';
 
-const obj = {
-  name : "太郎",
-  getName() {
-    return this.name;
-  }
+const func2 =()=> {
+  console.log("funcです。");
 }
 
-const dummyFunc = obj => {
-  console.log(obj.getName());
+function dummyFunc(func, number, func2) {
+  func();
+  console.log(number);
+  func2();
 }
 
-function userName(dummyFunc, obj) {
-  dummyFunc(obj);
-}
-
-userName(dummyFunc, obj);
-
-const fu = hoge => hoge * 2;
-
-console.log(fu(10));
+dummyFunc(()=>{
+  console.log("dummyFunc実行");
+}, 100, func2);
