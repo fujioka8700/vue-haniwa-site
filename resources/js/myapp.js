@@ -1,28 +1,28 @@
 'use strict';
 
-const array = ["one", , "three"];
-const array3 = [1, undefined, 3];
-console.log(array.at(-1));
+const array = [1, 2, 3];
 
-// undefinedを返す
-console.log(array[-1]);
+// 各要素に10を乗算した新しい配列を作成する
+const newArray = array.map((currentValue) => {
+    return currentValue * 10;
+});
+console.log(newArray); // => [10, 20, 30]
 
-const obj = {};
-console.log(Array.isArray(obj));
-console.log(Array.isArray(array));
+// 元の配列とは異なるインスタンス
+console.log(array === newArray); // => false
 
-const typedArray = new Int8Array(8);
-console.log(Array.isArray(typedArray));
+const arraySum = array.reduce((total, value)=>{
+  return total += value;
+}, 0);
+console.log(arraySum);
 
-const array2 = ["one", "two", "three"];
-const [first, second, three] = array2;
+function myfunc() {
+  console.log(arguments[1]);
+}
 
-console.log(first);
-console.log(second);
-console.log(three);
+myfunc("a", "b", "c");
 
-console.log(array[1]);
-console.log(array3[1]);
+array.concat("b").concat("d");
+console.log(array);
 
-console.log(Object.hasOwn(array, 1));
-console.log(Object.hasOwn(array3, 1));
+console.log("A".charCodeAt(0));
