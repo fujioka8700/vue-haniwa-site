@@ -1,31 +1,28 @@
 'use strict';
 
-const obj = {
-  toString() {
-    return "objです";
-  }
-};
+const array = ["one", , "three"];
+const array3 = [1, undefined, 3];
+console.log(array.at(-1));
 
-console.log(obj.toString());
-console.log("toString" in obj);
-console.log(Object.hasOwn(obj, "toString"));
+// undefinedを返す
+console.log(array[-1]);
 
-const obj2 = Object.create(Object.prototype);
-console.log(obj2.toString() === Object.prototype.toString());
+const obj = {};
+console.log(Array.isArray(obj));
+console.log(Array.isArray(array));
 
-const array = [];
-console.log(array instanceof Object);
-console.log(array.hasOwnProperty() === Object.prototype.hasOwnProperty());
+const typedArray = new Int8Array(8);
+console.log(Array.isArray(typedArray));
 
-const numbers = [1, 2, 3];
-numbers.toString = function(){ return "numbersです。"; };
-console.log(numbers.toString());
+const array2 = ["one", "two", "three"];
+const [first, second, three] = array2;
 
-const obj3 = Object.create(null);
-console.log(obj3.hasOwnProperty);
+console.log(first);
+console.log(second);
+console.log(three);
 
-console.log(obj["toString"]);
+console.log(array[1]);
+console.log(array3[1]);
 
-// prototypeを継承していないからhasOwnPropertyメソッドは実行できない
-// console.log(obj3.hasOwnProperty("toString"))
-console.log(Object.hasOwn(obj3, "toString"))
+console.log(Object.hasOwn(array, 1));
+console.log(Object.hasOwn(array3, 1));
