@@ -1,21 +1,31 @@
 'use strict';
 
-const objectA = { a: "a"};
-const objectB = { b: "b"};
+const obj = {
+  toString() {
+    return "objです";
+  }
+};
 
-// spred構文
-const merged = {
-  ...objectA,
-  ...objectB
-}
+console.log(obj.toString());
+console.log("toString" in obj);
+console.log(Object.hasOwn(obj, "toString"));
 
-console.log(merged);
+const obj2 = Object.create(Object.prototype);
+console.log(obj2.toString() === Object.prototype.toString());
 
-function cloneObj(obj) {
-   return Object.assign({}, obj)
-}
+const array = [];
+console.log(array instanceof Object);
+console.log(array.hasOwnProperty() === Object.prototype.hasOwnProperty());
 
-const obj = cloneObj(merged);
+const numbers = [1, 2, 3];
+numbers.toString = function(){ return "numbersです。"; };
+console.log(numbers.toString());
 
-console.log(obj);
-console.log(obj.a === merged.a);
+const obj3 = Object.create(null);
+console.log(obj3.hasOwnProperty);
+
+console.log(obj["toString"]);
+
+// prototypeを継承していないからhasOwnPropertyメソッドは実行できない
+// console.log(obj3.hasOwnProperty("toString"))
+console.log(Object.hasOwn(obj3, "toString"))
