@@ -1,28 +1,14 @@
 'use strict';
 
-const array = [1, 2, 3];
+const str = new String("string");
+console.log(str.toUpperCase());
 
-// 各要素に10を乗算した新しい配列を作成する
-const newArray = array.map((currentValue) => {
-    return currentValue * 10;
-});
-console.log(newArray); // => [10, 20, 30]
+console.log((new String(str)).toUpperCase());
+console.log((new Array(1,2,3)).at(1));
 
-// 元の配列とは異なるインスタンス
-console.log(array === newArray); // => false
+(function () {
+  let foo = "foo";
+  console.log(foo);
+})();
 
-const arraySum = array.reduce((total, value)=>{
-  return total += value;
-}, 0);
-console.log(arraySum);
-
-function myfunc() {
-  console.log(arguments[1]);
-}
-
-myfunc("a", "b", "c");
-
-array.concat("b").concat("d");
-console.log(array);
-
-console.log("A".charCodeAt(0));
+console.log(typeof foo === "undefined");
