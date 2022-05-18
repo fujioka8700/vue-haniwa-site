@@ -1,14 +1,34 @@
 'use strict';
 
-const str = new String("string");
-console.log(str.toUpperCase());
+function createCounter() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  }
+}
 
-console.log((new String(str)).toUpperCase());
-console.log((new Array(1,2,3)).at(1));
+const myCounter = createCounter();
+console.log(myCounter());
+console.log(myCounter());
 
-(function () {
-  let foo = "foo";
-  console.log(foo);
-})();
+const x = 10;
 
-console.log(typeof foo === "undefined");
+function printX() {
+  console.log(x);
+}
+
+function run() {
+  const x = 999;
+  printX();
+}
+
+run();
+
+function createArray() {
+  const tempArray = [1, 2, 3];
+  return tempArray;
+}
+
+const array = createArray();
+console.log(array);
