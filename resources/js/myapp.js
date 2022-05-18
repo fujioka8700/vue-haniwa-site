@@ -1,32 +1,14 @@
 'use strict';
 
-console.log(globalThis);
+const Prefixer = {
+    prefix: "pre",
+    prefixArray(strings) {
+        const array = strings.map(str => {
+            return this.prefix + "-" + str;
+        });
+        return array;
+    }
+};
 
-function fn1() {
-  return this;
-}
-
-const fn2 = function() {
-  return this;
-}
-
-console.log(fn1());
-console.log(fn2());
-
-const obj = {
-  fullName: "ガム太郎",
-  method1() {
-    return this.fullName;
-  }
-}
-
-console.log(obj.method1());
-
-// const say = obj.method1;
-// say();
-
-function say(message) {
-  return `${this.fullName}さん、${message}`;
-}
-
-console.log(say.call(obj, "こんにちは"));
+const prefixArray = Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'prefix' of undefined
+console.log(prefixArray);
