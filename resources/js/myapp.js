@@ -1,34 +1,32 @@
 'use strict';
 
-function createCounter() {
-  let count = 0;
-  return function() {
-    count++;
-    return count;
+console.log(globalThis);
+
+function fn1() {
+  return this;
+}
+
+const fn2 = function() {
+  return this;
+}
+
+console.log(fn1());
+console.log(fn2());
+
+const obj = {
+  fullName: "ガム太郎",
+  method1() {
+    return this.fullName;
   }
 }
 
-const myCounter = createCounter();
-console.log(myCounter());
-console.log(myCounter());
+console.log(obj.method1());
 
-const x = 10;
+// const say = obj.method1;
+// say();
 
-function printX() {
-  console.log(x);
+function say(message) {
+  return `${this.fullName}さん、${message}`;
 }
 
-function run() {
-  const x = 999;
-  printX();
-}
-
-run();
-
-function createArray() {
-  const tempArray = [1, 2, 3];
-  return tempArray;
-}
-
-const array = createArray();
-console.log(array);
+console.log(say.call(obj, "こんにちは"));
