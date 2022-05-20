@@ -1,15 +1,21 @@
 'use strict';
 
-class ConflicClass {
+function fn() {
+
+}
+
+console.log(typeof fn.prototype === "object");
+
+class MyClass {
   constructor () {
-    this.method =()=> {
-      console.log("インスタンスオブジェクトのメソッド");
-    }  
   }
   method() {
     console.log("プロトタイプメソッド");
   }
 }
 
-const conflic = new ConflicClass();
-conflic.method();
+console.log(typeof MyClass.prototype.method);
+console.log(MyClass.prototype.constructor === MyClass);
+
+const instance = new MyClass();
+instance.method();
