@@ -1,22 +1,15 @@
 'use strict';
 
-class ArrayWrapper {
-  constructor (array) {
-    this.array = array;
+class ConflicClass {
+  constructor () {
+    this.method =()=> {
+      console.log("インスタンスオブジェクトのメソッド");
+    }  
   }
-  static of(...items) {
-    console.log(items);
-    return new this(items);
-  }
-  get length() {
-    return this.array.length;
+  method() {
+    console.log("プロトタイプメソッド");
   }
 }
 
-const arrayWrapperA = ArrayWrapper.of(1, 2, 3);
-const arrayWrapperB = new ArrayWrapper([1, 2, 3]);
-console.log(arrayWrapperA);
-console.log(arrayWrapperA.length);
-
-console.log(arrayWrapperB);
-console.log(arrayWrapperB.length);
+const conflic = new ConflicClass();
+conflic.method();
