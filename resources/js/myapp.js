@@ -1,42 +1,22 @@
 'use strict';
 
-class Counter {
-  constructor (value) {
-    this.count = 0;
-    this._value = value;
-    this.increment =()=> {
-      this.count++;
-    };
-    this.method =()=> {
-      return this;
-    }
+class ArrayWrapper {
+  constructor (array) {
+    this.array = array;
   }
-  // increment () {
-  //     this.count++;
-  // }
-  method2() {
-    return this;
+  static of(...items) {
+    console.log(items);
+    return new this(items);
   }
-  get value() {
-    console.log("getter");
-    return this._value;
-  }
-  set value(newValue) {
-    this._value = newValue;
+  get length() {
+    return this.array.length;
   }
 }
 
-const counter = new Counter(5);
-const counterB = new Counter(10);
-counter.increment();
-console.log(counter.count); // => 1
-console.log(counter.increment === counterB.increment); // => true
-console.log(counter.method === counterB.method);
-console.log(counter.method2 === counterB.method2);
-console.log(counter.value);
-counter.value = 20;
-console.log(counter.value);
+const arrayWrapperA = ArrayWrapper.of(1, 2, 3);
+const arrayWrapperB = new ArrayWrapper([1, 2, 3]);
+console.log(arrayWrapperA);
+console.log(arrayWrapperA.length);
 
-const array = [1, 2, 3, 4, 5];
-array.length = 2;
-console.log(array.join(", "));
+console.log(arrayWrapperB);
+console.log(arrayWrapperB.length);
