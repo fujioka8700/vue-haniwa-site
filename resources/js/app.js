@@ -21,15 +21,19 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // add this line
-Vue.config.devtools = true;
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    // el: '#app',
-    template: '<p>{{msg}}</p>',
-    data:{msg: 'hello world!'}
-}).$mount('#app');
+// Vueの確認
+console.assert(typeof Vue !== "undefined");
+
+new Vue({
+    el: '#app',
+    data: {
+        message: 'hello world!'
+    }
+});

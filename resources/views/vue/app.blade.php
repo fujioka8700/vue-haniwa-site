@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>はじめてのVue.js</title>
+    <title>Vue.jsの核の機能であるデータバインディング</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <p>
+            {{-- BladeでVueの変数を表示する場合 @{{}} で囲む --}}
+            @{{ message }}
+        </p>
+    </div>
     
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
