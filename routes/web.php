@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/javascript', function() {
     return view('javascript/basic01');
 });
+
+Route::get('/vue', function() {
+    return view('vue/app');
+});
