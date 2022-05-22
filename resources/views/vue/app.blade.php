@@ -9,6 +9,8 @@
 <body>
     <div id="app">
         <p>@{{ items[0].name }}: @{{ items[0].price}} x @{{ items[0].quantity}}</p>
+        <p>@{{ items.reduce((total, item)=>{return total + (item.price * item.quantity)}, 0) }}</p>
+        <p>@{{ items[0].price }}</p>
         <p>@{{ totalPriceWithTax | numberWithDelimiter }}</p>
     </div>
     
