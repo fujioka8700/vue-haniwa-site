@@ -9,7 +9,7 @@
 <body>
     <div id="app">
         <p>
-            @{{ items[0].name }}
+            @{{ items[0].name }}: @{{ items[0].price }} x @{{ items[0].quantity }}
         </p>
     </div>
     
