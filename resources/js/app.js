@@ -50,9 +50,9 @@ const items = [
 ];
 
 const vm = new Vue({
-    el: '#b-button',
+    el: '#app',
     data: {
-        canBuy: false
+        items: items
     }
 });
 
