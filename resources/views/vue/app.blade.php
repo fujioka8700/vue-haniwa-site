@@ -13,6 +13,7 @@
 </head>
 <body>
     <div id="app">
+        <p v-bind:style="{color: 'red'}">買い物</p>
         <p>@{{ items[0].name }}: @{{ items[0].price}} x @{{ items[0].quantity}}</p>
         <p>小計: @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
         <p>合計(税込): @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
