@@ -31,9 +31,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-new Vue({
-    el: '#app',
+const el = '#app';
+const vm = new Vue({
     data: {
         message: 'hello world!'
     }
 });
+
+vm.$mount(el);
