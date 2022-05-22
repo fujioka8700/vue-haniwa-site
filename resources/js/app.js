@@ -31,11 +31,29 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-const el = '#app';
-const vm = new Vue({
+const items = [
+    {
+        name: '鉛筆',
+        price: 300,
+        quantity: 0
+    },
+    {
+        name: 'ノート',
+        price: 400,
+        quantity: 0
+    },
+    {
+        name: '消しゴム',
+        price: 500,
+        quantity: 0
+    },
+];
+
+let vm = new Vue({
+    el: '#app',
     data: {
-        message: 'hello world!'
+        items: items
     }
 });
 
-vm.$mount(el);
+window.vm = vm;

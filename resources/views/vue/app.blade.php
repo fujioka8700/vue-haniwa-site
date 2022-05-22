@@ -9,8 +9,7 @@
 <body>
     <div id="app">
         <p>
-            {{-- BladeでVueの変数を表示する場合 @{{}} で囲む --}}
-            @{{ message }}
+            @{{ items[0].name }}
         </p>
     </div>
     
