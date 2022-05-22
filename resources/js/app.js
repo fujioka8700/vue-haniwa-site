@@ -52,7 +52,7 @@ const items = [
 const vm = new Vue({
     el: '#b-button',
     data: {
-        loggedInButton: 'ログイン済みのため購入できます。'
+        canBuy: false
     }
 });
 
