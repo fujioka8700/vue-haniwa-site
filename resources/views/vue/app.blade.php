@@ -7,11 +7,7 @@
     <title>Vue.jsの核の機能であるデータバインディング</title>
 </head>
 <body>
-    <div id="app">
-        <p>
-            @{{ items[0].name }}: @{{ items[0].price }} x @{{ items[0].quantity }}
-        </p>
-    </div>
+    <button id="b-button" v-bind:title="loggedInButton">購入</button>
     
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
