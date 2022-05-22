@@ -9,9 +9,11 @@
 <body>
     <div id="app">
         <p>@{{ items[0].name }}: @{{ items[0].price}} x @{{ items[0].quantity}}</p>
-        <p>@{{ items.reduce((total, item)=>{return total + (item.price * item.quantity)}, 0) }}</p>
-        <p>@{{ items[0].price }}</p>
-        <p>@{{ totalPriceWithTax | numberWithDelimiter }}</p>
+        <p>小計: @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
+        <p>合計(税込): @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
+        <p v-show="!canBuy">
+            @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
+        </p>
     </div>
     
     <script src="{{ mix('js/app.js') }}"></script>
