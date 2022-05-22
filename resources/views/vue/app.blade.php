@@ -8,9 +8,8 @@
 </head>
 <body>
     <div id="app">
-        <p>
-            @{{ items[0].price * items[0].quantity }}
-        </p>
+        <p>@{{ items[0].name }}: @{{ items[0].price}} x @{{ items[0].quantity}}</p>
+        <p>フィルター処理の例 @{{ 1000 | numberWithDelimiter }}</p>
     </div>
     
     <script src="{{ mix('js/app.js') }}"></script>
