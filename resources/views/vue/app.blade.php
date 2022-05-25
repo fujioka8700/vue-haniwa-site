@@ -17,7 +17,7 @@
         <p>@{{ items[0].name }}: @{{ items[0].price}} x @{{ items[0].quantity}}</p>
         <p>小計: @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
         <p>合計(税込): @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
-        <p v-bind:style="{border: (canBuy ? '' : '1px solid red'), color: (canBuy ? '' : 'red')}">
+        <p v-bind:style="errorMessageStyle">
             @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
         </p>
     </div>

@@ -62,7 +62,7 @@ const vm = new Vue({
             return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
         }
     },
-    computed: {
+computed: {
         totalPrice: function() {
             return this.items.reduce((total, item)=>{
                 return total + (item.price * item.quantity);
@@ -77,6 +77,12 @@ const vm = new Vue({
         errorMessageClass: function() {
             return {
                 error: !this.canBuy
+            }
+        },
+        errorMessageStyle: function() {
+            return {
+                border: this.canBuy ? '' : '1px solid red',
+                color:  this.canBuy ? '' : 'red'
             }
         }
     }
