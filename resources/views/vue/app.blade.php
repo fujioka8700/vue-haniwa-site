@@ -22,7 +22,7 @@
                 @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
             </p>
             <ul>
-                <li v-for="item in arr" v-bind:key="item">@{{item}}</li>
+                <li v-for="(item, index) in arr" v-bind:key="item">@{{index}} @{{item}}</li>
             </ul>
         </div>
     </div>
