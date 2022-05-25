@@ -16,13 +16,13 @@
     <div id="app">
         <ul>
             <li v-for="item in items" v-bind:key="item.name">
-                {{-- v-on でイベントが発生した時に属性値で指定した式を評価する --}}
-                @{{ item.name }}の個数: <input type="number" @input="item.quantity = $event.target.value" v-bind:value="item.quantity" min="0">
+                {{-- v-on ディレクティブの代わりに v-model を使う --}}
+                @{{ item.name }}の個数: <input type="number" v-model="item.quantity" min="0">
             </li>
         </ul>
         <hr>
         {{-- 1000円以上になるまで、赤く表示する --}}
-        <div :style="errorMessageStyle">
+        <div v-bind:style="errorMessageStyle">
             <ul>
                 <li v-for="item in items" v-bind:key="item.name">
                     @{{ item.name }}: @{{ item.price }} x @{{ item.quantity }} = @{{ item.price * item.quantity | numberWithDelimiter}}円
