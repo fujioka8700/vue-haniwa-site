@@ -13,14 +13,15 @@
 </head>
 <body>
     <div id="app">
-        <p :style="{fontSize: '1.5em'}">買い物</p>
-        <p>@{{ items[0].name }}: @{{ items[0].price}} x @{{ items[0].quantity}}</p>
-        <p>小計: @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
-        <p>合計(税込): @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
-        <p :class="{error: !canBuy}">
-            @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
-        </p>
-        <button :disabled="canBuy">ボタン</button>
+        {{-- 1000円以上になるまで、赤く表示する --}}
+        <div :style="errorMessageStyle">
+            <p>@{{ items[0].name }}: @{{ items[0].price}} x @{{ items[0].quantity}}</p>
+            <p>小計: @{{ totalPrice | numberWithDelimiter }}円</p>
+            <p>合計(税込): @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
+            <p v-show="!canBuy">
+                @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
+            </p>
+        </div>
     </div>
     
     <script src="{{ mix('js/app.js') }}"></script>
