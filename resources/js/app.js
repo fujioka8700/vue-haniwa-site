@@ -52,7 +52,8 @@ const items = [
 const vm = new Vue({
     el: '#app',
     data: {
-        items: items
+        items: items,
+        arr: ['い', 'ろ', 'は']
     },
     filters: {
         numberWithDelimiter: function(value) {

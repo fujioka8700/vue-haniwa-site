@@ -21,6 +21,9 @@
             <p v-show="!canBuy">
                 @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
             </p>
+            <ul>
+                <li v-for="item in arr" v-bind:key="item">@{{item}}</li>
+            </ul>
         </div>
     </div>
     
