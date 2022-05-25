@@ -27,3 +27,7 @@ mix.js('resources/js/app.js', 'public/js')
         open: false,
         reloadOnRestart: true,
     });
+
+if (mix.inProduction()) {
+    mix.version();
+}
