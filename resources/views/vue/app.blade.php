@@ -16,12 +16,10 @@
     <div id="app">
         <ul>
             <li v-for="item in items" v-bind:key="item.name">
-                {{-- v-on ディレクティブの代わりに v-model を使う --}}
                 @{{ item.name }}の個数: <input type="number" v-model="item.quantity" min="0">
             </li>
         </ul>
         <hr>
-        {{-- 1000円以上になるまで、赤く表示する --}}
         <div v-bind:style="errorMessageStyle">
             <ul>
                 <li v-for="item in items" v-bind:key="item.name">
@@ -34,6 +32,8 @@
             <p v-show="!canBuy">
                 @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
             </p>
+            {{-- メソッドが押されたら、メソッドを呼び出す --}}
+            <button v-on:click="doBuy">購入</button>
         </div>
     </div>
     
