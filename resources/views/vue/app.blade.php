@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue.jsの基本</title>
+    <title>コンポーネントの基礎</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
         .error {
@@ -13,9 +13,9 @@
     </style>
 </head>
 <body>
-    <ul id="example">
-       <list-item></list-item>
-    </ul>
+    <div id="fruits-list">
+        <fruits-list-title></fruits-list-title>
+    </div>
     
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

@@ -31,19 +31,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-// コンポーネント
-Vue.component('list-item', {
-    template: '<li>foo {{ contents }}</li>',
-    data: function() {
-        return {
-            contents: 'bar'
-        }
-    }
+Vue.component('fruits-list-title', {
+    template: '<h1>フルーツ一覧</h1>'
 });
 
-// ルート`Vue`インスタンスの作成
-const vm = new Vue({
-    el: '#example',
+new Vue({
+    el: '#fruits-list'
 });
-
-window.vm = vm;
