@@ -7,15 +7,18 @@
     <title>コンポーネントの基礎</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
-        .error {
-            color: #ff0000;
-        }
+    table {
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px #000 solid;
+    }
     </style>
 </head>
 <body>
-    <div id="fruits-list">
+    <main id="main">
         <fruits-list-title></fruits-list-title>
-    </div>
+    </main>
     
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
