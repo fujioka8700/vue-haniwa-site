@@ -51,40 +51,38 @@ const items = [
 
 const vm = new Vue({
     el: '#app',
-    data: {
-        items: items
-    },
-    filters: {
-        numberWithDelimiter: function(value) {
-            if (!value) {
-                return '0';
-            }
-            return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    data: function() {
+        return {
+            count: 0,
+            timerId: null
         }
     },
-    computed: {
-        totalPrice: function() {
-            return this.items.reduce((total, item)=>{
-                return total + (item.price * item.quantity);
-            }, 0);
-        },
-        totalPriceWithTax: function() {
-            return Math.floor(this.totalPrice * 1.08);
-        },
-        canBuy: function() {
-            return this.totalPrice >= 1000;
-        },
-        errorMessageClass: function() {
-            return {
-                error: !this.canBuy
-            }
-        },
-        errorMessageStyle: function() {
-            return {
-                border: this.canBuy ? '' : '1px solid red',
-                color:  this.canBuy ? '' : 'red'
-            }
-        }
+    created: function() {
+        console.log('created');
+        const that = this;
+
+        // データを参照できる
+        console.log(this.count);
+
+        // DOM 要素と紐付いていないので undefined
+        console.log(this.$el);
+
+        // タイマー処理を開始する
+        this.timerId = setInterval(() => {
+            that.count++;
+        }, 1000);
+    },
+    mounted: function() {
+        console.log('mounted');
+
+        // DOM 要素が紐付いている
+        console.log(this.$el);
+    },
+    beforeDestroy: function() {
+        console.log('beforeDestroy');
+
+        // タイマーの後始末を行う
+        clearInterval(this.timerId);
     }
 });
 
