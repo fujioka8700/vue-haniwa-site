@@ -17,7 +17,7 @@
         <ul>
             <li v-for="item in items" v-bind:key="item.name">
                 {{-- v-on ディレクティブの代わりに v-model を使う --}}
-                @{{ item.name }}の個数: <input type="number" v-model.lazy="item.quantity" min="0">
+                @{{ item.name }}の個数: <input type="number" v-model="item.quantity" min="0">
             </li>
         </ul>
         <hr>
