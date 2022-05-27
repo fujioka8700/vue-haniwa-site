@@ -31,10 +31,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('fruits-list-title', {
+const FruitsListTitle = Vue.extend({
     template: '<h1>フルーツ一覧</h1>'
 });
 
-new Vue({
-    el: '#main'
-});
+new FruitsListTitle().$mount('fruits-list');
