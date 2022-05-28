@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="app">
-        <input-date-with-today></input-date-with-today>
+        <simple-counter></simple-counter>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>

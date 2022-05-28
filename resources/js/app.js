@@ -31,17 +31,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('input-date-with-today', {
-    render: function(createElement) {
-        return createElement(
-            'input',
-            {
-                attrs: {
-                    type: 'date',
-                    value: new Date().toISOString().substring(0, 10)
-                }
-            }
-        );
+Vue.component('simple-counter', {
+    template: '<h1>フルーツ一覧</h1>',
+    data: function() {
+        return {
+            fruits: ['りんご', 'みかん']
+        }
     }
 });
 
