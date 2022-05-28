@@ -31,22 +31,38 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('fruits-items-name', {
-    props: {
-        fruitsItem: { // テンプレートの中ではケバブケース
-            type: Object, // オブジェクトかどうか
-            required: true // このコンポーネントには必須なのでtrue
+// 子コンポーネントのカウンターボタン
+const counterButton = Vue.extend({
+    template: '<span>{{ counter }}個 <button v-on:click="addToCart">追加</button></span>',
+    data: function() {
+        return {
+            counter: 0
         }
     },
-    template: '<li>{{ fruitsItem.name }}</li>',
+    methods: {
+        addToCart: function() {
+            this.counter++;
+            this.$emit('increment');
+        }
+    }
 });
 
+// 親コンポーネントのカート
 new Vue({
-    el: '#fruits-component',
-    data: { // 親では配列だがv-forでObjectとして渡している
+    el: '#fruits-counter',
+    components: {
+        'counter-button': counterButton
+    },
+    data: {
+        total: 0,
         fruitsItems: [
             { name: '梨' },
             { name: 'イチゴ' }
         ]
+    },
+    methods: {
+        incrementCartStatus: function() {
+            this.total++;
+        }
     }
 });

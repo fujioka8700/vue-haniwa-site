@@ -16,11 +16,13 @@
     </style>
 </head>
 <body>
-<div id="fruits-component">
-    <ol>
-        <fruits-items-name v-for="fruit in fruitsItems" :key="fruit.name" :fruits-item="fruit"></fruits-items-name>
-    </ol>
-</div>
+    <div id="fruits-counter">
+        {{-- カスタムイベントをv-onで補足 --}}
+        <div v-for="fruit in fruitsItems">
+            @{{ fruit.name }}: <counter-button v-on:increment="incrementCartStatus"></counter-button>
+        </div>
+        <p>合計: @{{ total }}個</p>
+    </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
