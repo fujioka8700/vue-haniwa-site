@@ -16,9 +16,9 @@
     </style>
 </head>
 <body>
-    <main id="main">
+    <div id="fruits-list">
         <fruits-list-title></fruits-list-title>
-    </main>
+    </div>
     
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
