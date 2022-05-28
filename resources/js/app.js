@@ -31,11 +31,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+const FruitsListTitle =Vue.extend({
+    template: '<h1>フルーツ一覧</h1>'
+});
+
 new Vue({
     el: '#fruits-list',
     components: {
-        'fruits-list-title': {
-            template: '<h1>フルーツ一覧</h1>'
-        }
+        'fruits-list-title': FruitsListTitle
     }
 });
