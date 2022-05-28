@@ -16,9 +16,11 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <item-desc v-bind:item-name="myItem"></item-desc>
-    </div>
+<div id="fruits-component">
+    <ol>
+        <fruits-items-name v-for="fruit in fruitsItems" :key="fruit.name" :fruits-item="fruit"></fruits-items-name>
+    </ol>
+</div>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

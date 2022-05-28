@@ -31,18 +31,22 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('item-desc', {
+Vue.component('fruits-items-name', {
     props: {
-        itemName: {
-            type: String
+        fruitsItem: { // テンプレートの中ではケバブケース
+            type: Object, // オブジェクトかどうか
+            required: true // このコンポーネントには必須なのでtrue
         }
     },
-    template: '<p>{{ itemName }}は便利です。</P>',
+    template: '<li>{{ fruitsItem.name }}</li>',
 });
 
 new Vue({
-    el: '#app',
-    data: {
-        myItem: 'pen'
+    el: '#fruits-component',
+    data: { // 親では配列だがv-forでObjectとして渡している
+        fruitsItems: [
+            { name: '梨' },
+            { name: 'イチゴ' }
+        ]
     }
 });
