@@ -16,10 +16,10 @@
     </style>
 </head>
 <body>
-    <main id="main">
-        <fruits-list-title></fruits-list-title>
-    </main>
-    
+    <div id="app">
+        <simple-counter></simple-counter>
+    </div>
+
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
