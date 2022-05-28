@@ -17,7 +17,9 @@
 </head>
 <body>
     <div id="fruits-list">
-        <fruits-list-title></fruits-list-title>
+        <div>
+            <fruits-list-title></fruits-list-title>
+        </div>
     </div>
     
     <script src="{{ mix('js/app.js') }}"></script>
