@@ -18,15 +18,6 @@
 <body>
     <div id="fruits-list">
         <fruits-list-title></fruits-list-title>
-        <fruits-item-apple></fruits-item-apple>
-    </div>
-
-    <div id="fruits-item">
-        {{-- ローカルコンポーネントで定義しているため、レンダリングされない --}}
-        <fruits-list-title></fruits-list-title>
-
-        {{-- グローバルコンポーネントで定義しているので、レンダリングされる --}}
-        <fruits-item-apple></fruits-item-apple>
     </div>
     
     <script src="{{ mix('js/app.js') }}"></script>

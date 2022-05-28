@@ -31,10 +31,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('fruits-item-apple', {
-    template: '<h2>りんご</h2>'
-});
-
 new Vue({
     el: '#fruits-list',
     components: {
@@ -42,8 +38,4 @@ new Vue({
             template: '<h1>フルーツ一覧</h1>'
         }
     }
-});
-
-new Vue({
-    el: '#fruits-item'
 });
