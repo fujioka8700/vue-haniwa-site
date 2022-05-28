@@ -22,6 +22,9 @@
         </div>
     </div>
     
+    <script type="text/x-template" id="fruits-list-title">
+        <h1>フルーツ一覧</h1>
+    </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
