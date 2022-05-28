@@ -31,15 +31,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('simple-counter', {
-    template: '<h1>フルーツ一覧</h1>',
-    data: function() {
-        return {
-            fruits: ['りんご', 'みかん']
+Vue.component('item-desc', {
+    props: {
+        itemName: {
+            type: String
         }
-    }
+    },
+    template: '<p>{{ itemName }}は便利です。</P>',
 });
 
 new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        myItem: 'pen'
+    }
 });
