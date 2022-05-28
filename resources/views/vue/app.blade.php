@@ -16,15 +16,10 @@
     </style>
 </head>
 <body>
-    <div id="fruits-list">
-        <div>
-            <fruits-list-title></fruits-list-title>
-        </div>
+    <div id="app">
+        <input-date-with-today></input-date-with-today>
     </div>
-    
-    <script type="text/x-template" id="fruits-list-title">
-        <h1>フルーツ一覧</h1>
-    </script>
+
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

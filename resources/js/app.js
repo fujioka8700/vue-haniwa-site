@@ -31,10 +31,20 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('fruits-list-title', {
-    template: '#fruits-list-title'
+Vue.component('input-date-with-today', {
+    render: function(createElement) {
+        return createElement(
+            'input',
+            {
+                attrs: {
+                    type: 'date',
+                    value: new Date().toISOString().substring(0, 10)
+                }
+            }
+        );
+    }
 });
 
 new Vue({
-    el: '#fruits-list'
+    el: '#app'
 });
