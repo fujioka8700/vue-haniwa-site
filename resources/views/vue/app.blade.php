@@ -18,11 +18,11 @@
 <body>
     <div id="fruits-list">
         <page-header>
-            <h1 slot="header">夏の果物</h1>
+            <h1 slot="header">冬の果物</h1>
         </page-header>
         <ul>
-            <li>スイカ</li>
-            <li>マンゴー</li>
+            <li>りんご</li>
+            <li>いちご</li>
         </ul>
     </div>
 
