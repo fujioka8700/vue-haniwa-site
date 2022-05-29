@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,6 +10,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
+Vue.use(VueRouter);
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,15 +36,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.component('simple-counter', {
-    template: '<h1>フルーツ一覧</h1>',
-    data: function() {
-        return {
-            fruits: ['りんご', 'みかん']
-        }
-    }
-});
-
 new Vue({
-    el: '#app'
+    el: '#app',
 });
