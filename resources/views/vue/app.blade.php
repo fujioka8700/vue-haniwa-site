@@ -7,23 +7,25 @@
     <title>コンポーネントの基礎</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
-    table {
-        border-collapse: collapse;
+    .header {
+        width: 100%;
+        border: 1px solid #d3d3d3;
+        background-color: #f1f1f1;
+        padding: 30px 15px;
     }
-    table, th, td {
-        border: 1px #000 solid;
+    .content li {
+        width: 100%;
+        border: 1px solid #d3d3d3;
+        background-color: #fff;
+        text-align: left;
+        padding: 30px 15px;
     }
     </style>
 </head>
 <body>
     <div id="fruits-list">
-        <page-header>
-            <h1 slot="header">冬の果物</h1>
-        </page-header>
-        <ul>
-            <li>りんご</li>
-            <li>いちご</li>
-        </ul>
+        <page-header class="header"></page-header>
+        <page-content class="content"></page-content>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
