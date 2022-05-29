@@ -7,35 +7,25 @@
     <title>コンポーネントの基礎</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
-    .header {
-        width: 100%;
-        border: 1px solid #d3d3d3;
-        background-color: #f1f1f1;
-        padding: 30px 15px;
-    }
-    .content li {
-        width: 100%;
-        border: 1px solid #d3d3d3;
-        background-color: #fff;
-        text-align: left;
-        padding: 30px 15px;
-        list-style: none;
-    }
+
     </style>
 </head>
 <body>
-    <div id="fruits-list">
-        <page-header class="header">
-            <h1 slot="header">冬の果物</h1>
-        </page-header>
-        <page-content class="content">
-            <ul slot="content">
-                <li>りんご</li>
-                <li>イチゴ</li>
-            </ul>
-        </page-content>
+    <div id="login-example">
+        <user-login></user-login>
     </div>
 
+    <script type="text/x-template" id="login-template">
+        <div id="login-template">
+            <div>
+                <input type="text" placeholder="ログインID" v-model="userid">
+            </div>
+            <div>
+                <input type="password" placeholder="パスワード" v-model="password">
+            </div>
+            <button v-on:click="login">ログイン</button>
+        </div>
+    </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

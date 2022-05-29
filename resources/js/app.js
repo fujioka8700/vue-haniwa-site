@@ -31,26 +31,28 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-const headerTemplate = `
-    <div>
-        <slot name="header">No title</slot>
-    </div>
-`;
+const auth = {
+    login: function(id, password) {
+        console.log(`userid:${id}\npassword:${password}`);
+        // window.alert(`userid:${id}\npassword:${password}`);
+    }
+};
 
-const contentTemplate = `
-    <div>
-        <slot name="content">No content</slot>
-    </div>
-`;
-
-Vue.component('page-header', {
-    template: headerTemplate
-});
-
-Vue.component('page-content', {
-    template: contentTemplate
+Vue.component('user-login', {
+    template: '#login-template',
+    data: function() {
+        return {
+            userid: '',
+            password: ''
+        }
+    },
+    methods: {
+        login: function() {
+            auth.login(this.userid, this.password);
+        }
+    }
 });
 
 new Vue({
-    el: '#fruits-list',
+    el: '#login-example',
 });
