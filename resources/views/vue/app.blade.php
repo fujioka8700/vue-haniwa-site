@@ -19,13 +19,21 @@
         background-color: #fff;
         text-align: left;
         padding: 30px 15px;
+        list-style: none;
     }
     </style>
 </head>
 <body>
     <div id="fruits-list">
-        <page-header class="header"></page-header>
-        <page-content class="content"></page-content>
+        <page-header class="header">
+            <h1 slot="header">冬の果物</h1>
+        </page-header>
+        <page-content class="content">
+            <ul slot="content">
+                <li>りんご</li>
+                <li>イチゴ</li>
+            </ul>
+        </page-content>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
