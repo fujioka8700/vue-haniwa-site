@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,6 +10,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+
+Vue.use(VueRouter);
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,28 +36,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-const auth = {
-    login: function(id, password) {
-        console.log(`userid:${id}\npassword:${password}`);
-        // window.alert(`userid:${id}\npassword:${password}`);
-    }
-};
-
-Vue.component('user-login', {
-    template: '#login-template',
-    data: function() {
-        return {
-            userid: '',
-            password: ''
-        }
-    },
-    methods: {
-        login: function() {
-            auth.login(this.userid, this.password);
-        }
-    }
-});
-
 new Vue({
-    el: '#login-example',
+    el: '#app',
 });
