@@ -31,38 +31,16 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-// 子コンポーネントのカウンターボタン
-const counterButton = Vue.extend({
-    template: '<span>{{ counter }}個 <button v-on:click="addToCart">追加</button></span>',
-    data: function() {
-        return {
-            counter: 0
-        }
-    },
-    methods: {
-        addToCart: function() {
-            this.counter++;
-            this.$emit('increment');
-        }
-    }
+const headerTemplate = `
+    <div style="color: gray;">
+        <slot name="header">※親から何も渡って来ない場合、この文が表示されます</slot>
+    </div>
+`;
+
+Vue.component('page-header', {
+    template: headerTemplate
 });
 
-// 親コンポーネントのカート
 new Vue({
-    el: '#fruits-counter',
-    components: {
-        'counter-button': counterButton
-    },
-    data: {
-        total: 0,
-        fruitsItems: [
-            { name: '梨' },
-            { name: 'イチゴ' }
-        ]
-    },
-    methods: {
-        incrementCartStatus: function() {
-            this.total++;
-        }
-    }
+    el: '#fruits-list',
 });

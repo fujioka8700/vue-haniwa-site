@@ -16,12 +16,14 @@
     </style>
 </head>
 <body>
-    <div id="fruits-counter">
-        {{-- カスタムイベントをv-onで補足 --}}
-        <div v-for="fruit in fruitsItems">
-            @{{ fruit.name }}: <counter-button v-on:increment="incrementCartStatus"></counter-button>
-        </div>
-        <p>合計: @{{ total }}個</p>
+    <div id="fruits-list">
+        <page-header>
+            <h1 slot="header">夏の果物</h1>
+        </page-header>
+        <ul>
+            <li>スイカ</li>
+            <li>マンゴー</li>
+        </ul>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
