@@ -36,6 +36,27 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-new Vue({
-    el: '#app',
+// ルートオプションを渡してルーターインスタンスを生成
+const router = new VueRouter({
+    // コンポーネントをマッピングしたルート定義を配列で渡す
+    routes: [
+        {
+            path: '/top',
+            component: {
+                template: '<div>トップページです。</div>'
+            }
+        },
+        {
+            path: '/users',
+            component: {
+                template: '<div>ユーザー一覧ページです</div>'
+            }
+        }
+    ]
 });
+
+// ルーターのインスタンスをrootとなるVueインスタンスに渡す
+const app = new Vue({
+    router: router
+}).$mount('#app');
+
