@@ -51,6 +51,13 @@ const router = new VueRouter({
             component: {
                 template: '<div>ユーザー一覧ページです</div>'
             }
+        },
+        {
+            // コロンで始まるパターンマッチング
+            path: '/user/:userId',
+            component: {
+                template: '<div>ユーザーIDは {{ $route.params.userId }} です。</div>'
+            }
         }
     ]
 });
