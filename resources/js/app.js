@@ -69,3 +69,15 @@ const app = new Vue({
         }
     }
 }).$mount('#app');
+
+
+router.beforeEach(function (to, from, next) {
+    console.log(next)
+    // ユーザー一覧ページへアクセスした時に/topへリダイレクトする
+    if (to.path === '/users') {
+        next('/top');
+    } else {
+        // 引数なしでnextを呼び出すと通常通りの遷移が行われる
+        next();
+    }
+});
