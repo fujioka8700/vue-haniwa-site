@@ -20,7 +20,15 @@
     </div>
 
     <script type="text/x-template" id="user-list">
-        <div>ユーザー一覧です。</div>
+        <div>
+            <div v-if="loading">読み込み中...</div>
+            <div v-if="error">
+                @{{ error }}
+            </div>
+            <div v-for="user in users" :key="user.id">
+                <h2>@{{ user.name }}</h2>
+            </div>
+        </div>
     </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

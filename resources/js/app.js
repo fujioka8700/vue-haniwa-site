@@ -1,3 +1,4 @@
+import { takeWhile } from 'lodash';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -36,8 +37,51 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+const getUsers = function(callback) {
+    setTimeout(() => {
+        callback(null, [
+            {
+                id: 1,
+                name: 'Takuya Tejima'
+            },
+            {
+                id: 2,
+                name: 'Yohei Noda'
+            }
+        ])
+    }, 1000);   
+}
+
 const UserList = {
-    template: '#user-list'
+    template: '#user-list',
+    data: function() {
+        return {
+            loading: false,
+            users: function() { return [] }, // 初期値の空配列
+            error: null
+        }
+    },
+    // 初期時にデータを取得する
+    created: function() {
+        this.fetchData();
+    },
+    // $routeの変更をwatchすることでルーティングが変更されたときに再度データを取得
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData: function() {
+            this.loading = true;
+            getUsers(function(err, users) {
+                this.loading = false;
+                if (err) {
+                    this.error = err.toString();
+                } else {
+                    this.users = users;
+                }
+            }.bind(this));
+        }   
+    }
 };
 
 const router = new VueRouter({
@@ -58,4 +102,3 @@ const router = new VueRouter({
 const app = new Vue({
     router: router
 }).$mount('#app');
-
