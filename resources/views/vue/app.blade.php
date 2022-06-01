@@ -16,6 +16,7 @@
         <router-link to="/users">ユーザー一覧ページ</router-link>
         {{-- 上記の名前付きルートを呼び出すには<router-link> のtoパラメーターに指定する。 --}}
         <router-link v-bind:to="{ name:'user', params: { userId:123 }}">ユーザー詳細ページ</router-link>
+        <button v-on:click="userBtn">ボタン</button>
         <router-view></router-view>
     </div>
 

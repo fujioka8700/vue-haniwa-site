@@ -62,6 +62,10 @@ const router = new VueRouter({
 });
 
 const app = new Vue({
-    router: router
+    router: router,
+    methods: {
+        userBtn: function() {
+            router.push({ name: 'user', params: { userId: 456 }})
+        }
+    }
 }).$mount('#app');
-
