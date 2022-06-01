@@ -37,27 +37,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 console.assert(typeof Vue !== "undefined");
 
 const UserList = {
-    template: '#user-list',
-    data: function() {
-        return {
-            users: function() { return [] },
-            error: null
-        }
-    },
-    // 「ページ遷移が行われて、コンポーネントが初期化される前」に呼び出される。
-    beforeRouteEnter (to, from, next) {
-        getUsers(function(err, users) {
-            if (err) {
-                this.error = err.toString();
-            } else {
-                // nextに渡すcallbackでコンポーネント自身にアクセス可
-                next(function(vm) {
-                    vm.users = users;
-                });
-            }
-        });
-    }
-}
+    template: '#user-list'
+};
 
 const router = new VueRouter({
     routes: [
@@ -69,37 +50,12 @@ const router = new VueRouter({
         },
         {
             path: '/users',
-            component: {
-                template: '<div>ユーザー一覧ページです</div>'
-            },
-            beforeEnter: function(to, from, next) {
-                // /users?redirect=true でアクセスされた時だけ、topにリダイレクトするフック関数を追加
-                if (to.query.redirect === 'true') {
-                    next('/top');
-                } else {
-                    next();
-                }
-            }
-        },
-        {
-            path: '/user/:userId',
-            name: 'user',
-            component: {
-                template: '<div>ユーザーIDは {{ $route.params.userId }} です。</div>'
-            }
+            component: UserList
         }
     ]
 });
 
 const app = new Vue({
-    router: router,
-    components: {
-        'user-list': UserList 
-    },
-    methods: {
-        userBtn: function() {
-            router.push({ name: 'user', params: { userId: 456 }})
-        }
-    }
+    router: router
 }).$mount('#app');
 
