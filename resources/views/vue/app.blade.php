@@ -18,8 +18,12 @@
         <router-link v-bind:to="{ name:'user', params: { userId:123 }}">ユーザー詳細ページ</router-link>
         <button v-on:click="userBtn">ボタン</button>
         <router-view></router-view>
+        <user-list></user-list>
     </div>
 
+    <script type="text/x-templage" id="user-list">
+        <router-link to="/top">トップページ</router-link>
+    </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
