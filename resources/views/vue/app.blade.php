@@ -12,11 +12,10 @@
 </head>
 <body>
     <div id="app">
-        {{-- リンク先を`to`属性に指定する --}}
-        {{-- デフォルトで <router-link> は`<a>`タグとしてレンダリングする --}}
         <router-link to="/top">トップページ</router-link>
         <router-link to="/users">ユーザー一覧ページ</router-link>
-        {{-- ルート定義で書いたコンポーネントを実際に反映させる要素：<router-view> --}}
+        {{-- 上記の名前付きルートを呼び出すには<router-link> のtoパラメーターに指定する。 --}}
+        <router-link v-bind:to="{ name:'user', params: { userId:123 }}">ユーザー詳細ページ</router-link>
         <router-view></router-view>
     </div>
 

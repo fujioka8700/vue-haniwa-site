@@ -36,9 +36,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-// ルートオプションを渡してルーターインスタンスを生成
 const router = new VueRouter({
-    // コンポーネントをマッピングしたルート定義を配列で渡す
     routes: [
         {
             path: '/top',
@@ -53,8 +51,9 @@ const router = new VueRouter({
             }
         },
         {
-            // コロンで始まるパターンマッチング
+            // このルーティングに名前を付与
             path: '/user/:userId',
+            name: 'user',
             component: {
                 template: '<div>ユーザーIDは {{ $route.params.userId }} です。</div>'
             }
@@ -62,7 +61,6 @@ const router = new VueRouter({
     ]
 });
 
-// ルーターのインスタンスをrootとなるVueインスタンスに渡す
 const app = new Vue({
     router: router
 }).$mount('#app');
