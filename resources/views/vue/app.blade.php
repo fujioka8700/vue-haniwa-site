@@ -26,10 +26,24 @@
                 @{{ error }}
             </div>
             <div v-for="user in users" :key="user.id">
-                <h2>@{{ user.name }}</h2>
+                <router-link v-bind:to="{ path: '/users/' + user.id }">@{{ user.name }}</router-link>
             </div>
         </div>
     </script>
+
+    <script type="text/x-template" id="user-detail">
+        <div>
+            <div v-if="loading">読み込み中...</div>
+            <div v-if="error">
+                @{{ error }}
+            </div>
+            <div v-if="user">
+                <h2>@{{ user.name }}</h2>
+                <p>@{{ user.description }}</p>
+            </div>
+        </div>
+    </script>
+
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

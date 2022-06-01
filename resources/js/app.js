@@ -37,6 +37,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 const getUsers = function(callback) {
     setTimeout(() => {
         callback(null, [
@@ -49,7 +53,7 @@ const getUsers = function(callback) {
                 name: 'Yohei Noda'
             }
         ])
-    }, 1000);   
+    }, getRandomInt(3) * 1000);   
 }
 
 const UserList = {
@@ -84,6 +88,60 @@ const UserList = {
     }
 };
 
+const userData = [
+    {
+        id: 1,
+        name: 'Takuya Tejima',
+        description: '東南アジアで働くエンジニアです。'
+    },
+    {
+        id: 2,
+        name: 'Yohei Noda',
+        description: 'アウトドア・フットサルが趣味のエンジニアです。'
+    }
+];
+
+// 疑似的にAPI経由で情報を取得したようにする
+const getUser = function(userId, callback) {
+    setTimeout(function() {
+        const filterdUsers = userData.filter(function(user) {
+            return user.id === parseInt(userId, 10);
+        });
+        callback(null, filterdUsers && filterdUsers[0]);
+    }, getRandomInt(3) * 1000);
+};
+
+// 詳細ページのコンポーネント
+const UserDetail = {
+    template: '#user-detail',
+    data: function() {
+        return {
+            loading: false,
+            user: null,
+            error: null
+        }
+    },
+    created: function() {
+        this.fetchData();
+    },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData: function() {
+            this.loading = true;
+            getUser(this.$route.params.userId, function(err, user) {
+                this.loading = false;
+                if (err) {
+                    this.error = err.toString();
+                } else {
+                    this.user = user;
+                }
+            }.bind(this));
+        }
+    }
+};
+
 const router = new VueRouter({
     routes: [
         {
@@ -95,6 +153,10 @@ const router = new VueRouter({
         {
             path: '/users',
             component: UserList
+        },
+        {
+            path: '/users/:userId',
+            component: UserDetail
         }
     ]
 });
