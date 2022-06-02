@@ -37,25 +37,30 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+const userData = [
+    {
+        id: 1,
+        name: 'Takuya Tejima',
+        description: '東南アジアで働くエンジニアです。'
+    },
+    {
+        id: 2,
+        name: 'Yohei Noda',
+        description: 'アウトドア・フットサルが趣味のエンジニアです。'
+    }
+];
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
 const getUsers = function(callback) {
     setTimeout(() => {
-        callback(null, [
-            {
-                id: 1,
-                name: 'Takuya Tejima'
-            },
-            {
-                id: 2,
-                name: 'Yohei Noda'
-            }
-        ])
+        callback(null, userData)
     }, getRandomInt(3) * 1000);   
 }
 
+// ユーザー一覧のコンポーネント
 const UserList = {
     template: '#user-list',
     data: function() {
@@ -87,19 +92,6 @@ const UserList = {
         }   
     }
 };
-
-const userData = [
-    {
-        id: 1,
-        name: 'Takuya Tejima',
-        description: '東南アジアで働くエンジニアです。'
-    },
-    {
-        id: 2,
-        name: 'Yohei Noda',
-        description: 'アウトドア・フットサルが趣味のエンジニアです。'
-    }
-];
 
 // 疑似的にAPI経由で情報を取得したようにする
 const getUser = function(userId, callback) {
@@ -142,6 +134,60 @@ const UserDetail = {
     }
 };
 
+const postUser = function(params, callback) {
+    setTimeout(function() {
+        params.id = userData.length + 1;
+        userData.push(params);
+        callback();
+    }, getRandomInt(3) * 1000);
+};
+
+// 新規ユーザー作成コンポーネント
+const UserCreate = {
+    template: '#user-create',
+    data: function() {
+        return {
+            error: null,
+            user: this.defaultUser(),
+            sending: false
+        }
+    },
+    created: function() {
+
+    },
+    methods: {
+        defaultUser: function() {
+            return {
+                name: '',
+                description: ''
+            }  
+        },
+        createUser: function() {
+            if (this.user.name.trim() === '') {
+                this.error = '名前は必須です。';
+                return;
+            }
+            if (this.user.description.trim() === '') {
+                this.error = '説明文は必須です。';
+                return;
+            }
+            this.sending = true;
+            postUser(this.user, function(err) {
+                this.sending = false;
+                if (err) {
+                    this.error = err.toString();
+                    return;
+                } else {
+                    this.error = null;
+                    this.user = this.defaultUser();
+                    alert('新規ユーザーが登録されました。');
+                    this.$router.push('/users');
+                }
+            }.bind(this));
+        }
+    }
+};
+
 const router = new VueRouter({
     routes: [
         {
@@ -153,6 +199,10 @@ const router = new VueRouter({
         {
             path: '/users',
             component: UserList
+        },
+        {
+            path: '/users/new',
+            component: UserCreate
         },
         {
             path: '/users/:userId',

@@ -19,6 +19,7 @@
         <router-view></router-view>
     </div>
 
+    {{-- ユーザー一覧のテンプレート --}}
     <script type="text/x-template" id="user-list">
         <div>
             <div v-if="loading">読み込み中...</div>
@@ -31,6 +32,7 @@
         </div>
     </script>
 
+    {{-- ユーザー詳細のテンプレート --}}
     <script type="text/x-template" id="user-detail">
         <div>
             <div v-if="loading">読み込み中...</div>
@@ -40,6 +42,26 @@
             <div v-if="user">
                 <h2>@{{ user.name }}</h2>
                 <p>@{{ user.description }}</p>
+            </div>
+        </div>
+    </script>
+
+    {{-- 新規ユーザー作成ページのテンプレート --}}
+    <script type="text/x-template" id="user-create">
+        <div>
+            <div v-if="sending">Sending...</div>
+            <h2>新規ユーザー作成</h2>
+            <div>
+                <label>名前:<input type="text" v-model="user.name"></label>
+            </div>
+            <div>
+                <label>説明文:<textarea v-model="user.description"></textarea></label>
+            </div>
+            <div v-if="error">
+                @{{ error }}
+            </div>
+            <div>
+                <input type="button" v-on:click="createUser" value="送信">
             </div>
         </div>
     </script>
