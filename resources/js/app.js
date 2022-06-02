@@ -274,7 +274,16 @@ const NotFound = {
     template: '<div>このページはありません</div>'
 }
 
+const C = {
+    template: '<div>Cページです</div>'
+}
+
+const E = {
+    template: '<div>Eページです</div>'
+}
+
 const router = new VueRouter({
+    mode: 'history',
     routes: [
         {
             // リダイレクト
@@ -284,6 +293,19 @@ const router = new VueRouter({
         {
             path: '/b',
             component: B
+        },
+        {
+            // エイリアス
+            path: '/c',
+            component: C,
+            alias: '/d'
+        },
+        {
+            // エイリアスは複数指定可能
+            path: '/e',
+            component: E,
+            // alias: '/f'
+            alias: ['/f', '/g']
         },
         {
             path: '/notfound',
