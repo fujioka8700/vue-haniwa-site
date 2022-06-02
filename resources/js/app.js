@@ -37,6 +37,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+// サンプルデータ
 const userData = [
     {
         id: 1,
@@ -50,15 +51,36 @@ const userData = [
     }
 ];
 
+// 表示する時間を調整
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+// ユーザー一覧の取得
 const getUsers = function(callback) {
     setTimeout(() => {
         callback(null, userData)
     }, getRandomInt(3) * 1000);   
 }
+
+// ユーザー詳細の取得
+const getUser = function(userId, callback) {
+    setTimeout(function() {
+        const filterdUsers = userData.filter(function(user) {
+            return user.id === parseInt(userId, 10);
+        });
+        callback(null, filterdUsers && filterdUsers[0]);
+    }, getRandomInt(3) * 1000);
+};
+
+// 新規ユーザー登録
+const postUser = function(params, callback) {
+    setTimeout(function() {
+        params.id = userData.length + 1;
+        userData.push(params);
+        callback();
+    }, getRandomInt(3) * 1000);
+};
 
 // ユーザー一覧のコンポーネント
 const UserList = {
@@ -93,16 +115,6 @@ const UserList = {
     }
 };
 
-// 疑似的にAPI経由で情報を取得したようにする
-const getUser = function(userId, callback) {
-    setTimeout(function() {
-        const filterdUsers = userData.filter(function(user) {
-            return user.id === parseInt(userId, 10);
-        });
-        callback(null, filterdUsers && filterdUsers[0]);
-    }, getRandomInt(3) * 1000);
-};
-
 // 詳細ページのコンポーネント
 const UserDetail = {
     template: '#user-detail',
@@ -132,14 +144,6 @@ const UserDetail = {
             }.bind(this));
         }
     }
-};
-
-const postUser = function(params, callback) {
-    setTimeout(function() {
-        params.id = userData.length + 1;
-        userData.push(params);
-        callback();
-    }, getRandomInt(3) * 1000);
 };
 
 // 新規ユーザー作成コンポーネント
@@ -188,6 +192,47 @@ const UserCreate = {
     }
 };
 
+// 認証用モジュール Auth
+const Auth = {
+    login: function(email, pass, cb) {
+        if (email === 'vue@example.com' && pass === 'vue') {
+            localStorage.token = Math.random().toString(36).substring(7);
+            cb(true);
+        } else {
+            cb(false);
+        }
+    },
+    loggedIn: function() {
+        return localStorage.token;
+    },
+    logout: function() {
+        delete localStorage.token;
+    }
+};
+
+// ログインコンポーネント
+const Login = {
+    template: '#login',
+    data: function() {
+        return {
+            email: 'vue@example.com',
+            pass: 'vue',
+            error: false
+        }
+    },
+    methods: {
+        login: function() {
+            Auth.login(this.email, this.pass, function(loggedIn) {
+                if (!loggedIn) {
+                    this.error = true;
+                } else {
+                    this.$router.replace(this.$route.query.redirect || '/top');
+                }
+            }.bind(this));
+        }
+    }
+};
+
 const router = new VueRouter({
     routes: [
         {
@@ -202,15 +247,41 @@ const router = new VueRouter({
         },
         {
             path: '/users/new',
-            component: UserCreate
+            component: UserCreate,
+            beforeEnter: function(to, from, next) {
+                // 認証されていない状態でアクセスした時はloginページに遷移する
+                if (!Auth.loggedIn()) {
+                    next({
+                        path: '/login',
+                        query: { redirect: to.fullPath }
+                    });
+                } else {
+                    // 認証済みであればそのまま新規ユーザー作成ページへ進む
+                    next();
+                }
+            }
         },
         {
             path: '/users/:userId',
             component: UserDetail
+        },
+        {
+            path: '/login',
+            component: Login
+        },
+        {
+            path: '/logout',
+            beforeEnter: function(to, from, next) {
+                Auth.logout();
+                next('/top');
+            }
         }
     ]
 });
 
 const app = new Vue({
+    data: {
+        message: 'メッセージ'
+    },
     router: router
 }).$mount('#app');

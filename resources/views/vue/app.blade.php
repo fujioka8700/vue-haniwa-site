@@ -7,7 +7,9 @@
     <title>Vue.js SPAのサンプルアプリケーション</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
-
+        [v-cloak] {
+            display: none; /* テンプレートのマスタッシュを非表示にする */
+        }
     </style>
 </head>
 <body>
@@ -15,6 +17,9 @@
         <nav>
             <router-link to="/top">トップページ</router-link>
             <router-link to="/users">ユーザー一覧</router-link>
+            <router-link to="/users/new?redirect=true">新規ユーザー登録</router-link>
+            <router-link to="/login">ログイン</router-link>
+            <router-link to="/logout">ログアウト</router-link>
         </nav>
         <router-view></router-view>
     </div>
@@ -63,6 +68,26 @@
             <div>
                 <input type="button" v-on:click="createUser" value="送信">
             </div>
+        </div>
+    </script>
+
+    {{-- ログインページのテンプレート --}}
+    <script type="text/x-template" id="login">
+        <div>
+            <h2>Login</h2>
+            <p v-if="$route.query.redirect">
+                ログインしてください
+            </p>
+            <form v-on:submit.prevent="login">
+                <div>
+                    <label>email: <input type="email" v-model="email" placeholder="email"></label>
+                </div>
+                <div>
+                    <label>password: <input type="password" v-model="pass" placeholder="password"></label>
+                </div>
+                <p v-if="error">ログインに失敗しました</p>
+                <button type="submit">ログイン</button>
+            </form>
         </div>
     </script>
 
