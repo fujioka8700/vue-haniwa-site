@@ -37,25 +37,52 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+// サンプルデータ
+const userData = [
+    {
+        id: 1,
+        name: 'Takuya Tejima',
+        description: '東南アジアで働くエンジニアです。'
+    },
+    {
+        id: 2,
+        name: 'Yohei Noda',
+        description: 'アウトドア・フットサルが趣味のエンジニアです。'
+    }
+];
+
+// 表示する時間を調整
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+// ユーザー一覧の取得
 const getUsers = function(callback) {
     setTimeout(() => {
-        callback(null, [
-            {
-                id: 1,
-                name: 'Takuya Tejima'
-            },
-            {
-                id: 2,
-                name: 'Yohei Noda'
-            }
-        ])
+        callback(null, userData)
     }, getRandomInt(3) * 1000);   
 }
 
+// ユーザー詳細の取得
+const getUser = function(userId, callback) {
+    setTimeout(function() {
+        const filterdUsers = userData.filter(function(user) {
+            return user.id === parseInt(userId, 10);
+        });
+        callback(null, filterdUsers && filterdUsers[0]);
+    }, getRandomInt(3) * 1000);
+};
+
+// 新規ユーザー登録
+const postUser = function(params, callback) {
+    setTimeout(function() {
+        params.id = userData.length + 1;
+        userData.push(params);
+        callback();
+    }, getRandomInt(3) * 1000);
+};
+
+// ユーザー一覧のコンポーネント
 const UserList = {
     template: '#user-list',
     data: function() {
@@ -86,29 +113,6 @@ const UserList = {
             }.bind(this));
         }   
     }
-};
-
-const userData = [
-    {
-        id: 1,
-        name: 'Takuya Tejima',
-        description: '東南アジアで働くエンジニアです。'
-    },
-    {
-        id: 2,
-        name: 'Yohei Noda',
-        description: 'アウトドア・フットサルが趣味のエンジニアです。'
-    }
-];
-
-// 疑似的にAPI経由で情報を取得したようにする
-const getUser = function(userId, callback) {
-    setTimeout(function() {
-        const filterdUsers = userData.filter(function(user) {
-            return user.id === parseInt(userId, 10);
-        });
-        callback(null, filterdUsers && filterdUsers[0]);
-    }, getRandomInt(3) * 1000);
 };
 
 // 詳細ページのコンポーネント
@@ -142,6 +146,93 @@ const UserDetail = {
     }
 };
 
+// 新規ユーザー作成コンポーネント
+const UserCreate = {
+    template: '#user-create',
+    data: function() {
+        return {
+            error: null,
+            user: this.defaultUser(),
+            sending: false
+        }
+    },
+    created: function() {
+
+    },
+    methods: {
+        defaultUser: function() {
+            return {
+                name: '',
+                description: ''
+            }  
+        },
+        createUser: function() {
+            if (this.user.name.trim() === '') {
+                this.error = '名前は必須です。';
+                return;
+            }
+            if (this.user.description.trim() === '') {
+                this.error = '説明文は必須です。';
+                return;
+            }
+            this.sending = true;
+            postUser(this.user, function(err) {
+                this.sending = false;
+                if (err) {
+                    this.error = err.toString();
+                    return;
+                } else {
+                    this.error = null;
+                    this.user = this.defaultUser();
+                    alert('新規ユーザーが登録されました。');
+                    this.$router.push('/users');
+                }
+            }.bind(this));
+        }
+    }
+};
+
+// 認証用モジュール Auth
+const Auth = {
+    login: function(email, pass, cb) {
+        if (email === 'vue@example.com' && pass === 'vue') {
+            localStorage.token = Math.random().toString(36).substring(7);
+            cb(true);
+        } else {
+            cb(false);
+        }
+    },
+    loggedIn: function() {
+        return localStorage.token;
+    },
+    logout: function() {
+        delete localStorage.token;
+    }
+};
+
+// ログインコンポーネント
+const Login = {
+    template: '#login',
+    data: function() {
+        return {
+            email: 'vue@example.com',
+            pass: 'vue',
+            error: false
+        }
+    },
+    methods: {
+        login: function() {
+            Auth.login(this.email, this.pass, function(loggedIn) {
+                if (!loggedIn) {
+                    this.error = true;
+                } else {
+                    this.$router.replace(this.$route.query.redirect || '/top');
+                }
+            }.bind(this));
+        }
+    }
+};
+
 const router = new VueRouter({
     routes: [
         {
@@ -155,12 +246,42 @@ const router = new VueRouter({
             component: UserList
         },
         {
+            path: '/users/new',
+            component: UserCreate,
+            beforeEnter: function(to, from, next) {
+                // 認証されていない状態でアクセスした時はloginページに遷移する
+                if (!Auth.loggedIn()) {
+                    next({
+                        path: '/login',
+                        query: { redirect: to.fullPath }
+                    });
+                } else {
+                    // 認証済みであればそのまま新規ユーザー作成ページへ進む
+                    next();
+                }
+            }
+        },
+        {
             path: '/users/:userId',
             component: UserDetail
+        },
+        {
+            path: '/login',
+            component: Login
+        },
+        {
+            path: '/logout',
+            beforeEnter: function(to, from, next) {
+                Auth.logout();
+                next('/top');
+            }
         }
     ]
 });
 
 const app = new Vue({
+    data: {
+        message: 'メッセージ'
+    },
     router: router
 }).$mount('#app');
