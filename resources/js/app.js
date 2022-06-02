@@ -233,6 +233,37 @@ const Login = {
     }
 };
 
+// ユーザー詳細ページのコンポーネント
+const User = {
+    template:
+    '<div>'+
+        '<h2>ユーザーIDは {{ $route.params.userId }} です。</h2>'+
+        '<div>'+
+            '<router-link v-bind:to="\'/user/\' + $route.params.userId + \'/profile\'">ユーザーのプロフィールページを見る</router-link>'+
+        '</div>'+
+        '<div>'+
+            '<router-link v-bind:to="\'/user/\' + $route.params.userId + \'/posts\'">ユーザーの投稿ページを見る</router-link>'+
+        '</div>'+
+        '<router-view></router-view>'+
+    '</div>'
+};
+
+// ユーザー詳細ページ内で部分的に表示されるプロフィールページ
+const UserProfile = {
+    template:
+    '<div>'+
+        '<h3>こちらはユーザー {{ $route.params.userId }} のプロフィールページです。</h3>'+
+    '</div>'
+}
+
+// ユーザー詳細ページ内で部分的に表示される投稿ページ
+const UserPosts = {
+    template:
+    '<div>'+
+        '<h3>こちらはユーザー {{ $route.params.userId }} の投稿ページです。</h3>'+
+    '</div>'
+}
+
 const router = new VueRouter({
     routes: [
         {
@@ -240,6 +271,24 @@ const router = new VueRouter({
             component: {
                 template: '<div>トップページです。</div>'
             }
+        },
+        {
+            path: '/user/:userId',
+            component: User,
+            children: [
+                {
+                    // /user/userId/profileがマッチした時に
+                    // UserProfileコンポーネントはUserコンポーネントの<router-view>内部でレンダリングされる。
+                    path: 'profile',
+                    component: UserProfile
+                },
+                {
+                    // /user/userId/postsがマッチした時に
+                    // UserPostsコンポーネントはUserコンポーネントの<router-view>内部でレンダリングされる。
+                    path: 'posts',
+                    component: UserPosts
+                }
+            ]
         },
         {
             path: '/users',
