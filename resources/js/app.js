@@ -264,8 +264,36 @@ const UserPosts = {
     '</div>'
 }
 
+// /a からリダイレクトされた後のコンポーネント
+const B = {
+    template: '<div>Bページです</div>'
+}
+
+// ページが無い場合のコンポーネント
+const NotFound = {
+    template: '<div>このページはありません</div>'
+}
+
 const router = new VueRouter({
     routes: [
+        {
+            // リダイレクト
+            path: '/a',
+            redirect: 'b'
+        },
+        {
+            path: '/b',
+            component: B
+        },
+        {
+            path: '/notfound',
+            component: NotFound
+        },
+        {
+            // URLが定義したルートのいずれにもマッチしなかった時に /notfound に遷移する
+            path: '*',
+            redirect: '/notfound'
+        },
         {
             path: '/top',
             component: {
