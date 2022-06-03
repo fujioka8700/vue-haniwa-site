@@ -13,8 +13,10 @@ console.assert(typeof Vue !== "undefined");
 
 const app = new Vue({
     el: '#app',
-    data: {
-        message: '高度な機能'
+    data: function() {
+        return {
+            isShown: false
+        }
     }
 });
 

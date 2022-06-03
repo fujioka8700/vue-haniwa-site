@@ -10,11 +10,31 @@
         [v-cloak] {
             display: none;
         }
+        /* fadeトランジッションの実装 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: opacity 500ms ease-out;
+        }
+        .v-enter {
+            opacity: 0;
+        }
+        .v-enter-to {
+            opacity: 1;
+        }
+        .v-leave {
+            opacity: 1;
+        }
+        .v-leave-to {
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        @{{ message }}
+        <button v-on:click="isShown = !isShown">表示の切り替え</button>
+        <transition>
+            <p v-show="isShown">Hello, world</p>
+        </transition>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
