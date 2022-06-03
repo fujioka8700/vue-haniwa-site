@@ -10,31 +10,34 @@
         [v-cloak] {
             display: none;
         }
-        /* fadeトランジッションの実装 */
         .v-enter-active,
         .v-leave-active {
-            transition: opacity 500ms ease-out;
+        transition: opacity 1s;
         }
-        .v-enter {
-            opacity: 0;
-        }
-        .v-enter-to {
-            opacity: 1;
-        }
-        .v-leave {
-            opacity: 1;
-        }
+        .v-enter,
         .v-leave-to {
-            opacity: 0;
+        opacity: 0;
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <button v-on:click="isShown = !isShown">表示の切り替え</button>
-        <transition>
-            <p v-show="isShown">Hello, world</p>
-        </transition>
+        <p>
+            <button @click="show=!show">切り替え</button>
+            <button @click="cancel" :disabled="!anime">キャンセル</button>
+            <span v-if="anime">アニメーション中</span>
+          </p>
+          <transition
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @enter-cancelled="enterCancelled"
+            @before-leave="beforeLeave"
+            @leave="leave"
+            @after-leave="afterLeave"
+            @leave-cancelled="leaveCancelled">
+            <div v-if="show">Hello World!</div>
+          </transition>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
