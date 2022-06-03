@@ -24,3 +24,7 @@ Route::get('/javascript', function() {
 Route::get('/vue', function() {
     return view('vue/app');
 });
+
+Route::get('/altitude', function() {
+    return view('vue/altitude');
+});
