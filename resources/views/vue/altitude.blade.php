@@ -10,34 +10,14 @@
         [v-cloak] {
             display: none;
         }
-        .v-enter-active,
-        .v-leave-active {
-        transition: opacity 1s;
-        }
-        .v-enter,
-        .v-leave-to {
-        opacity: 0;
-        }
     </style>
 </head>
 <body>
     <div id="app">
-        <p>
-            <button @click="show=!show">切り替え</button>
-            <button @click="cancel" :disabled="!anime">キャンセル</button>
-            <span v-if="anime">アニメーション中</span>
-          </p>
-          <transition
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @after-enter="afterEnter"
-            @enter-cancelled="enterCancelled"
-            @before-leave="beforeLeave"
-            @leave="leave"
-            @after-leave="afterLeave"
-            @leave-cancelled="leaveCancelled">
-            <div v-if="show">Hello World!</div>
-          </transition>
+        {{-- コンテンツ有りでコンポーネントを設置する --}}
+        <my-button>送信する</my-button>
+        {{-- コンテンツ無しでコンポーネントを設置する --}}
+        <my-button></my-button>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
