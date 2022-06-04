@@ -1,3 +1,4 @@
+import { create } from 'lodash';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -12,18 +13,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 console.assert(typeof Vue !== "undefined");
 
 const MyButton = {
-    props: ['href', 'tag', 'hoge'],
-    template: `
-    <a v-if="(!tag && href) || tag === 'a'" :href="href || '#'">
-        <slot></slot>
-    </a>
-    <span v-else-if="tag === 'span'">
-        <slot></slot>
-    </span>
-    <button v-else>
-        <slot></slot>
-    </button>
-    `
+    props: ['href', 'tag'],
+    render: function(createElement) {
+        const tag = this.tag || (this.href ? 'a' : 'button'); 
+        return createElement(tag, {
+            attrs: {
+                href: this.href || '#'
+            }
+        }, this.$slots.default);
+    }
 };
 
 const app = new Vue({
