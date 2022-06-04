@@ -47,6 +47,7 @@
             <div v-if="user">
                 <h2>@{{ user.name }}</h2>
                 <p>@{{ user.description }}</p>
+                <router-link v-bind:to="{ path: '/user/' + $route.params.userId }">プロフィールと投稿はこちら</router-link>
             </div>
         </div>
     </script>
