@@ -11,20 +11,26 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-const MyPage = {
+const MyButton = {
+    data: {
+        return: {
+            data: 'child'
+        }
+    },
     template:`
-    <div>
-        <slot name="header"></slot>
-        <slot></slot>
-        <slot name="footer"></slot>
-    </div>
+    <button>
+        <slot>OK</slot>
+    </button>
     `
 }
 
 const app = new Vue({
     el: '#app',
+    data: {
+        textLabel: 'parent'
+    },
     components: {
-        MyPage: MyPage
+        MyButton: MyButton
     }
 });
 
