@@ -14,9 +14,7 @@
 </head>
 <body>
     <div id="app">
-        <my-button href="https://vuejs.org">anchor</my-button>
-        <my-button tag="span">span</my-button>
-        <my-button>button</my-button>
+        <my-button></my-button>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>

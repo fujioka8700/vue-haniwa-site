@@ -26,9 +26,19 @@ const MyButton = {
 
 const app = new Vue({
     el: '#app',
+    render: function(createElement) {
+        return createElement('my-button', {
+            attrs: {
+                href: 'https://vuejs.org'
+            },
+            props: {
+                tag: 'a'
+            }
+        }, 'anchor');
+    },
     components: {
         MyButton: MyButton
-    }
+    },
 });
 
 window.app = app;
