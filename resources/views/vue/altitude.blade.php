@@ -14,8 +14,7 @@
 </head>
 <body>
     <div id="app">
-        {{-- 親コンポーネントのデータがバインディングされる --}}
-        <my-button>@{{ textLabel }}</my-button>
+        <todo-list :todos="todos"></todo-list>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>

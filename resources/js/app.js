@@ -11,26 +11,39 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-const MyButton = {
-    data: {
-        return: {
-            data: 'child'
+const TodoList = {
+    props: {
+        todos: {
+            type: Array,
+            required: true
         }
     },
-    template:`
-    <button>
-        <slot>OK</slot>
-    </button>
+    template: `
+    <ul>
+        <template v-for="todo in todos">
+            <!-- v-bindディレクティブでtodoを親コンポーネントに渡す -->
+            <slot :todo="todo">
+                <li :key="todo.id">
+                    {{ todo.text }}
+                </li>
+            </slot>
+        </template>
+    </ul>
     `
-}
+};
 
 const app = new Vue({
     el: '#app',
     data: {
-        textLabel: 'parent'
+        todos: [
+            { id: 1, text: 'C++', isCompleted: true },
+            { id: 2, text: 'JavaScript', isCompleted: false },
+            { id: 3, text: 'Java', isCompleted: true },
+            { id: 4, text: 'Perl', isCompleted: false }
+        ]
     },
     components: {
-        MyButton: MyButton
+        TodoList: TodoList
     }
 });
 
