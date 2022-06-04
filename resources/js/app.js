@@ -11,38 +11,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-const TodoList = {
-    props: {
-        todos: {
-            type: Array,
-            required: true
-        }
-    },
-    template: `
-    <ul>
-        <template v-for="todo in todos">
-            <!-- v-bindディレクティブでtodoを親コンポーネントに渡す -->
-            <slot :todo="todo">
-                <li :key="todo.id"></li>
-            </slot>
-        </template>
-    </ul>
-    `
-};
+Vue.directive('focus', {
+    // `el`に`input`要素が渡されるので、それにフォーカスを当てる
+    inserted(el) {
+      el.focus();
+    }
+  });
 
 const app = new Vue({
-    el: '#app',
-    data: {
-        todos: [
-            { id: 1, text: 'C++', isCompleted: true },
-            { id: 2, text: 'JavaScript', isCompleted: false },
-            { id: 3, text: 'Java', isCompleted: true },
-            { id: 4, text: 'Perl', isCompleted: false }
-        ]
-    },
-    components: {
-        TodoList: TodoList
-    }
+    el: '#input'
 });
 
 window.app = app;

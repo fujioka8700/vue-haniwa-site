@@ -13,13 +13,7 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <todo-list :todos="todos">
-            <li slot-scope="{ todo }" v-if="todo.isCompleted">
-                @{{ todo.text }}
-            </li>
-        </todo-list>
-    </div>
+    <input id="input" v-focus>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
