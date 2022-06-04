@@ -14,8 +14,9 @@
 </head>
 <body>
     <div id="app">
-        {{-- 定義したカスタムディレクティブを利用する --}}
-        <img v-fallback-image.once="noImageURL" src="./logo.png" :alt="altText">
+        <my-button href="https://vuejs.org">anchor</my-button>
+        <my-button tag="span">span</my-button>
+        <my-button>button</my-button>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
