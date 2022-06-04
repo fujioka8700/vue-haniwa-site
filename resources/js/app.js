@@ -12,16 +12,23 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 console.assert(typeof Vue !== "undefined");
 
 Vue.directive('fallback-image', {
-    inserted(el) {
+    bind: function(el, binding) {
+        console.log('bind', binding);
         el.addEventListener('error', function() {
             // 画像のロードに失敗したら実行される処理
             el.src = "https://dummyimage.com/400x400/000/ffffff.png&text=no+image";
         });
+    },
+    update: function(el, binding) {
+        console.log('update', binding);
     }
 });
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        altText: 'logo'
+    }
 });
 
 window.app = app;
