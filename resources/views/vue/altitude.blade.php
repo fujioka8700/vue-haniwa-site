@@ -15,7 +15,7 @@
 <body>
     <div id="app">
         {{-- 定義したカスタムディレクティブを利用する --}}
-        <img v-fallback-image src="./logo.png" :alt="altText">
+        <img v-fallback-image.once="noImageURL" src="./logo.png" :alt="altText">
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>

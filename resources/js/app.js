@@ -14,20 +14,27 @@ console.assert(typeof Vue !== "undefined");
 Vue.directive('fallback-image', {
     bind: function(el, binding) {
         console.log('bind', binding);
-        el.addEventListener('error', function() {
-            // 画像のロードに失敗したら実行される処理
-            el.src = "https://dummyimage.com/400x400/000/ffffff.png&text=no+image";
+        const once = binding.modifiers.once;
+        el.addEventListener('error', function onError() {
+            el.src = binding.value;
+            if (once) {
+                el.removeEventListener('error', onError);
+            }
         });
     },
     update: function(el, binding) {
         console.log('update', binding);
+        if (binding.oldValue !== binding.value && binding.oldValue === el.src) {
+            el.src = binding.value;
+        }
     }
 });
 
 const app = new Vue({
     el: '#app',
     data: {
-        altText: 'logo'
+        altText: 'logo',
+        noImageURL: 'https://dummyimage.com/400x400/000/ffffff.png&text=no+image'
     }
 });
 
