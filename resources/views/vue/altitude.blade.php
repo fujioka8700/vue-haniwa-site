@@ -14,7 +14,11 @@
 </head>
 <body>
     <div id="app">
-        <todo-list :todos="todos"></todo-list>
+        <todo-list :todos="todos">
+            <li slot-scope="slotProps" v-if="slotProps.todo.isCompleted">
+                @{{ slotProps.todo.text }}
+            </li>
+        </todo-list>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
