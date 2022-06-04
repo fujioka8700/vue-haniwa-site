@@ -11,15 +11,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-Vue.directive('focus', {
-    // `el`に`input`要素が渡されるので、それにフォーカスを当てる
+Vue.directive('fallback-image', {
     inserted(el) {
-      el.focus();
+        el.addEventListener('error', function() {
+            // 画像のロードに失敗したら実行される処理
+            el.src = "https://dummyimage.com/400x400/000/ffffff.png&text=no+image";
+        });
     }
-  });
+});
 
 const app = new Vue({
-    el: '#input'
+    el: '#app'
 });
 
 window.app = app;

@@ -13,7 +13,10 @@
     </style>
 </head>
 <body>
-    <input id="input" v-focus>
+    <div id="app">
+        {{-- 定義したカスタムディレクティブを利用する --}}
+        <img v-fallback-image src="./logo.png">
+    </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
