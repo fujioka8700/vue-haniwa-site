@@ -13,9 +13,7 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <my-button></my-button>
-    </div>
+    <div id="app"></div>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
