@@ -12,8 +12,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-const IconShareButton = {
-    template: `<button @click="share"><i class="fas fa-share-square"></i></button>`,
+// ミックスインの定義
+const Sharable = {
     data: function() {
         return {
             _isProcessing: false
@@ -32,29 +32,20 @@ const IconShareButton = {
                 window.alert('シェアしました。');
             }, 300);
         }
-    },
+    }
+};
+
+const IconShareButton = {
+    mixins: [Sharable],
+    template: `<button @click="share"><i class="fas fa-share-square"></i></button>`
 };
 
 const TextShareButton = {
+    mixins: [Sharable],
     template: `<button @click="share">{{ buttonLabel }}</i></button>`,
     data: function() {
         return {
-            buttonLabel: 'シェアする',
-            _isProcessing: false
-        }
-    },
-    methods: {
-        share: function() {
-            if (this._isProcessing) {
-                return
-            }
-            if (!window.confirm('シェアしますか？')) {
-                return
-            }
-            this._isProcessing = true;
-            setTimeout(() => {
-                window.alert('シェアしました。');
-            }, 300);
+            buttonLabel: 'シェアする'
         }
     }
 };
