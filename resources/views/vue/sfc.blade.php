@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="app">
-        <login-required-page></login-required-page>
+        @{{ message }}
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
