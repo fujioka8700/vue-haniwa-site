@@ -56,6 +56,11 @@ const TextShareButton = {
         return {
             buttonLabel: 'シェアする'
         }
+    },
+    methods: {
+        share() {
+            window.alert('コンポーネントからシェアしました');
+        }
     }
 };
 
