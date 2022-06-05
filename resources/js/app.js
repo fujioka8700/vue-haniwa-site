@@ -12,27 +12,59 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+const IconShareButton = {
+    template: `<button @click="share"><i class="fas fa-share-square"></i></button>`,
+    data: function() {
+        return {
+            _isProcessing: false
+        }
+    },
+    methods: {
+        share: function() {
+            if (this._isProcessing) {
+                return
+            }
+            if (!window.confirm('シェアしますか？')) {
+                return
+            }
+            this._isProcessing = true;
+            setTimeout(() => {
+                window.alert('シェアしました。');
+            }, 300);
+        }
+    },
+};
+
+const TextShareButton = {
+    template: `<button @click="share">{{ buttonLabel }}</i></button>`,
+    data: function() {
+        return {
+            buttonLabel: 'シェアする',
+            _isProcessing: false
+        }
+    },
+    methods: {
+        share: function() {
+            if (this._isProcessing) {
+                return
+            }
+            if (!window.confirm('シェアしますか？')) {
+                return
+            }
+            this._isProcessing = true;
+            setTimeout(() => {
+                window.alert('シェアしました。');
+            }, 300);
+        }
+    }
+};
+
 const app = new Vue({
     el: '#app',
-    data: {
-        counter: 0
-    },
-    render: function(createElement) {
-        return createElement('div', [
-            createElement(
-                'button', {
-                    on: {
-                        click: ()=>this.counter++
-                    }
-            },
-            'クリックでカウントアップ'
-            ),
-            createElement(
-                'b',
-                this.counter + '回'
-            )
-        ]);
-    },
+    components: {
+        IconShareButton: IconShareButton,
+        TextShareButton
+    }
 });
 
 window.app = app;
