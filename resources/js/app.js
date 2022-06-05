@@ -12,63 +12,39 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
-// ミックスインの定義
-const Sharable = {
+Vue.mixin({
     data: function() {
         return {
-            _isProcessing: false
+            loggedInUser: null
         }
     },
     created: function() {
-        console.log('Sharableミックスインのフックが呼ばれました')
-    },
-    methods: {
-        share: function() {
-            if (this._isProcessing) {
-                return
-            }
-            if (!window.confirm('シェアしますか？')) {
-                return
-            }
-            this._isProcessing = true;
-            setTimeout(() => {
-                window.alert('シェアしました。');
-            }, 300);
+        const auth = this.$options.auth;
+        this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+        if (auth && !this.loggedInUser) {
+            window.alert('このページはログインが必要です');
         }
     }
-};
+});
 
-const IconShareButton = {
-    mixins: [Sharable],
-    created: function() {
-        console.log('IconShareButtonのフックが呼ばれました')
-    },
-    template: `<button @click="share"><i class="fas fa-share-square"></i></button>`
-};
-
-const TextShareButton = {
-    mixins: [Sharable],
-    created: function() {
-        console.log('TextShareButtonのフックが呼ばれました')
-    },
-    template: `<button @click="share">{{ buttonLabel }}</i></button>`,
-    data: function() {
-        return {
-            buttonLabel: 'シェアする'
-        }
-    },
-    methods: {
-        share() {
-            window.alert('コンポーネントからシェアしました');
-        }
-    }
-};
+const LoginRequiredPage = {
+    auth: true,
+    template: `
+    <div>
+        <p v-if="!loggedInUser">
+            このページはログインが必要です
+        </p>
+        <p v-else>
+            {{ loggedInUser.name }}さんでログインしています
+        </p>
+    </div>
+    `
+}
 
 const app = new Vue({
     el: '#app',
     components: {
-        IconShareButton,
-        TextShareButton
+        LoginRequiredPage
     }
 });
 

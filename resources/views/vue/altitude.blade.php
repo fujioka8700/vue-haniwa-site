@@ -15,8 +15,7 @@
 </head>
 <body>
     <div id="app">
-        <icon-share-button></icon-share-button>
-        <text-share-button></text-share-button>
+        <login-required-page></login-required-page>
     </div>
 
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
