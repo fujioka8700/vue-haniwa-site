@@ -19,6 +19,9 @@ const Sharable = {
             _isProcessing: false
         }
     },
+    created: function() {
+        console.log('Sharableミックスインのフックが呼ばれました')
+    },
     methods: {
         share: function() {
             if (this._isProcessing) {
@@ -37,11 +40,17 @@ const Sharable = {
 
 const IconShareButton = {
     mixins: [Sharable],
+    created: function() {
+        console.log('IconShareButtonのフックが呼ばれました')
+    },
     template: `<button @click="share"><i class="fas fa-share-square"></i></button>`
 };
 
 const TextShareButton = {
     mixins: [Sharable],
+    created: function() {
+        console.log('TextShareButtonのフックが呼ばれました')
+    },
     template: `<button @click="share">{{ buttonLabel }}</i></button>`,
     data: function() {
         return {
@@ -53,7 +62,7 @@ const TextShareButton = {
 const app = new Vue({
     el: '#app',
     components: {
-        IconShareButton: IconShareButton,
+        IconShareButton,
         TextShareButton
     }
 });
