@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="app">
-        @{{ message }}
+        <hello-component></hello-component>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
