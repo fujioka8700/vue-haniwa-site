@@ -4,16 +4,19 @@
         <p>これはRootコンポーネントです。</p>
         <foo/>
         <bar/>
+        <baz/>
     </div>
 </template>
 
 <script>
 import Foo from './foo'
 import Bar from './bar'
+import Baz from './baz'
 export default {
     components: {
         Foo,
-        Bar
+        Bar,
+        Baz
     }
 }
 </script>
@@ -30,4 +33,5 @@ export default {
 p {
     text-decoration: underline;
 }
+.message { color: red; }
 </style>
