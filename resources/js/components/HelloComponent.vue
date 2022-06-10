@@ -1,17 +1,7 @@
 <template>
-    <p class="message">メッセージ：{{ msg }}</p>
+    <p class="message">こんにちは</p>
 </template>
 
-<script>
-export default {
-    data: function() {
-        return {
-            msg: 'こんにちは'
-        }
-    }
-}
-</script>
-
-<style>
+<style scoped>
     .message { color: #42b983; }
 </style>
