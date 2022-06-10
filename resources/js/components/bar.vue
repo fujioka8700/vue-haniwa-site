@@ -1,11 +1,8 @@
 <template>
     <div class="bar">
-        <h1>Barコンポーネント</h1>
+        <h1 class="header">Barコンポーネント</h1>
         <p>これはBarコンポーネントです。</p>
-
-		<!-- .headerにマッチする要素が当初想定しないところまで波及する。 -->
-		<!-- こうした影響があるため、コンポーネントに対してclass属性をコンポーネント外から与えるときは注意が必要 -->
-        <foo class="header"/>
+        <foo/>
     </div>
 </template>
 
