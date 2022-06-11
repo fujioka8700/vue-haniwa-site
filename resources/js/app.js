@@ -21,15 +21,19 @@ const store = new Vuex.Store({
         count: 10
     },
 
-    // gettersオプションでゲッターを定義する
-    getters: {
-        // ステートから別の値を計算する
-        squared: (state) => state.count * state.count,
-
-        // 他のゲッターの値を使うことも可能
-        cubed: (state, getters) => state.count * getters.squared
+    // mutationsオプションでミューテーションを定義する
+    mutations: {
+        // ハンドラー関数のincrementミューテーションを定義
+        // ハンドラー内では第一引数に渡されたステートを更新する
+        increment(state) {
+            state.count += 1;
+        }
     }
 });
 
-// store.gettersでゲッターを参照する
-console.log(store.getters.cubed);
+console.log(store.state.count);
+
+// store.commitでミューテーションを呼び出す
+store.commit('increment');
+
+console.log(store.state.count);
