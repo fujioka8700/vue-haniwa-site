@@ -5,6 +5,7 @@
         <foo/>
         <bar/>
         <baz/>
+        <qux/>
     </div>
 </template>
 
@@ -12,11 +13,13 @@
 import Foo from './foo'
 import Bar from './bar'
 import Baz from './baz'
+import Qux from './qux'
 export default {
     components: {
         Foo,
         Bar,
-        Baz
+        Baz,
+        Qux
     }
 }
 </script>
