@@ -16,21 +16,32 @@ Vue.component('hello-component', HelloComponent);
 // Vueの確認
 console.assert(typeof Vue !== "undefined");
 
+// 誤った例
 const store = new Vuex.Store({
     state: {
         count: 10
     },
 
     mutations: {
-        increment(state, payload) {
-            state.count += payload.amount;
+        // 以下のように非同期処理を含めてはいけない！
+        incrementAsync(state) {
+            setTimeout(() => {
+                state.count += 1;
+            }, 1000);
+        },
+
+        increment(state) {
+            state.count += 1;
         }
     }
 });
 
 console.log(store.state.count);
 
-// store.commitの第二引数にペイロードを渡す
 store.commit('increment', { amount: 5 });
+
+console.log(store.state.count);
+
+store.commit('incrementAsync');
 
 console.log(store.state.count);
