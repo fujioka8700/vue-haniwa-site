@@ -32,3 +32,7 @@ Route::get('/altitude', function() {
 Route::get('/sfc', function() {
     return view('vue/sfc');
 });
+
+Route::get('/vuex', function() {
+    return view('vue/vuex');
+});
