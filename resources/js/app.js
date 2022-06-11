@@ -21,19 +21,16 @@ const store = new Vuex.Store({
         count: 10
     },
 
-    // mutationsオプションでミューテーションを定義する
     mutations: {
-        // ハンドラー関数のincrementミューテーションを定義
-        // ハンドラー内では第一引数に渡されたステートを更新する
-        increment(state) {
-            state.count += 1;
+        increment(state, payload) {
+            state.count += payload.amount;
         }
     }
 });
 
 console.log(store.state.count);
 
-// store.commitでミューテーションを呼び出す
-store.commit('increment');
+// store.commitの第二引数にペイロードを渡す
+store.commit('increment', { amount: 5 });
 
 console.log(store.state.count);
