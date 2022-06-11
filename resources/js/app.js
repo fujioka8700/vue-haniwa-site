@@ -18,11 +18,6 @@ const sotre = {
     state: {
         count: 0
     },
-
-    // 更新処理
-    increment() {
-        this.state.count++;
-    }
 };
 
 const app = new Vue({
@@ -37,9 +32,10 @@ const app = new Vue({
     </div>
     `,
     methods: {
-        // 更新処理を呼び出す
+        // 更新処理をコンポーネントの中で書く
         increment() {
-            sotre.increment();
+            // データは状態とビューが双方向で繋がるかたち
+            sotre.state.count++;
         }
     }
 });
