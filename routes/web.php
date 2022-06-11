@@ -36,3 +36,7 @@ Route::get('/sfc', function() {
 Route::get('/vuex', function() {
     return view('vue/vuex');
 });
+
+Route::get('/tasks', function() {
+    return view('vue/tasks');
+});
