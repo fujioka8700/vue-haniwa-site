@@ -4,6 +4,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
+        // タスクの初期ステート
         tasks: [
             {
                 id: 1,
@@ -15,7 +16,35 @@ const store = new Vuex.Store({
                 name: 'Vue.jsの本を買う',
                 done: true
             }
-        ]
+        ],
+
+        // 次に追加するタスクのID
+        // 実際のアプリではサーバーで生成したり、UUIDを使ったりする
+        nextTaskId: 3
+    },
+    mutations: {
+        // タスクを追加する
+        addTask(state, { name }) {
+            state.tasks.push({
+                id: state.nextTaskId,
+                name,
+                done: false
+            });
+            
+            // 次に追加されるタスクに付与するIDを更新する
+            state.nextTaskId++;
+        },
+
+        // タスクの完了状態を変更する
+        toggleTaskStatus(state, { id }) {
+            const filtered = state.tasks.filter(task => {
+                return task.id === id;
+            });
+
+            filtered.forEach(task => {
+                task.done = !task.done;
+            });
+        }
     }
 });
 
