@@ -47,7 +47,6 @@ const store = new Vuex.Store({
     mutations: {
         // タスクを追加する
         addTask(state, {name, labelIds}) {
-            console.log(labelIds)
             state.tasks.push({
                 id: state.nextTaskId,
                 name,

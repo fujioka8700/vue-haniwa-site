@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <div id="app">
+    <div id="tasks">
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
