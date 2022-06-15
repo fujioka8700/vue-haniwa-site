@@ -9,7 +9,7 @@ const store = new Vuex.Store({
             {
                 id: 1,
                 name: '牛乳を買う',
-                labelIds: [1,2,4],
+                labelIds: [1,2],
                 done: false
             },
             {
@@ -46,7 +46,7 @@ const store = new Vuex.Store({
     },
     mutations: {
         // タスクを追加する
-        addTask(state, { name, labelIds }) {
+        addTask(state, {name, labelIds}) {
             console.log(labelIds)
             state.tasks.push({
                 id: state.nextTaskId,
@@ -60,7 +60,7 @@ const store = new Vuex.Store({
         },
 
         // タスクの完了状態を変更する
-        toggleTaskStatus(state, { id }) {
+        toggleTaskStatus(state, {id}) {
             const filtered = state.tasks.filter(task => {
                 return task.id === id;
             });
@@ -71,7 +71,7 @@ const store = new Vuex.Store({
         },
 
         // ラベルを追加する
-        addLabel(state, { text }) {
+        addLabel(state, {text}) {
             state.labels.push({
                 id: state.nextLabelId,
                 text
@@ -82,8 +82,16 @@ const store = new Vuex.Store({
         },
 
         // フィルタリング対象のラベルを変更する
-        changeFilter(state, { filter }) {
+        changeFilter(state, {filter}) {
             state.filter = filter;
+        },
+
+        // ステートを復元する
+        restore(state, {tasks, labels, nextTaskId, nextLabelId}) {
+            state.tasks = tasks;
+            state.labels = labels;
+            state.nextTaskId = nextTaskId;
+            state.nextLabelId = nextLabelId;
         }
     },
 
@@ -99,6 +107,29 @@ const store = new Vuex.Store({
             return state.tasks.filter(task => {
                 return task.labelIds.indexOf(state.filter) >= 0;
             });
+        }
+    },
+
+    actions: {
+        // ローカルストレージ（webブラウザ）にステートを保存する
+        save({state}) {
+            const data = {
+                tasks: state.tasks,
+                labels: state.labels,
+                nextTaskId: state.nextTaskId,
+                nextLabelId: state.nextLabelId
+            };
+
+            localStorage.setItem('task-app-data', JSON.stringify(data));
+        },
+
+        // ローカルストレージ（webブラウザ）からステートを復元する
+        restore({commit}) {
+            const data = localStorage.getItem('task-app-data');
+            
+            if (data) {
+                commit('restore', JSON.parse(data));
+            }
         }
     }
 });

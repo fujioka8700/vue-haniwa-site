@@ -36,6 +36,9 @@
                 フィルターしない
             </li>
         </ul>
+        <h2>保存と復元</h2>
+        <button v-on:click="save">保存</button>
+        <button v-on:click="restore">復元</button>
     </div>
 </template>
 
@@ -105,6 +108,18 @@ export default {
             this.$store.commit('changeFilter', {
                 filter: labelId
             });
+        },
+
+        // 現在の状態を保存する
+        save() {
+            // saveアクションをディスパッチ
+            this.$store.dispatch('save');
+        },
+
+        // 保存されている状態を復元する
+        restore() {
+            // restoreアクションをディスパッチ
+            this.$store.dispatch('restore');
         }
     }
 }
