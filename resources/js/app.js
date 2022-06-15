@@ -23,7 +23,7 @@ const store = new Vuex.Store({
 
 new Vue({
     el: '#app',
-    store, // ストアをコンポーネントに渡す
+    store,
     components: {
         Fuga
     }
