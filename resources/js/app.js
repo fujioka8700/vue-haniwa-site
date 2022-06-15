@@ -14,45 +14,50 @@ new Vue({
 });
 
 const store = new Vuex.Store({
+    // グローバルな空間にステート、ゲッター、ミューテーションを定義
+    state: {
+        count: 1
+    },
+    getters: {
+        // state.countを2倍したものを返す
+        double(state) {
+            return state.count + state.count;
+        }
+    },
+    mutations: {
+        update(state, payload) {
+            state.count = payload;
+        }
+    },
     modules: {
+        // 名前空間が区切られたexampleモジュールを定義
         example: {
-            // このフラグの有無によってどのように変わるのかを見る
             namespaced: true,
 
-            state: {
-                value: 'Example'
-            },
-
             getters: {
-                upper: state => state.value.toUpperCase()
-            },
-
-            mutations: {
-                update(state) {
-                    state.value = 'Updated';
+                // 第3引数、第4引数にグローバルな名前空間にアクセスするための
+                // rootState、rootGettersが渡される
+                triple: (state, getters, rootState, rootGetters) => {
+                    return rootState.count + rootGetters.double
                 }
             },
 
             actions: {
-                update({commit}) {
-                    commit('update');
+                multiByFive(ctx) {
+                    // グローバルなdoubleゲッターとexampleモジュールのtripleゲッターを利用する
+                    const payload = ctx.rootGetters.double + ctx.getters.triple;
+                    
+                    // グローバルな名前空間のupdateを呼び出したいので、root:trueオプションを付与する
+                    ctx.commit('update', payload, {root: true});
                 }
             }
         }
     }
 });
 
-console.log(store.state.example.value);
+console.log(store.state.count);
 
-// console.log(store.getters.upper);
-console.log(store.getters['example/upper']);
+// exampleモジュールのmultiByFiveアクションを呼び出す
+store.dispatch('example/multiByFive');
 
-// store.commit('update');
-store.commit('example/update');
-
-console.log(store.state.example.value);
-
-// store.dispatch('update');
-store.dispatch('example/update');
-
-console.log(store.state.example.value);
+console.log(store.state.count);
