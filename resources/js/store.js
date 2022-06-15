@@ -39,7 +39,10 @@ const store = new Vuex.Store({
         // 次に追加するタスクのID
         // 実際のアプリではサーバーで生成したり、UUIDを使ったりする
         nextTaskId: 3,
-        nextLabelId: 4
+        nextLabelId: 4,
+
+        // フィルタするラベルのID
+        filter: null
     },
     mutations: {
         // タスクを追加する
@@ -76,6 +79,26 @@ const store = new Vuex.Store({
 
             // 次に追加されるラベルに付与するIDを更新する
             state.nextLabelId++;
+        },
+
+        // フィルタリング対象のラベルを変更する
+        changeFilter(state, { filter }) {
+            state.filter = filter;
+        }
+    },
+
+    getters: {
+        // フィルター後のタスクを返す
+        filterdTasks(state) {
+            // ラベルが選択されていなければそのまま一覧を返す
+            if (state.filter === null) {
+                return state.tasks
+            }
+
+            // 選択されているラベルでフィルタリングする
+            return state.tasks.filter(task => {
+                return task.labelIds.indexOf(state.filter) >= 0;
+            });
         }
     }
 });
