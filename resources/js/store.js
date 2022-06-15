@@ -9,11 +9,13 @@ const store = new Vuex.Store({
             {
                 id: 1,
                 name: '牛乳を買う',
+                labelIds: [1,2,4],
                 done: false
             },
             {
                 id: 2,
                 name: 'Vue.jsの本を買う',
+                labelIds: [1,3],
                 done: true
             }
         ],
@@ -41,10 +43,12 @@ const store = new Vuex.Store({
     },
     mutations: {
         // タスクを追加する
-        addTask(state, { name }) {
+        addTask(state, { name, labelIds }) {
+            console.log(labelIds)
             state.tasks.push({
                 id: state.nextTaskId,
                 name,
+                labelIds,
                 done: false
             });
             
