@@ -40,3 +40,7 @@ Route::get('/vuex', function() {
 Route::get('/tasks', function() {
     return view('vue/tasks');
 });
+
+Route::get('/store', function() {
+    return view('vue/store');
+});
