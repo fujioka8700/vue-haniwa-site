@@ -11,12 +11,19 @@ Vue.use(VueRouter);
 // import './tasks';
 
 const store = new Vuex.Store({
-    state: {
-        count: 1
-    },
-    mutations: {
-        increment(state, value) {
-            state.count += value;
+    modules: {
+        counter: {
+            namespaced: true,
+
+            state: {
+                count: 1
+            },
+
+            mutations: {
+                increment(state, value) {
+                    state.count += value;
+                }
+            }
         }
     }
 });
