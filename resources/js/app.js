@@ -2,36 +2,24 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 import Vuex from 'vuex'
 import VueRouter from 'vue-router';
-import Fuga from './components/Fuga';
+import { sync } from 'vuex-router-sync';
+import Products from './procucts';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
 
-// import './vuexModules'; // ストアのモジュール分割
-// import './tasks';
+const router = new VueRouter({
+    routes: [
+
+    ]
+});
 
 const store = new Vuex.Store({
     modules: {
-        counter: {
-            namespaced: true,
-
-            state: {
-                count: 1
-            },
-
-            mutations: {
-                increment(state, value) {
-                    state.count += value;
-                }
-            }
-        }
+        Products
     }
 });
 
-new Vue({
-    el: '#app',
-    store,
-    components: {
-        Fuga
-    }
-});
+sync(store, router);
+
+console.log(store.state.route)
