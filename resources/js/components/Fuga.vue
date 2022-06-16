@@ -6,19 +6,20 @@
 </template>
 
 <script>
-// mapState と mapMutations をインポート
-import { mapState, mapMutations } from 'vuex';
+// createNamespacedHelpersを使って、counter名前空間を対象としたmapStateを生成する例
+import { createNamespacedHelpers, mapMutations } from 'vuex';
+
+// counter を対象としたヘルパー関数を生成
+const counterHelpers = createNamespacedHelpers('counter');
 
 export default {
     // $store.state.counter.count を this.count に結び付ける
-    computed: {
-        ...mapState('counter', [
-            'count'
-        ]),
-    },
+    computed: counterHelpers.mapState([
+        'count'
+    ]),
     
-    // $store.commit('increment', value)をthis.increment(value)で呼び出せるようにする
-    methods: mapMutations('counter', [
+    // $store.commit('increment', count)をthis.increment(count)で呼び出せるようにする
+    methods: counterHelpers.mapMutations([
         'increment'
     ])
 }
