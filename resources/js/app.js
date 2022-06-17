@@ -38,7 +38,6 @@ const store = new Vuex.Store({
     actions: {
         done ({ state, commit }) {
             // state.routeでアクセス可能
-            console.log(state.route)
             console.log('actions:', state.route.params.id)
             commit('done')
         }
