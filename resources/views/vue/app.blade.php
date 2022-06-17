@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="app">
-        {{-- <ul>
+        <ul>
             <li v-for="item in items" :key="item.name">
                 @{{ item.name }} の個数
                 <input type="number" v-model.lazy="item.quantity" min="0">
@@ -31,8 +31,8 @@
             <p v-show="!canBuy">
                 @{{ minimumPrice | numberWithDelimiter }} 円以上からご購入いただけます
             </p>
-        </div> --}}
-        @{{ count }}
+            <button :disabled="!canBuy" @click="doBuy">購入</button>
+        </div>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
