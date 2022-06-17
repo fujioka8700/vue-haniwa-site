@@ -19,37 +19,65 @@ const items = [
   }
 ];
 
+// const vm = new Vue({
+//   data: {
+//     items,
+//     minimumPrice: 2000
+//   },
+//   computed: {
+//     totalPrice() {
+//       return this.items.reduce((total, item)=>{
+//         return total + item.price * item.quantity;
+//       }, 0);
+//     },
+//     totalPriceWithTax() {
+//       return Math.floor(this.totalPrice * 1.1);
+//     },
+//     canBuy() {
+//       return this.totalPrice >= this.minimumPrice;
+//     },
+//     errorMessageStyle() {
+//       return {
+//         color: this.canBuy ? '' : 'red',
+//         border: this.canBuy ? '' : 'solid 1px red'
+//       }
+//     }
+//   },
+//   filters: {
+//     numberWithDelimiter(value) {
+//       if (!value) {
+//         return 0;
+//       }
+//       return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+//     }
+//   }
+// }).$mount('#app');
+
 const vm = new Vue({
-  data: {
-    items,
-    minimumPrice: 2000
-  },
-  computed: {
-    totalPrice() {
-      return this.items.reduce((total, item)=>{
-        return total + item.price * item.quantity;
-      }, 0);
-    },
-    totalPriceWithTax() {
-      return Math.floor(this.totalPrice * 1.1);
-    },
-    canBuy() {
-      return this.totalPrice >= this.minimumPrice;
-    },
-    errorMessageStyle() {
-      return {
-        color: this.canBuy ? '' : 'red',
-        border: this.canBuy ? '' : 'solid 1px red'
-      }
+  data() {
+    return {
+      count: 0,
+      timerId: null
     }
   },
-  filters: {
-    numberWithDelimiter(value) {
-      if (!value) {
-        return 0;
-      }
-      return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-    }
+  created() {
+    console.log('created');
+
+    console.log(this.$el);
+
+    this.timerId = setInterval(()=> {
+      this.count++;
+    }, 1000);
+  },
+  mounted() {
+    console.log('mounted');
+
+    console.log(this.$el);
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy');
+
+    clearInterval(this.timerId);
   }
 }).$mount('#app');
 
