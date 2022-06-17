@@ -15,7 +15,7 @@
     <p>{{ detail | formatJSON }}</p>
 
     <button @click="done">Done</button>
-    <router-link to="/">戻る</router-link>
+    <router-link :to="{ name: 'index'}">戻る</router-link>
   </div>
 </template>
 
