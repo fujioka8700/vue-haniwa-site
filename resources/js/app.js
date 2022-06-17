@@ -21,15 +21,36 @@ const items = [
 
 const vm = new Vue({
   data: {
-    items
+    items,
+    minimumPrice: 2000
+  },
+  computed: {
+    totalPrice() {
+      return this.items.reduce((total, item)=>{
+        return total + item.price * item.quantity;
+      }, 0);
+    },
+    totalPriceWithTax() {
+      return Math.floor(this.totalPrice * 1.1);
+    },
+    canBuy() {
+      return this.totalPrice >= this.minimumPrice;
+    },
+    errorMessageStyle() {
+      return {
+        color: this.canBuy ? '' : 'red',
+        border: this.canBuy ? '' : 'solid 1px red'
+      }
+    }
   },
   filters: {
     numberWithDelimiter(value) {
+      if (!value) {
+        return 0;
+      }
       return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
     }
   }
 }).$mount('#app');
 
 window.vm = vm;
-
-// 2.8 算出プロパティ（computed）から
