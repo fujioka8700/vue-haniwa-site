@@ -10,12 +10,10 @@ export default {
     },
 
     getters: {
-        // 現在のページに紐付く商品を返したい
-        currentProduct(state) {
-            // 表示すべき商品のIDはストア内に無いため、
-            // 対象の商品を探すことができない
+        currentProduct(state, getters, rootState) {
+            const productId = Number(rootState.route.params.id);
             return state.products.find(product => {
-                // return product.id === ???
+                return product.id === productId;
             });
         }
     }
