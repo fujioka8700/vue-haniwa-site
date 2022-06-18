@@ -40,6 +40,15 @@ Vue.component('fruits-list-table', {
   `
 });
 
+const FruitsListSupplement = Vue.extend({
+  template: '<p>甘さと酸味の融合で美味しいです。</p>'
+});
+
+new FruitsListSupplement().$mount('#fruits-list-supplement');
+
 const vm = new Vue().$mount('#app');
 
 window.vm = vm;
+
+console.log(FruitsListSupplement)
+console.log(new FruitsListSupplement())

@@ -22,6 +22,8 @@
         <fruits-list-description></fruits-list-description>
         <fruits-list-table></fruits-list-table>
     </div>
+    
+    <div id="fruits-list-supplement"></div>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
