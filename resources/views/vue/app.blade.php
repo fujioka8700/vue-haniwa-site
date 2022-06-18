@@ -10,19 +10,33 @@
         [v-cloak] {
             display: none; /* テンプレートのマスタッシュを非表示にする */
         }
-        table tr, th, td{
-            border-collapse: collapse;
-            border:1px solid #333;
+        .header {
+            width: 100%;
+            border: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+            padding: 30px 15px;
+        }
+        .content {
+            width: 100%;
+            border: 1px solid #d3d3d3;
+            background-color: #fff;
+            text-align: left;
+            padding: 30px 15px;
+            list-style-type: none;
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <div v-for="fruit in fruitsItems" :key="fruit.name">
-            @{{ fruit.name }}
-            <counter-button @increment="incrementCartStatus"></counter-button>
-        </div>
-        <p>合計：@{{ total }}個</p>
+        <page-header class="header">
+            <h1 slot="header">夏の果物</h1>
+        </page-header>
+        <ul>
+            <fruits-items class="content" v-for="fruit in fruitsItems" :fruit-item="fruit" :key="fruit.name"></fruits-items>
+        </ul>
+        <page-footer>
+            <p slot="footer">©果物屋</p>
+        </page-footer>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>

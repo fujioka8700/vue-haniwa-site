@@ -1,43 +1,39 @@
 require('./bootstrap');
 import Vue from 'vue';
 
-const counterButton = Vue.extend({
-  data: function() {
-    return {
-      counter: 0
+const headerTemplate = Vue.extend({
+  template: `
+  <div>
+    <slot name="header">header</slot>
+  </div>
+  `
+});
+
+const fruitsItems = Vue.extend({
+  props: {
+    fruitItem: {
+      type: Object
     }
   },
-  template: `
-  <span>
-    {{ counter }}個
-    <button @click="addToCart">追加</button>
-  </span>
-  `,
-  methods: {
-    addToCart: function() {
-      this.counter++;
-      this.$emit('increment');
-    }
-  }
+  template: '<li>{{ fruitItem.name }}</li>'
+});
+
+const pageFooter = Vue.extend({
+  template: '<div><slot name="footer">footer</slot></div>'
 });
 
 const vm = new Vue({
   data: {
-    total: 0,
     fruitsItems: [
-      {name: '梨'},
-      {name: 'いちご'},
-      {name: 'メロン'},
-      {name: 'バナナ'},
+      {name: 'すいか'},
+      {name: 'マンゴー'},
+      {name: 'オレンジ'}
     ]
   },
   components: {
-    counterButton
-  },
-  methods: {
-    incrementCartStatus: function() {
-      this.total++;
-    }
+    'page-header': headerTemplate,
+    fruitsItems,
+    pageFooter
   }
 }).$mount('#app');
 
