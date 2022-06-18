@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <fruits-list-title></fruits-list-title>
+        <fruits-list></fruits-list>
         <fruits-list-description></fruits-list-description>
         <fruits-list-table></fruits-list-table>
     </div>
