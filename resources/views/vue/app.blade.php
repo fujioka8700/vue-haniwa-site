@@ -18,8 +18,15 @@
 </head>
 <body>
     <div id="app">
-        <item-desc :item-name="myItem"></item-desc>
+        <ul>
+            <fruits-item-name v-for="fruit in fruitsItems" :fruits-item="fruit" :key="fruit.name"></fruits-item-name>
+        </ul>
     </div>
+
+    <ul>
+        <li>梨</li>
+        <li>いちご</li>
+    </ul>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

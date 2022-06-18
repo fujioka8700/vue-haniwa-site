@@ -1,21 +1,25 @@
 require('./bootstrap');
 import Vue from 'vue';
 
-const ItemDesc = {
-  template: '<p>{{ itemName }}は便利です。</p>',
+const FruitsItemName = {
+  template: '<li>{{ fruitsItem.name }}</li>',
   props: {
-    itemName: {
-      type: String
+    fruitsItem: {
+      type: Object,
+      require: true
     }
   }
-}
+};
 
 const vm = new Vue({
   data: {
-    myItem: 'ペン'
+    fruitsItems: [
+      {name: '梨'},
+      {name: 'いちご'}
+    ]
   },
   components: {
-    ItemDesc
+    FruitsItemName
   }
 }).$mount('#app');
 
