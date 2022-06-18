@@ -21,8 +21,10 @@
         <fruits-list></fruits-list>
         <fruits-list-description></fruits-list-description>
         <fruits-list-table></fruits-list-table>
+        <fruits-color></fruits-color>
+        <input-date-with-today></input-date-with-today>
     </div>
-    
+
     <div id="fruits-list-supplement"></div>
 
     <script src="{{ mix('js/app.js') }}"></script>

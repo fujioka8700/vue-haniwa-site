@@ -46,9 +46,26 @@ const FruitsListSupplement = Vue.extend({
 
 new FruitsListSupplement().$mount('#fruits-list-supplement');
 
-const vm = new Vue().$mount('#app');
+Vue.component('input-date-with-today', {
+  render: function(createElement) {
+    return createElement(
+      'input',
+      {
+        attrs: {
+          type: 'date',
+          value: new Date().toISOString().substring(0, 10)
+        }
+      }
+    )
+  }
+});
+
+const vm = new Vue({
+  components: {
+    'fruits-color': {
+      template: '<h2>フルーツの色</h2>'
+    }
+  }
+}).$mount('#app');
 
 window.vm = vm;
-
-console.log(FruitsListSupplement)
-console.log(new FruitsListSupplement())
