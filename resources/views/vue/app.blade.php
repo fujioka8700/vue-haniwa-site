@@ -18,14 +18,8 @@
 </head>
 <body>
     <div id="app">
-        <fruits-list></fruits-list>
-        <fruits-list-description></fruits-list-description>
-        <fruits-list-table></fruits-list-table>
-        <fruits-color></fruits-color>
-        <input-date-with-today></input-date-with-today>
+        <simple-counter></simple-counter>
     </div>
-
-    <div id="fruits-list-supplement"></div>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
