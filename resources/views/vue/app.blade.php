@@ -18,15 +18,12 @@
 </head>
 <body>
     <div id="app">
-        <ul>
-            <fruits-item-name v-for="fruit in fruitsItems" :fruits-item="fruit" :key="fruit.name"></fruits-item-name>
-        </ul>
+        <div v-for="fruit in fruitsItems" :key="fruit.name">
+            @{{ fruit.name }}
+            <counter-button @increment="incrementCartStatus"></counter-button>
+        </div>
+        <p>合計：@{{ total }}個</p>
     </div>
-
-    <ul>
-        <li>梨</li>
-        <li>いちご</li>
-    </ul>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
