@@ -28,15 +28,7 @@
 </head>
 <body>
     <div id="app">
-        <page-header class="header">
-            <h1 slot="header">夏の果物</h1>
-        </page-header>
-        <ul>
-            <fruits-items class="content" v-for="fruit in fruitsItems" :fruit-item="fruit" :key="fruit.name"></fruits-items>
-        </ul>
-        <page-footer>
-            <p slot="footer">©果物屋</p>
-        </page-footer>
+        <user-login @login="login"></user-login>    
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>

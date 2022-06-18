@@ -1,39 +1,39 @@
 require('./bootstrap');
 import Vue from 'vue';
 
-const headerTemplate = Vue.extend({
+const userLogin = Vue.extend({
+  data: function() {
+    return {
+      userId: '',
+      password: ''
+    }
+  },
+  methods: {
+    login: function() {
+      this.$emit('login', this.userId, this.password);
+    }
+  },
   template: `
   <div>
-    <slot name="header">header</slot>
+    <div>
+      <input type="text" placeholder="ログインID" v-model="userId">
+    </div>
+    <div>
+      <input type="password" placeholder="パスワード" v-model="password">
+    </div>
+    <button @click="login">ログイン</button>
   </div>
   `
 });
 
-const fruitsItems = Vue.extend({
-  props: {
-    fruitItem: {
-      type: Object
-    }
-  },
-  template: '<li>{{ fruitItem.name }}</li>'
-});
-
-const pageFooter = Vue.extend({
-  template: '<div><slot name="footer">footer</slot></div>'
-});
-
 const vm = new Vue({
-  data: {
-    fruitsItems: [
-      {name: 'すいか'},
-      {name: 'マンゴー'},
-      {name: 'オレンジ'}
-    ]
-  },
   components: {
-    'page-header': headerTemplate,
-    fruitsItems,
-    pageFooter
+    userLogin
+  },
+  methods: {
+    login: function(userId, password) {
+      console.log('ログインID:' + userId + ' パスワード:' + password);
+    }
   }
 }).$mount('#app');
 
