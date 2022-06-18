@@ -1,65 +1,41 @@
 require('./bootstrap');
 import Vue from 'vue';
 
-const items = [
-  {
-    name: '鉛筆',
-    price: 300,
-    quantity: 0
-  },
-  {
-    name: 'ノート',
-    price: 400,
-    quantity: 0
-  },
-  {
-    name: '消しゴム',
-    price: 500,
-    quantity: 0
-  }
-];
+Vue.component('fruits-list-title', {
+  template: '<h1>フルーツ一覧</h1>'
+});
 
-const vm = new Vue({
-  data: {
-    items,
-    minimumPrice: 1000
-  },
-  computed: {
-    totalPrice() {
-      return this.items.reduce((total, item)=>{
-        return total + item.price * item.quantity;
-      }, 0);
-    },
-    totalPriceWithTax() {
-      return Math.floor(this.totalPrice * 1.1);
-    },
-    canBuy() {
-      return this.totalPrice >= this.minimumPrice;
-    },
-    errorMessageStyle() {
-      return {
-        color: this.canBuy ? '' : 'red',
-        border: this.canBuy ? '' : 'solid 1px red'
-      }
-    }
-  },
-  methods: {
-    doBuy() {
-      alert(this.totalPriceWithTax + '円のお買い上げ');
+Vue.component('fruits-list-description', {
+  template: '<p>季節の代表的なフルーツ一覧です。</p>'
+});
 
-      this.items.forEach((item)=>{
-        item.quantity = 0;
-      });
-    }
-  },
-  filters: {
-    numberWithDelimiter(value) {
-      if (!value) {
-        return 0;
-      }
-      return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-    }
-  }
-}).$mount('#app');
+Vue.component('fruits-list-table', {
+  template: `
+  <table>
+        <tr>
+            <th>季節</th>
+            <th>フルーツ</th>
+        </tr>
+        <tr>
+            <td>春</td>
+            <td>イチゴ</td>
+        </tr>
+        <tr>
+            <td>夏</td>
+            <td>すいか</td>
+        </tr>
+        <tr>
+            <td>秋</td>
+            <td>ぶどう</td>
+        </tr>
+        <tr>
+            <td>冬</td>
+            <td>みかん</td>
+        </tr>
+    </table>
+  `
+});
+
+const vm = new Vue().$mount('#app');
 
 window.vm = vm;
