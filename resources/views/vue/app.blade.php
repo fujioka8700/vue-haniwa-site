@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <simple-counter></simple-counter>
+        <item-desc :item-name="myItem"></item-desc>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>

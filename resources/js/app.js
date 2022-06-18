@@ -1,24 +1,22 @@
 require('./bootstrap');
 import Vue from 'vue';
 
-Vue.component('simple-counter', {
-  template: `
-  <div>
-    <h1>フルーツ一覧</h1>
-    <ul>
-      <li v-for="fruit in fruits" :key="fruit">{{ fruit }}</li>
-    </ul>
-  </div>
-  `,
-  data: function() {
-    return {
-      fruits: ['りんご', 'みかん']
+const ItemDesc = {
+  template: '<p>{{ itemName }}は便利です。</p>',
+  props: {
+    itemName: {
+      type: String
     }
   }
-});
+}
 
 const vm = new Vue({
-  
+  data: {
+    myItem: 'ペン'
+  },
+  components: {
+    ItemDesc
+  }
 }).$mount('#app');
 
 window.vm = vm;
