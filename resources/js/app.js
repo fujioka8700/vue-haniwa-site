@@ -11,6 +11,8 @@ const userLogin = Vue.extend({
   methods: {
     login: function() {
       this.$emit('login', this.userId, this.password);
+      this.userId = '';
+      this.password = '';
     }
   },
   template: `
@@ -31,8 +33,8 @@ const vm = new Vue({
     userLogin
   },
   methods: {
-    login: function(userId, password) {
-      console.log('ログインID:' + userId + ' パスワード:' + password);
+    login: function(id, password) {
+      alert('ログインID:' + id + ' パスワード:' + password);
     }
   }
 }).$mount('#app');
