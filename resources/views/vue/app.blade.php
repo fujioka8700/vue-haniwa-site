@@ -14,7 +14,11 @@
 </head>
 <body>
     <div id="app">
-        <user-login @login="login"></user-login>    
+        <router-link to="/top">トップページ</router-link>
+        <router-link to="/users">ユーザー一覧ページ</router-link>
+        <router-link :to="{ name: 'user', params: { userId: 123 }}">ユーザー詳細ページ</router-link>
+        <button @click="userBtn">ボタン</button>
+        <router-view></router-view>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
