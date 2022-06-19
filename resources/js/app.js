@@ -31,6 +31,7 @@ const router = new VueRouter({
 
 // グローバルフック関数
 router.beforeEach((to, from, next) => {
+  // ユーザー一覧ページへアクセスした時、トップページへリダイレクトする。
   if (to.path === '/users') {
     next('/top');
   } else {
