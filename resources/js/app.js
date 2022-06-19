@@ -40,3 +40,5 @@ const vm = new Vue({
 }).$mount('#app');
 
 window.vm = vm;
+
+// 4.Vue Router から

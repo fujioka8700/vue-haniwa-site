@@ -10,20 +10,6 @@
         [v-cloak] {
             display: none; /* テンプレートのマスタッシュを非表示にする */
         }
-        .header {
-            width: 100%;
-            border: 1px solid #d3d3d3;
-            background-color: #f1f1f1;
-            padding: 30px 15px;
-        }
-        .content {
-            width: 100%;
-            border: 1px solid #d3d3d3;
-            background-color: #fff;
-            text-align: left;
-            padding: 30px 15px;
-            list-style-type: none;
-        }
     </style>
 </head>
 <body>
