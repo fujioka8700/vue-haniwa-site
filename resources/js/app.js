@@ -31,7 +31,14 @@ const router = new VueRouter({
       path: '/user/:userId',
       name: 'user',
       component: {
-        template: '<div>ユーザーのIDは {{ $route.params.userId }} です。</div>'
+        template: '<div>ユーザーのIDは {{ $route.params.userId }} です。</div>',
+        beforeRouteEnter(to, from, next) {
+          if(to.query.redirect === 'true') {
+            next('/top');
+          } else {
+            next();
+          }
+        }
       }
     }
   ]
