@@ -17,6 +17,14 @@ const router = new VueRouter({
       path: '/users',
       component: {
         template: '<div>ユーザー一覧ページです。</div>'
+      },
+      beforeEnter(to, from, next) {
+        // users?redirect=trueの時、'/top'へリダイレクトする
+        if(to.query.redirect === 'true') {
+          next('/top');
+        } else {
+          next();
+        }
       }
     },
     {
@@ -27,16 +35,6 @@ const router = new VueRouter({
       }
     }
   ]
-});
-
-// グローバルフック関数
-router.beforeEach((to, from, next) => {
-  // ユーザー一覧ページへアクセスした時、トップページへリダイレクトする。
-  if (to.path === '/users') {
-    next('/top');
-  } else {
-    next();
-  }
 });
 
 const vm = new Vue({
