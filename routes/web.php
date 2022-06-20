@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,26 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/javascript', function() {
-    return view('javascript/basic01');
-});
-
-Route::get('/vue', function() {
+Route::get('/{any}', function() {
     return view('vue/app');
-});
+})->where('any', '.*');
 
-Route::get('/altitude', function() {
-    return view('vue/altitude');
-});
-
-Route::get('/sfc', function() {
-    return view('vue/sfc');
-});
-
-Route::get('/vuex', function() {
-    return view('vue/vuex');
-});
+Route::get('/tasks', [TaskController::class, 'index']);
