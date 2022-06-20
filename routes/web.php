@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{any}', function() {
     return view('vue/app');
 })->where('any', '.*');
+
+Route::get('/tasks', [TaskController::class, 'index']);

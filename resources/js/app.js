@@ -3,14 +3,15 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import TaskListComponent from './components/TaskListComponent';
+
 const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/top',
-      component: {
-        template: '<div>TOPページです。</div>'
-      }
+      path: '/tasks',
+      name: 'task.list',
+      component: TaskListComponent
     }
   ]
 });
