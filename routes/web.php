@@ -21,5 +21,3 @@ use App\Http\Controllers\TaskController;
 Route::get('/{any}', function() {
     return view('vue/app');
 })->where('any', '.*');
-
-Route::get('/tasks', [TaskController::class, 'index']);
