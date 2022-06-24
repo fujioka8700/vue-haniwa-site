@@ -11,4 +11,24 @@ class TaskController extends Controller
     {
         return Task::all();
     }
+
+    public function show(Task $task) {
+        return $task;
+    }
+
+    public function update(Request $request, Task $task) {
+        $task->update($request->all());
+
+        return $task;
+    }
+
+    public function destroy(Task $task) {
+        $task->delete();
+
+        return $task;
+    }
+
+    public function store(Request $request) {
+        return Task::create($request->all());
+    }
 }
